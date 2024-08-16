@@ -1,0 +1,102 @@
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+}
+
+.box {
+  display: grid;
+  width: var(--boxWidth);
+  max-width: var(--maxWidth);
+  margin: 0 auto 20px auto;
+  padding-top: 45px;
+  gap: 20px;
+}
+
+.title {
+  margin-top: 15px;
+  color: var(--fontColor);
+}
+
+.elementHover {
+  transition: background-color 0.18s, transform 0.18s, box-shadow 0.18s;
+  background-color: var(--backColor);
+  backdrop-filter: var(--backBlur);
+  -webkit-backdrop-filter: var(--backBlur);
+  color: var(--fontColor);
+  padding: 15px;
+  border-radius: var(--borderRadius);
+  text-decoration: none;
+  transform: scale(1);
+  font-size: var(--fontSize);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.elementHover:active {
+  box-shadow: 0 0 10px white;
+}
+
+.matrix {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.imgAutoSuitability {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ElementUI */
+/* 提示框样式 */
+/* 弹出框样式 */
+.el-message,
+.el-popover.is-light {
+  border: 0;
+  background-color: var(--backColor);
+  backdrop-filter: var(--backBlur);
+  -webkit-backdrop-filter: var(--backBlur);
+  border-radius: var(--borderRadius);
+}
+
+.el-popover.is-light {
+  color: var(--fontColor);
+}
+
+.el-popper.is-light .el-popper__arrow:before {
+  display: none;
+}
+
+.beforeLoad {
+  transition: transform 1.5s;
+  transform: scale(1.5);
+}
+
+.load {
+  transform: scale(1);
+}
+
+/* 移动端视图 */
+@media screen and (max-width: 720px) {
+  .elementHover:active {
+    transform: scale(0.97);
+    background-color: var(--backActiveColor);
+  }
+}
+
+/* 桌面端视图 */
+@media screen and (min-width: 720px) {
+  .elementHover:hover {
+    transform: scale(1.02);
+    background-color: var(--backHoverColor);
+  }
+
+  .elementHover:active {
+    transform: scale(1);
+    background-color: var(--backActiveColor);
+  }
+}
