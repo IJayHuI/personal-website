@@ -1,0 +1,73 @@
+.content_1 form {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p,
+.button {
+    font-size: 20px;
+}
+
+.tips p {
+    color: red;
+}
+
+.feedback {
+    display: flex;
+    justify-content: center;
+    width: 600px;
+    height: 60px;
+    margin-top: 20px;
+}
+
+.feedback p {
+    width: 15%;
+    text-align: right;
+    line-height: 60px;
+}
+
+.feedback input {
+    width: 85%;
+    height: 40px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: solid 1px #FFF;
+    font-size: 20px;
+    padding: 10px;
+}
+
+#area {
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+#area p {
+    width: 600px;
+    text-align: center;
+}
+
+.area {
+    resize: none;
+    width: 580px;
+    height: 230px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: solid 1px #FFF;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.button {
+    width: 150px;
+    height: 60px;
+    margin: 0 10px;
+    border: solid 1px #FFF;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.button:active {
+    transform: scale(1.05);
+}

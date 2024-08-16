@@ -1,0 +1,67 @@
+.left_list a {
+    height: 100%;
+}
+
+#max_img {
+    width: 100%;
+    border-radius: 1rem;
+}
+
+.info {
+    width: 95%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#introduction {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 0.8rem;
+    margin-bottom: 20px;
+}
+
+#introduction p {
+    font-size: 15px;
+    margin: 20px 10px 20px 10px;
+    text-indent: 2rem;
+    color: rgba(0, 0, 0, 0.78);
+}
+
+.to_web {
+    width: 250px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.play_area {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 0.8rem;
+}
+
+.play_area_right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#song_name {
+    font-size: 2.8rem;
+}
+
+#album {
+    width: 200px;
+    border-radius: 15px;
+    margin: 20px;
+}

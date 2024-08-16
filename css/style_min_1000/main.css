@@ -1,0 +1,91 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    height: 700px;
+    width: 1000px;
+    overflow: hidden;
+}
+
+.left {
+    width: 80px;
+    height: 700px;
+    background-color: rgba(255, 255, 255, 0.4);
+    font-size: 18px;
+    margin-right: 10px;
+    border-radius: 1rem;
+}
+
+.left_list {
+    list-style: none;
+    width: 80px;
+    height: 700px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.left_list a {
+    width: 80px;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border: 0;
+}
+
+.right {
+    width: 910px;
+    height: 700px;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    width: 910px;
+    height: 640px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 1rem;
+    margin-bottom: 10px;
+}
+
+.bottom {
+    width: 910px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 1rem;
+    display: flex;
+}
+
+.bottom::before {
+    content: "© 版权由胡杰归属，未经允许不得复制、镜像";
+    width: 910px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+
+#now {
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+#now img {
+    width: 50px;
+    height: 50px;
+}
+
+ul a {
+    color: black;
+    text-decoration: none;
+}
+
+ul a:active {
+    font-weight: bold;
+}

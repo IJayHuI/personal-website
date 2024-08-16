@@ -1,0 +1,74 @@
+.content_1 form {
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+p,
+.button {
+    font-size: 17px;
+}
+
+.tips p {
+    color: red;
+    text-align: center;
+}
+
+.feedback {
+    display: flex;
+    justify-content: center;
+    width: 350px;
+    height: 40px;
+    margin-top: 30px;
+}
+
+.feedback p {
+    width: 20%;
+    text-align: right;
+    line-height: 40px;
+}
+
+.feedback input {
+    width: 80%;
+    height: 30px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: solid 1px #FFF;
+    font-size: 17px;
+    padding: 5px;
+}
+
+#area {
+    margin-top: 10px;
+    flex-direction: column;
+}
+
+#area p {
+    width: 350px;
+    text-align: center;
+}
+
+.area {
+    resize: none;
+    width: 340px;
+    height: 130px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: solid 1px #FFF;
+    font-size: 17px;
+    padding: 5px;
+}
+
+.button {
+    width: 150px;
+    height: 60px;
+    margin: 0 10px;
+    border: solid 1px #FFF;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.button:active {
+    transform: scale(1.05);
+}

@@ -1,0 +1,124 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+    align-items: center;
+}
+
+.max_title {
+    font-size: 2.7rem;
+    font-weight: bold;
+}
+
+.tips p {
+    text-align: center;
+}
+
+.title {
+    width: 100%;
+    justify-content: center;
+    font-size: 2.2rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.content_1 {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message {
+    width: 350px;
+    height: 70px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: 0.3s;
+    font-size: 15px;
+    margin: 0 10px 20px 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.message:hover {
+    width: 350px;
+    height: 173px;
+    font-size: 25px;
+    background-color: white;
+    box-shadow: 0 0 100px white;
+}
+
+.text,
+.image {
+    text-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s;
+    display: block;
+    text-align: center;
+    line-height: 70px;
+    font-size: 15px;
+}
+
+.image {
+    height: 133px;
+}
+
+.website-button {
+    display: none;
+    width: 350px;
+    height: 40px;
+    background: white;
+    border: none;
+    cursor: pointer;
+    z-index: -1;
+}
+
+.website-button img {
+    width: 40px;
+    height: 40px;
+    margin: 0 155px;
+}
+
+.message:hover .website-button {
+    display: block;
+    margin: 0 280px 0 0;
+    z-index: 3;
+}
+
+.message:hover .text {
+    opacity: 0;
+}
+
+.message:hover .image {
+    opacity: 1;
+}
+
+.text {
+    opacity: 1;
+}
+
+.image {
+    opacity: 0;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+#no_button:hover {
+    height: 133px;
+}
