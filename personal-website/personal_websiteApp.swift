@@ -1,6 +1,6 @@
 //
-//  personal_appApp.swift
-//  personal app
+//  personal_websiteApp.swift
+//  personal-website
 //
 //  Created by 胡杰 on 2025/5/13.
 //
@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct personal_appApp: App {
+struct personal_websiteApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,

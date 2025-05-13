@@ -1,13 +1,13 @@
 //
-//  personal_appUITestsLaunchTests.swift
-//  personal appUITests
+//  personal_websiteUITestsLaunchTests.swift
+//  personal-websiteUITests
 //
 //  Created by 胡杰 on 2025/5/13.
 //
 
 import XCTest
 
-final class personal_appUITestsLaunchTests: XCTestCase {
+final class personal_websiteUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true
