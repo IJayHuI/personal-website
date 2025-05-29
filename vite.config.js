@@ -12,7 +12,7 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/background/, '')
       },
       '/server': {
-        target: 'https://server.jayhu.site/api',
+        target: 'https://strapi.jayhu.site/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/server/, '')
       }
