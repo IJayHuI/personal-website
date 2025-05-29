@@ -7,6 +7,28 @@
   padding: 0;
 }
 
-.n-layout-footer {
+.n-layout-footer,
+.n-card {
   backdrop-filter: blur(var(--background-blur));
+  -webkit-backdrop-filter: blur(var(--background-blur));
+}
+
+.interaction {
+  transition: scale 0.15s;
+}
+
+@media screen and (min-width:768px) {
+  .interaction:hover {
+    scale: 1.05;
+  }
+
+  .interaction:active {
+    scale: 1;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .interaction:active {
+    scale: 0.95;
+  }
 }
