@@ -6,6 +6,18 @@ const config = [
     name: 'Home',
     desktop: './views/desktop/Home.vue',
     mobile: './views/mobile/Home.vue'
+  },
+  {
+    path: '/navigate',
+    name: 'Navigate',
+    desktop: './views/desktop/Navigate.vue',
+    mobile: './views/desktop/Navigate.vue'
+  },
+  {
+    path: '/project',
+    name: 'Project',
+    desktop: './views/desktop/Project.vue',
+    mobile: './views/desktop/Project.vue'
   }
 ]
 
