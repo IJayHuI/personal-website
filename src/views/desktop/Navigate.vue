@@ -12,6 +12,8 @@
     return () => h(NIcon, null, { default: () => h(icon) })
   }
   const datas = ref([])
+  const loadingStatus = ref(false)
+  const expandedNames = ref([])
   const menuOptions = ref([
     {
       label: '关闭所有',
@@ -29,8 +31,8 @@
       }
     }
   ])
-  const expandedNames = ref([])
   const getData = () => {
+    loadingStatus.value = true
     axios
       .get('/server/navigate-groups?populate=item')
       .then((response) => {
@@ -43,6 +45,7 @@
           })
           expandedNames.value.push(item.documentId)
         })
+        loadingStatus.value = false
       })
       .catch((error) => {
         console.error(error)
@@ -54,19 +57,21 @@
 <template>
   <n-config-provider :theme="theme">
     <n-layout position="absolute">
-      <n-layout has-sider position="absolute">
-        <n-layout-sider collapse-mode="width" :collapsed-width="60" :width="240" show-trigger="bar">
-          <Menu :options="menuOptions" v-model:expandedNames="expandedNames" />
-        </n-layout-sider>
-        <n-layout-content content-style="padding: 0px 0px 0px 24px;">
-          <Content :data="datas" v-model:expandedNames="expandedNames" />
-          <n-layout-footer style="border-radius: 3px; margin: 0px 24px 16px 0px">
-            <div style="padding: 10px 0px 10px 3px">
-              <BeiAn />
-            </div>
-          </n-layout-footer>
-        </n-layout-content>
-      </n-layout>
+      <n-spin :show="loadingStatus" :size="70" style="height: 100%; width: 100%; --n-opacity-spinning: 0">
+        <n-layout has-sider position="absolute">
+          <n-layout-sider collapse-mode="width" :collapsed-width="60" :width="240" show-trigger="bar">
+            <Menu :options="menuOptions" v-model:expandedNames="expandedNames" />
+          </n-layout-sider>
+          <n-layout-content content-style="padding: 0px 0px 0px 24px;">
+            <Content :data="datas" v-model:expandedNames="expandedNames" />
+            <n-layout-footer style="border-radius: 3px; margin: 0px 24px 16px 0px">
+              <div style="padding: 10px 0px 10px 3px">
+                <BeiAn />
+              </div>
+            </n-layout-footer>
+          </n-layout-content>
+        </n-layout>
+      </n-spin>
     </n-layout>
   </n-config-provider>
 </template>

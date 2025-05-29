@@ -1,5 +1,5 @@
 :root {
-  --background-blur: 10px
+  --background-blur: 1rem
 }
 
 * {
@@ -8,7 +8,8 @@
 }
 
 .n-layout-footer,
-.n-card {
+.n-card,
+.n-spin-container {
   backdrop-filter: blur(var(--background-blur));
   -webkit-backdrop-filter: blur(var(--background-blur));
 }
