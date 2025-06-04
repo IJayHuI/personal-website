@@ -2,43 +2,33 @@
   import { NGrid, NGi } from 'naive-ui'
   import BeiAn from '../../components/BeiAn.vue'
   // import Avatar from '../../components/Home/Avatar.vue'
-  import Item from '../../components/Home/Item.vue'
+  import ContactMe from '../../components/Home/desktop/ContactMe.vue'
+  import DateTime from '../../components/Home/DateTime.vue'
+  import Item from '../../components/Home/desktop/Item.vue'
+  import ThemeChange from '../../components/Home/ThemeChange.vue'
   import { theme } from '../../main'
-
-  const lightThemeOverrides = {
-    Card: {
-      color: 'rgba(255, 255, 255, 0.5)',
-      borderRadius: '10px'
-    },
-    Layout: {
-      color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(255, 255, 255, 0.4)',
-      textColor: '#000'
-    }
-  }
-
-  const darkThemeOverrides = {
-    Card: {
-      color: 'rgba(24, 24, 28, 0.5)',
-      borderRadius: '10px'
-    },
-    Layout: {
-      color: 'rgba(16, 16, 20, 0.4)',
-      footerColor: 'rgba(24, 24, 28, 0.4)'
-    }
-  }
+  import { defineAsyncComponent } from 'vue'
+  import { handleItemClick, darkThemeOverrides, lightThemeOverrides, drawerData } from '../../services/Home'
 </script>
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides : darkThemeOverrides">
+  <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides.desktop : darkThemeOverrides.desktop">
     <n-layout position="absolute">
       <n-layout-content position="absolute">
-        <n-grid x-gap="10" :cols="1" style="height: 100%">
-          <!-- <n-gi></n-gi> -->
+        <n-grid x-gap="20" :cols="2" style="height: 100%">
           <n-gi>
-            <div style="display: flex; justify-content: center; align-items: center; height: 100%">
-              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px">
-                <Item />
+            <div style="display: flex; justify-content: end; align-items: center; height: 100%;">
+              <div class="container">
+                <ContactMe />
               </div>
+            </div>
+          </n-gi>
+          <n-gi>
+            <div class="container">
+              <DateTime />
+              <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex-direction: column">
+                <Item @item-click="handleItemClick" />
+              </div>
+              <ThemeChange />
             </div>
           </n-gi>
         </n-grid>
@@ -49,5 +39,26 @@
         </div>
       </n-layout-footer>
     </n-layout>
+    <n-drawer v-model:show="drawerData.active" width="30%" placement="right">
+      <n-drawer-content :title="drawerData.title">
+        <component :is="defineAsyncComponent(() => import(drawerData.component))" />
+        <template #footer>
+          <n-button @click="drawerData.active = false">关闭</n-button>
+        </template>
+      </n-drawer-content>
+    </n-drawer>
   </n-config-provider>
 </template>
+
+<style scoped>
+  .container {
+    max-width: 500px;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+</style>

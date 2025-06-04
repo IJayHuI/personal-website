@@ -1,56 +1,9 @@
 <script setup>
   import { theme } from '../../main'
-  import { ref, h } from 'vue'
-  import axios from 'axios'
-  import { NIcon } from 'naive-ui'
   import BeiAn from '../../components/BeiAn.vue'
-  import Menu from '../../components/Navigate/Menu.vue'
+  import Menu from '../../components/Navigate/desktop/Menu.vue'
   import Content from '../../components/Navigate/Content.vue'
-  import * as icons from '@vicons/material'
-
-  const renderIcon = (icon) => {
-    return () => h(NIcon, null, { default: () => h(icon) })
-  }
-  const datas = ref([])
-  const loadingStatus = ref(false)
-  const expandedNames = ref([])
-  const menuOptions = ref([
-    {
-      label: '关闭所有',
-      key: 'closeAll',
-      icon: renderIcon(icons['CloseFullscreenRound'])
-    },
-    {
-      label: '展开所有',
-      icon: renderIcon(icons['FormatListBulletedRound']),
-      key: 'expandedAll',
-      onClick: () => {
-        datas.value.map((item) => {
-          expandedNames.value.push(item.documentId)
-        })
-      }
-    }
-  ])
-  const getData = () => {
-    loadingStatus.value = true
-    axios
-      .get('/server/navigate-groups?populate=item')
-      .then((response) => {
-        datas.value = response.data.data
-        datas.value.map((item) => {
-          menuOptions.value.push({
-            label: item.name,
-            key: item.documentId,
-            icon: renderIcon(icons[item.icon])
-          })
-          expandedNames.value.push(item.documentId)
-        })
-        loadingStatus.value = false
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
+  import { getData, drawerData, datas, expandedNames, menuOptions, loadingStatus } from '../../services/Navigate'
 
   getData()
 </script>
@@ -63,7 +16,7 @@
             <Menu :options="menuOptions" v-model:expandedNames="expandedNames" />
           </n-layout-sider>
           <n-layout-content content-style="padding: 0px 0px 0px 24px;">
-            <Content :data="datas" v-model:expandedNames="expandedNames" />
+            <Content :data="datas" v-model:expandedNames="expandedNames" v-model:drawerData="drawerData" />
             <n-layout-footer style="border-radius: 3px; margin: 0px 24px 16px 0px">
               <div style="padding: 10px 0px 10px 3px">
                 <BeiAn />
@@ -73,5 +26,16 @@
         </n-layout>
       </n-spin>
     </n-layout>
+    <n-drawer v-model:show="drawerData.active" width="30%" placement="right">
+      <n-drawer-content :title="drawerData.title">
+        {{ drawerData.content == null ? '暂无简介' : drawerData.content }}
+        <template #footer>
+          <n-space>
+            <n-button @click="drawerData.active = false">关闭</n-button>
+            <n-button tag="a" :href="drawerData.link" target="_blank" strong type="success">前往</n-button>
+          </n-space>
+        </template>
+      </n-drawer-content>
+    </n-drawer>
   </n-config-provider>
 </template>

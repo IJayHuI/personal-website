@@ -9,7 +9,7 @@
 
 .n-layout-footer,
 .n-card,
-.n-spin-container {
+.n-drawer {
   backdrop-filter: blur(var(--background-blur));
   -webkit-backdrop-filter: blur(var(--background-blur));
 }
@@ -20,7 +20,7 @@
 
 @media screen and (min-width:768px) {
   .interaction:hover {
-    scale: 1.05;
+    scale: 1.03;
   }
 
   .interaction:active {
@@ -31,5 +31,13 @@
 @media screen and (max-width:768px) {
   .interaction:active {
     scale: 0.95;
+  }
+
+  .menu-button {
+    border-radius: 0;
+    width: 100%;
+    height: 55px;
+    position: absolute;
+    bottom: 0
   }
 }

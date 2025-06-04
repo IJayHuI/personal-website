@@ -1,7 +1,7 @@
 <script setup>
   import { ref, h } from 'vue'
   import { NIcon } from 'naive-ui'
-  import { ArrowBackRound, FolderRound } from '@vicons/material'
+  import { HomeRound, FolderRound } from '@vicons/material'
   import { RouterLink } from 'vue-router'
 
   const props = defineProps({
@@ -19,9 +19,9 @@
 
   const baseOptions = ref([
     {
-      label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '返回' }),
+      label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '主页' }),
       key: 'back',
-      icon: () => h(NIcon, null, { default: () => h(ArrowBackRound) })
+      icon: () => h(NIcon, null, { default: () => h(HomeRound) })
     },
     {
       label: () => h(RouterLink, { to: { name: 'Project' } }, { default: () => '小项目' }),

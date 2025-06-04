@@ -11,13 +11,13 @@ const config = [
     path: '/navigate',
     name: 'Navigate',
     desktop: './views/desktop/Navigate.vue',
-    mobile: './views/desktop/Navigate.vue'
+    mobile: './views/mobile/Navigate.vue'
   },
   {
     path: '/project',
     name: 'Project',
     desktop: './views/desktop/Project.vue',
-    mobile: './views/desktop/Project.vue'
+    mobile: './views/mobile/Project.vue'
   }
 ]
 
