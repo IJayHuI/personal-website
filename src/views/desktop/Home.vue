@@ -1,7 +1,7 @@
 <script setup>
   import { NGrid, NGi } from 'naive-ui'
   import BeiAn from '../../components/BeiAn.vue'
-  // import Avatar from '../../components/Home/Avatar.vue'
+  import Avatar from '../../components/Home/Avatar.vue'
   import ContactMe from '../../components/Home/desktop/ContactMe.vue'
   import DateTime from '../../components/Home/DateTime.vue'
   import Item from '../../components/Home/desktop/Item.vue'
@@ -18,6 +18,7 @@
           <n-gi>
             <div style="display: flex; justify-content: end; align-items: center; height: 100%;">
               <div class="container">
+                <Avatar />
                 <ContactMe />
               </div>
             </div>

@@ -1,5 +1,6 @@
 <script setup>
   import { NLayout, NLayoutContent, NLayoutFooter, NGrid, NGi, NCarousel } from 'naive-ui'
+  import Avatar from '../../components/Home/Avatar.vue'
   import DateTime from '../../components/Home/DateTime.vue'
   import Item from '../../components/Home/mobile/Item.vue'
   import ContactMe from '../../components/Home/mobile/ContactMe.vue'
@@ -13,8 +14,12 @@
   <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
     <n-layout position="absolute">
       <n-layout-content position="absolute">
-        <n-grid y-gap="10" :cols="1" :collapsed-rows="2" style="height: 100%" responsive="screen">
-          <n-gi></n-gi>
+        <n-grid y-gap="20" :cols="1" :collapsed-rows="2" style="height: 100%" responsive="screen">
+          <n-gi>
+            <div style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end">
+              <Avatar />
+            </div>
+          </n-gi>
           <n-gi>
             <n-carousel :space-between="10" style="width: 90%; height: 325px; margin: auto" draggable>
               <div class="carousel-item">
