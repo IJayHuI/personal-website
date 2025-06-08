@@ -1,10 +1,11 @@
 <script setup>
   import { ref } from 'vue'
+  import { baseUrl } from '../main'
   import axios from 'axios'
 
   const src = ref(null)
   axios
-    .get('/background/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
+    .get(`${baseUrl.background}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN`)
     .then((response) => {
       src.value = 'https://cn.bing.com' + response.data.images[0].url
     })

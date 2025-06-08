@@ -7,7 +7,6 @@
   import Item from '../../components/Home/desktop/Item.vue'
   import ThemeChange from '../../components/Home/ThemeChange.vue'
   import { theme } from '../../main'
-  import { defineAsyncComponent } from 'vue'
   import { handleItemClick, darkThemeOverrides, lightThemeOverrides, drawerData } from '../../services/Home'
 </script>
 <template>
@@ -16,7 +15,7 @@
       <n-layout-content position="absolute">
         <n-grid x-gap="20" :cols="2" style="height: 100%">
           <n-gi>
-            <div style="display: flex; justify-content: end; align-items: center; height: 100%;">
+            <div style="display: flex; justify-content: end; align-items: center; height: 100%">
               <div class="container">
                 <Avatar />
                 <ContactMe />
@@ -42,7 +41,7 @@
     </n-layout>
     <n-drawer v-model:show="drawerData.active" width="30%" placement="right">
       <n-drawer-content :title="drawerData.title">
-        <component :is="defineAsyncComponent(() => import(drawerData.component))" />
+        <component :is="drawerData.component" />
         <template #footer>
           <n-button @click="drawerData.active = false">关闭</n-button>
         </template>

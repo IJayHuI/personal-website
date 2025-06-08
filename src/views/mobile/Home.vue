@@ -7,7 +7,6 @@
   import ThemeChange from '../../components/Home/ThemeChange.vue'
   import BeiAn from '../../components/BeiAn.vue'
   import { theme } from '../../main'
-  import { defineAsyncComponent } from 'vue'
   import { handleItemClick, lightThemeOverrides, darkThemeOverrides, drawerData } from '../../services/Home'
 </script>
 <template>
@@ -42,7 +41,7 @@
     </n-layout>
     <n-drawer v-model:show="drawerData.active" height="80%" placement="bottom">
       <n-drawer-content :title="drawerData.title">
-        <component :is="defineAsyncComponent(() => import(drawerData.component))" />
+        <component :is="drawerData.component" />
         <template #footer>
           <n-button @click="drawerData.active = false">关闭</n-button>
         </template>

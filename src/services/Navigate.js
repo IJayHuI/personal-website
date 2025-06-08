@@ -2,6 +2,7 @@ import { NIcon } from 'naive-ui'
 import { ref, h } from 'vue'
 import axios from 'axios'
 import * as icons from '@vicons/material'
+import { baseUrl } from '../main'
 
 export const expandedNames = ref([])
 export const datas = ref([])
@@ -61,7 +62,7 @@ export const menuOptions = ref([
 export const getData = () => {
   loadingStatus.value = true
   axios
-    .get('/server/navigate-groups?populate=item')
+    .get(`${baseUrl.server}/navigate-groups?populate=item`)
     .then((response) => {
       datas.value = response.data.data
       datas.value.map((item) => {

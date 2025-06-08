@@ -5,11 +5,11 @@
 <template>
   <div class="card interaction" @click="headIconClick" @touchstart="">
     <div class="front" :class="rotateStatus ? 'overturn-front' : ''">
-      <img class="background" :src="headIconImgs.background" />
+      <div class="background" :style="headIconImgs.background"></div>
       <img class="icon" :src="headIconImgs.icon" />
     </div>
     <div class="back" :class="rotateStatus ? 'overturn-back' : ''" @click="headIconRotateClick">
-      <img class="background" :src="headIconImgs.background" />
+      <div class="background" :style="headIconImgs.background"></div>
       <h2>{{ headIconInfo.text }}</h2>
     </div>
     <n-button @click.stop @click="rotateStatus = !rotateStatus" size="large" type="info" circle class="overturn-button interaction">

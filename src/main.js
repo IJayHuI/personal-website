@@ -20,6 +20,11 @@ export const theme = computed(() => {
   return themeMode.value === 'dark' ? darkTheme : null
 })
 
+export const baseUrl = {
+  background: '/background',
+  server: '/server'
+}
+
 // 是否移动端
 export const isMobile = ref(window.innerWidth < 768)
 window.addEventListener('resize', () => {

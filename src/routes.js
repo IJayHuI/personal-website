@@ -4,20 +4,20 @@ const config = [
   {
     path: '/',
     name: 'Home',
-    desktop: './views/desktop/Home.vue',
-    mobile: './views/mobile/Home.vue'
+    desktop: () => import('./views/desktop/Home.vue'),
+    mobile: () => import('./views/mobile/Home.vue')
   },
   {
     path: '/navigate',
     name: 'Navigate',
-    desktop: './views/desktop/Navigate.vue',
-    mobile: './views/mobile/Navigate.vue'
+    desktop: () => import('./views/desktop/Navigate.vue'),
+    mobile: () => import('./views/mobile/Navigate.vue')
   },
   {
     path: '/project',
     name: 'Project',
-    desktop: './views/desktop/Project.vue',
-    mobile: './views/mobile/Project.vue'
+    desktop: () => import('./views/desktop/Project.vue'),
+    mobile: () => import('./views/mobile/Project.vue')
   }
 ]
 
@@ -26,8 +26,8 @@ const getRoutes = () => {
     path: route.path,
     name: route.name,
     components: {
-      desktop: () => import(route.desktop),
-      mobile: () => import(route.mobile)
+      desktop: route.desktop,
+      mobile: route.mobile
     }
   }))
 }

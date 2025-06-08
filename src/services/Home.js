@@ -1,16 +1,18 @@
 import router from '../routes'
-import { ref } from 'vue'
+import { ref, markRaw } from 'vue' // 使用 markRaw 包装了 Log 和 About 组件，以防止它们被转换为响应式对象
+import Log from '../components/Home/Log.vue'
+import About from '../components/Home/About.vue'
 
 export const rotateStatus = ref(false)
 
 export const headIconImgs = ref({
-  background: '/avatar/background1.jpg',
+  background: 'background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);',
   icon: '/avatar/icon1.png'
 })
 
 export const headIconClick = () => {
   headIconImgs.value = {
-    background: `/avatar/background${Math.round(Math.random() * (4 - 1) + 1)}.jpg`,
+    background: `background-image: linear-gradient(${headIconInfo.value.backgroundLinearGradient[Math.round(Math.random() * (headIconInfo.value.backgroundLinearGradient.length - 1))]});`,
     icon: `/avatar/icon${Math.round(Math.random() * (6 - 1) + 1)}.png`
   }
 }
@@ -25,7 +27,17 @@ export const headIconRotateClick = () => {
 export const headIconInfo = ref({
   clickCount: 0,
   text: '你好',
-  texts: ['这里没有东西', '哟，又点了一次！', '真没有！', '你有点执着啊！', '你还在点？认真的吗？', '够了吧，这真没东西！', '行行行，你赢了！', '最后一次了，别再点了！']
+  texts: ['这里没有东西', '哟，又点了一次！', '真没有！', '你有点执着啊！', '你还在点？认真的吗？', '够了吧，这真没东西！', '行行行，你赢了！', '最后一次了，别再点了！'],
+  backgroundLinearGradient: [
+    '135deg, #FDEB71 10%, #F8D800 100%',
+    '135deg, #E2B0FF 10%, #9F44D3 100%',
+    '135deg, #FEB692 10%, #EA5455 100%',
+    '135deg, #90F7EC 10%, #32CCBC 100%',
+    '135deg, #A0FE65 10%, #FA016D 100%',
+    '135deg, #81FFEF 10%, #F067B4 100%',
+    '135deg, #EE9AE5 10%, #5961F9 100%',
+    '135deg, #70F570 10%, #49C628 100%'
+  ]
 })
 
 export const handleItemClick = (item) => {
@@ -113,13 +125,13 @@ export const items = [
     name: '日志',
     icon: 'LogoDevRound',
     type: 'drawer',
-    component: '../../components/Home/Log.vue'
+    component: markRaw(Log)
   },
   {
     name: '关于',
     icon: 'InfoRound',
     type: 'drawer',
-    component: '../../components/Home/About.vue'
+    component: markRaw(About)
   }
 ]
 
@@ -140,14 +152,6 @@ export const lightThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(255, 255, 255, 0.7)'
-    },
-    Radio: {
-      buttonColor: 'rgba(0,0,0, 0)',
-      buttonColorActive: 'rgb(255, 255, 255)',
-      buttonTextColorHover: 'rgb(255, 255, 255)',
-      buttonBorderColorActive: 'rgb(255, 255, 255)',
-      buttonBorderColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorActive: '#000'
     }
   },
   mobile: {
@@ -166,14 +170,6 @@ export const lightThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(255, 255, 255, 0.7)'
-    },
-    Radio: {
-      buttonColor: 'rgba(0,0,0, 0)',
-      buttonColorActive: 'rgb(255, 255, 255)',
-      buttonTextColorHover: 'rgb(255, 255, 255)',
-      buttonBorderColorActive: 'rgb(255, 255, 255)',
-      buttonBorderColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorActive: '#000'
     }
   }
 }
@@ -193,14 +189,6 @@ export const darkThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(44, 44, 50, 0.5)'
-    },
-    Radio: {
-      buttonColorActive: 'rgb(255, 255, 255)',
-      buttonBorderColorActive: 'rgb(255, 255, 255)',
-      buttonBorderColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorActive: '#000'
     }
   },
   mobile: {
@@ -217,14 +205,6 @@ export const darkThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(44, 44, 50, 0.5)'
-    },
-    Radio: {
-      buttonColorActive: 'rgb(255, 255, 255)',
-      buttonBorderColorActive: 'rgb(255, 255, 255)',
-      buttonBorderColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorHover: 'rgb(255, 255, 255)',
-      buttonTextColorActive: '#000'
     }
   }
 }

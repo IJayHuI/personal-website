@@ -2,6 +2,7 @@ import { ref, h } from 'vue'
 import axios from 'axios'
 import { NIcon } from 'naive-ui'
 import { RouterLink } from 'vue-router'
+import { baseUrl } from '../main'
 import { HomeRound, BookmarksRound } from '@vicons/material'
 
 export const loadingStatus = ref(false)
@@ -45,7 +46,7 @@ export const lightThemeOverrides = {
 export const getData = () => {
   loadingStatus.value = true
   axios
-    .get('/server/projects?populate=image')
+    .get(`${baseUrl.server}/projects?populate=image`)
     .then((response) => {
       datas.value = response.data.data
       loadingStatus.value = false
