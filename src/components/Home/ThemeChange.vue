@@ -2,7 +2,7 @@
   import { AutoAwesomeRound } from '@vicons/material'
   import { NRadioGroup, NRadioButton } from 'naive-ui'
   import { ref } from 'vue'
-  import { themeMode } from '../../main'
+  import { themeMode } from '@/main'
 
   const buttons = ref([
     {

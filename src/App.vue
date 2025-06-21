@@ -1,6 +1,6 @@
 <script setup>
-  import { isMobile } from './main'
-  import Background from './components/Background.vue'
+  import { isMobile } from '@/main'
+  import Background from '@/components/Background.vue'
 </script>
 
 <template>

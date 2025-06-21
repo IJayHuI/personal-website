@@ -1,6 +1,6 @@
 <script setup>
   import { UTurnLeftRound } from '@vicons/material'
-  import { headIconImgs, headIconClick, rotateStatus, headIconRotateClick, headIconInfo } from '../../services/Home'
+  import { headIconImgs, headIconClick, rotateStatus, headIconRotateClick, headIconInfo } from '@/services/Home'
 </script>
 <template>
   <div class="card interaction" @click="headIconClick" @touchstart="">

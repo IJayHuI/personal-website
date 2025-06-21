@@ -1,9 +1,9 @@
 <script setup>
-  import { theme } from '../../main'
-  import BeiAn from '../../components/BeiAn.vue'
-  import Menu from '../../components/Navigate/desktop/Menu.vue'
-  import Content from '../../components/Navigate/Content.vue'
-  import { getData, drawerData, datas, expandedNames, menuOptions, loadingStatus } from '../../services/Navigate'
+  import { theme } from '@/main'
+  import BeiAn from '@/components/BeiAn.vue'
+  import Menu from '@/components/Navigate/desktop/Menu.vue'
+  import Content from '@/components/Navigate/Content.vue'
+  import { getData, drawerData, datas, expandedNames, menuOptions, loadingStatus } from '@/services/Navigate'
 
   getData()
 </script>

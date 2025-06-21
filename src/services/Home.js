@@ -1,7 +1,7 @@
-import router from '../routes'
+import router from '@/routes'
 import { ref, markRaw } from 'vue' // 使用 markRaw 包装了 Log 和 About 组件，以防止它们被转换为响应式对象
-import Log from '../components/Home/Log.vue'
-import About from '../components/Home/About.vue'
+import Log from '@/components/Home/Log.vue'
+import About from '@/components/Home/About.vue'
 
 export const rotateStatus = ref(false)
 

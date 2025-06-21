@@ -1,6 +1,6 @@
 <script setup>
   import { ref } from 'vue'
-  import { baseUrl } from '../main'
+  import { baseUrl } from '@/main'
   import axios from 'axios'
 
   const src = ref(null)

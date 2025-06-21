@@ -1,8 +1,8 @@
 <script setup>
-  import { theme } from '../../main'
-  import BeiAn from '../../components/BeiAn.vue'
-  import Menu from '../../components/Navigate/mobile/Menu.vue'
-  import Content from '../../components/Navigate/Content.vue'
+  import { theme } from '@/main'
+  import BeiAn from '@/components/BeiAn.vue'
+  import Menu from '@/components/Navigate/mobile/Menu.vue'
+  import Content from '@/components/Navigate/Content.vue'
   import { getData, drawerData, datas, expandedNames, menuOptions, loadingStatus, drawerStatus, lightThemeOverrides, darkThemeOverrides } from '../../services/Navigate'
 
   getData()

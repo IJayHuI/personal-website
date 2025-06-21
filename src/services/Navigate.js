@@ -2,7 +2,7 @@ import { NIcon } from 'naive-ui'
 import { ref, h } from 'vue'
 import axios from 'axios'
 import * as icons from '@vicons/material'
-import { baseUrl } from '../main'
+import { baseUrl } from '@/main'
 
 export const expandedNames = ref([])
 export const datas = ref([])

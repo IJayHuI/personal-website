@@ -1,8 +1,8 @@
 <script setup>
-  import { theme } from '../../main'
-  import { getData, loadingStatus, datas, menuOptions } from '../../services/Project'
-  import BeiAn from '../../components/BeiAn.vue'
-  import Content from '../../components/Project/Content.vue'
+  import { theme } from '@/main'
+  import { getData, loadingStatus, datas, menuOptions } from '@/services/Project'
+  import BeiAn from '@/components/BeiAn.vue'
+  import Content from '@/components/Project/Content.vue'
 
   getData()
 </script>

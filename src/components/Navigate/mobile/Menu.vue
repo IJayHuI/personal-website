@@ -3,7 +3,7 @@
   import { NIcon } from 'naive-ui'
   import { HomeRound, FolderRound } from '@vicons/material'
   import { RouterLink } from 'vue-router'
-  import { drawerStatus } from '../../../services/Navigate'
+  import { drawerStatus } from '@/services/Navigate'
 
   const props = defineProps({
     options: {

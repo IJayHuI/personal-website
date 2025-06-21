@@ -1,13 +1,13 @@
 <script setup>
   import { NGrid, NGi } from 'naive-ui'
-  import BeiAn from '../../components/BeiAn.vue'
-  import Avatar from '../../components/Home/Avatar.vue'
-  import ContactMe from '../../components/Home/desktop/ContactMe.vue'
-  import DateTime from '../../components/Home/DateTime.vue'
-  import Item from '../../components/Home/desktop/Item.vue'
-  import ThemeChange from '../../components/Home/ThemeChange.vue'
-  import { theme } from '../../main'
-  import { handleItemClick, darkThemeOverrides, lightThemeOverrides, drawerData } from '../../services/Home'
+  import BeiAn from '@/components/BeiAn.vue'
+  import Avatar from '@/components/Home/Avatar.vue'
+  import ContactMe from '@/components/Home/desktop/ContactMe.vue'
+  import DateTime from '@/components/Home/DateTime.vue'
+  import Item from '@/components/Home/desktop/Item.vue'
+  import ThemeChange from '@/components/Home/ThemeChange.vue'
+  import { theme } from '@/main'
+  import { handleItemClick, darkThemeOverrides, lightThemeOverrides, drawerData } from '@/services/Home'
 </script>
 <template>
   <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides.desktop : darkThemeOverrides.desktop">

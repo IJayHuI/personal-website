@@ -2,7 +2,7 @@ import { ref, h } from 'vue'
 import axios from 'axios'
 import { NIcon } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { baseUrl } from '../main'
+import { baseUrl } from '@/main'
 import { HomeRound, BookmarksRound } from '@vicons/material'
 
 export const loadingStatus = ref(false)

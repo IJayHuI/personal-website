@@ -2,7 +2,7 @@
   import { NTimeline, NTimelineItem } from 'naive-ui'
   import axios from 'axios'
   import { ref } from 'vue'
-  import { baseUrl } from '../../main'
+  import { baseUrl } from '@/main'
 
   const timelineData = ref([])
   const loadingStatus = ref(false)

@@ -1,5 +1,5 @@
 <script setup>
-  import { contactInfos, handleClickOrHoverContactIcon, contactShowInfo } from '../../../services/Home'
+  import { contactInfos, handleClickOrHoverContactIcon, contactShowInfo } from '@/services/Home'
 </script>
 <template>
   <n-card class="interaction" @toushstart="">

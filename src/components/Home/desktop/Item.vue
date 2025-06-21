@@ -1,5 +1,5 @@
 <script setup>
-  import { items } from '../../../services/Home'
+  import { items } from '@/services/Home'
   import * as icons from '@vicons/material'
 
   const emit = defineEmits(['itemClick'])

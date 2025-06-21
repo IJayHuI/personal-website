@@ -1,13 +1,13 @@
 <script setup>
   import { NLayout, NLayoutContent, NLayoutFooter, NGrid, NGi, NCarousel } from 'naive-ui'
-  import Avatar from '../../components/Home/Avatar.vue'
-  import DateTime from '../../components/Home/DateTime.vue'
-  import Item from '../../components/Home/mobile/Item.vue'
-  import ContactMe from '../../components/Home/mobile/ContactMe.vue'
-  import ThemeChange from '../../components/Home/ThemeChange.vue'
-  import BeiAn from '../../components/BeiAn.vue'
-  import { theme } from '../../main'
-  import { handleItemClick, lightThemeOverrides, darkThemeOverrides, drawerData } from '../../services/Home'
+  import Avatar from '@/components/Home/Avatar.vue'
+  import DateTime from '@/components/Home/DateTime.vue'
+  import Item from '@/components/Home/mobile/Item.vue'
+  import ContactMe from '@/components/Home/mobile/ContactMe.vue'
+  import ThemeChange from '@/components/Home/ThemeChange.vue'
+  import BeiAn from '@/components/BeiAn.vue'
+  import { theme } from '@/main'
+  import { handleItemClick, lightThemeOverrides, darkThemeOverrides, drawerData } from '@/services/Home'
 </script>
 <template>
   <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">

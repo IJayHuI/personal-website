@@ -1,5 +1,5 @@
 <script setup>
-  import { techList } from '../../services/Home'
+  import { techList } from '@/services/Home'
 </script>
 <template>
   <n-space vertical>
