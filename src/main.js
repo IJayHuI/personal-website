@@ -1,4 +1,4 @@
-import { createApp, ref, computed } from 'vue'
+import { createApp, ref, computed, watch } from 'vue'
 import '@/style.css'
 import App from '@/App.vue'
 
@@ -40,6 +40,17 @@ export const theme = computed(() => {
   }
   return themeMode.value === 'dark' ? darkTheme : null
 })
+
+// 根据主题设置 body 背景色
+watch(
+  theme,
+  (newVal) => {
+    console.log(newVal)
+    if (newVal != null && newVal.name === 'dark') document.body.style.background = 'rgb(16, 16, 20)'
+    else document.body.style.background = '#fff'
+  },
+  { immediate: true }
+)
 
 export const baseUrl = {
   background: '/background',
