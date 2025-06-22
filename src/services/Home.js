@@ -5,11 +5,11 @@ import About from '@/components/Home/About.vue'
 import axios from 'axios'
 import { baseUrl } from '@/main'
 
+// 背景
 export const background = ref({
   img: '',
   type: 'bing'
 })
-
 export const getBackground = async (type) => {
   if (type === 'bing') {
     try {
@@ -42,27 +42,24 @@ export const getBackground = async (type) => {
   } else throw '不支持的类型'
 }
 
+// 头像部分
 export const rotateStatus = ref(false)
-
 export const headIconImgs = ref({
   background: 'background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);',
   icon: '/avatar/icon1.png'
 })
-
 export const headIconClick = () => {
   headIconImgs.value = {
     background: `background-image: linear-gradient(${headIconInfo.value.backgroundLinearGradient[Math.round(Math.random() * (headIconInfo.value.backgroundLinearGradient.length - 1))]});`,
     icon: `/avatar/icon${Math.round(Math.random() * (6 - 1) + 1)}.png`
   }
 }
-
 export const headIconRotateClick = () => {
   if (headIconInfo.value.clickCount > headIconInfo.value.texts.length - 1) headIconInfo.value.text = `算了，你点吧！${headIconInfo.value.clickCount - headIconInfo.value.texts.length + 1}`
   else headIconInfo.value.text = headIconInfo.value.texts[headIconInfo.value.clickCount]
 
   if (rotateStatus.value) headIconInfo.value.clickCount++
 }
-
 export const headIconInfo = ref({
   clickCount: 0,
   text: '你好',
@@ -79,20 +76,8 @@ export const headIconInfo = ref({
   ]
 })
 
-export const handleItemClick = (item) => {
-  if (item.type === 'router') {
-    router.push(item.router)
-  } else if (item.type == 'drawer') {
-    drawerData.value = {
-      active: true,
-      title: item.name,
-      component: item.component
-    }
-  }
-}
-
+// 联系我部分
 export const contactShowInfo = ref({})
-
 export const contactInfos = ref([
   {
     link: 'https://github.com/IJayHuI',
@@ -119,7 +104,13 @@ export const contactInfos = ref([
     mobileText: '去 Telegram'
   }
 ])
+export const handleClickOrHoverContactIcon = (item) => {
+  if (item == 'null') {
+    contactShowInfo.value = {}
+  } else contactShowInfo.value = item
+}
 
+// 技术栈部分
 export const techList = ref([
   {
     href: 'https://www.naiveui.com/zh-CN/os-theme',
@@ -151,6 +142,7 @@ export const techList = ref([
   }
 ])
 
+// 导航部分
 export const items = [
   {
     name: '导航页',
@@ -177,7 +169,19 @@ export const items = [
     component: markRaw(About)
   }
 ]
+export const handleItemClick = (item) => {
+  if (item.type === 'router') {
+    router.push(item.router)
+  } else if (item.type == 'drawer') {
+    drawerData.value = {
+      active: true,
+      title: item.name,
+      component: item.component
+    }
+  }
+}
 
+// Home 主题设置
 export const lightThemeOverrides = {
   desktop: {
     Card: {
@@ -216,7 +220,6 @@ export const lightThemeOverrides = {
     }
   }
 }
-
 export const darkThemeOverrides = {
   desktop: {
     Card: {
@@ -252,14 +255,9 @@ export const darkThemeOverrides = {
   }
 }
 
+// 抽屉数据
 export const drawerData = ref({
   active: false,
   title: '',
   component: ''
 })
-
-export const handleClickOrHoverContactIcon = (item) => {
-  if (item == 'null') {
-    contactShowInfo.value = {}
-  } else contactShowInfo.value = item
-}
