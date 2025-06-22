@@ -62,8 +62,8 @@
   .overturn-button {
     z-index: 9;
     position: absolute;
-    bottom: 24px;
-    right: 24px;
+    bottom: 25px;
+    right: 25px;
   }
 
   .overturn-front {

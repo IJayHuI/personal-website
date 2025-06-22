@@ -5,6 +5,7 @@
   import Item from '@/components/Home/mobile/Item.vue'
   import ContactMe from '@/components/Home/mobile/ContactMe.vue'
   import ThemeChange from '@/components/Home/ThemeChange.vue'
+  import BackgroundChange from '@/components/Home/BackgroundChange.vue'
   import BeiAn from '@/components/BeiAn.vue'
   import { theme } from '@/main'
   import { handleItemClick, lightThemeOverrides, darkThemeOverrides, drawerData } from '@/services/Home'
@@ -28,7 +29,10 @@
                 </div>
                 <ContactMe />
               </div>
-              <div class="carousel-item"><ThemeChange /></div>
+              <div class="carousel-item">
+                <ThemeChange />
+                <BackgroundChange />
+              </div>
             </n-carousel>
           </n-gi>
         </n-grid>

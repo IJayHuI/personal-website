@@ -43,12 +43,17 @@ export const theme = computed(() => {
 
 export const baseUrl = {
   background: '/background',
-  server: '/server'
+  server: '/server',
+  acgBackground: '/acg-background'
 }
 
+// 全局加载状态
 export const loadingStatus = ref(false)
 
-// 是否移动端
+// 初始化背景类型设置
+if (!localStorage.getItem('background-type')) localStorage.setItem('background-type', 'bing')
+
+// 移动端判定
 export const isMobile = ref(window.innerWidth < 768)
 window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 768

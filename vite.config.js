@@ -17,6 +17,11 @@ export default defineConfig({
         target: 'https://strapi.jayhu.site/api',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/server/, '')
+      },
+      '/acg-background': {
+        target: 'https://api.vvhan.com/api',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/acg-background/, '')
       }
     },
     host: '0.0.0.0'

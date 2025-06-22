@@ -6,6 +6,7 @@
   import DateTime from '@/components/Home/DateTime.vue'
   import Item from '@/components/Home/desktop/Item.vue'
   import ThemeChange from '@/components/Home/ThemeChange.vue'
+  import BackgroundChange from '@/components/Home/BackgroundChange.vue'
   import { theme } from '@/main'
   import { handleItemClick, darkThemeOverrides, lightThemeOverrides, drawerData } from '@/services/Home'
 </script>
@@ -29,6 +30,7 @@
                 <Item @item-click="handleItemClick" />
               </div>
               <ThemeChange />
+              <BackgroundChange />
             </div>
           </n-gi>
         </n-grid>

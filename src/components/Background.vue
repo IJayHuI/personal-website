@@ -1,32 +1,23 @@
 <script setup>
-  import { ref } from 'vue'
-  import { baseUrl, loadingStatus } from '@/main'
+  import { loadingStatus } from '@/main'
+  import { background, getBackground } from '@/services/Home'
   import { useMessage } from 'naive-ui'
-  import axios from 'axios'
 
   const message = useMessage()
-  const src = ref(null)
   loadingStatus.value = true
-  axios
-    .get(`${baseUrl.background}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN`)
+  getBackground(localStorage.getItem('background-type'))
     .then((response) => {
-      console.log(response);
-      
-      src.value = 'https://cn.bing.com' + response.data.images[0].url
-      setTimeout(() => {
-        message.success('当前使用 Bing 图片作为背景')
-      }, 500)
+      message.success(response)
     })
-    .catch((error) => {
-      console.error(error)
-      message.warning('Bing 壁纸加载失败，使用站内壁纸代替')
-      src.value = `/local-background/background${Math.round(Math.random() * (10 - 1) + 1)}.jpg`
+    .catch(() => {
+      getBackground('local')
+      message.warning('壁纸加载失败，使用站内壁纸代替')
     })
     .finally(() => {
       loadingStatus.value = false
     })
 </script>
-<template><img class="" :src="src" alt="背景图片" /></template>
+<template><img class="" :src="background.img" alt="背景图片" /></template>
 <style scoped>
   img {
     position: fixed;
@@ -36,6 +27,5 @@
     background-size: cover;
     -webkit-user-drag: none;
     z-index: -1;
-    filter: brightness(var(--background-image-filter));
   }
 </style>

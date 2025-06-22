@@ -2,6 +2,45 @@ import router from '@/routes'
 import { ref, markRaw } from 'vue' // 使用 markRaw 包装了 Log 和 About 组件，以防止它们被转换为响应式对象
 import Log from '@/components/Home/Log.vue'
 import About from '@/components/Home/About.vue'
+import axios from 'axios'
+import { baseUrl } from '@/main'
+
+export const background = ref({
+  img: '',
+  type: 'bing'
+})
+
+export const getBackground = async (type) => {
+  if (type === 'bing') {
+    try {
+      const response = await axios.get(`${baseUrl.background}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN`)
+      background.value = {
+        img: 'https://cn.bing.com' + response.data.images[0].url,
+        type: 'bing'
+      }
+      return '现在使用 Bing 作为背景'
+    } catch (error) {
+      throw error
+    }
+  } else if (type === 'acg') {
+    try {
+      const response = await axios.get(`${baseUrl.acgBackground}/wallpaper/acg?type=json`)
+      background.value = {
+        img: response.data.url,
+        type: 'acg'
+      }
+      return '现在使用二次元图片作为背景'
+    } catch (error) {
+      throw error
+    }
+  } else if (type === 'local') {
+    background.value = {
+      img: `/local-background/background${Math.round(Math.random() * (10 - 1) + 1)}.jpg`,
+      type: 'local'
+    }
+    return '现在使用本地图片作为背景'
+  } else throw '不支持的类型'
+}
 
 export const rotateStatus = ref(false)
 
