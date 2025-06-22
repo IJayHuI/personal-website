@@ -37,7 +37,7 @@
 
 @media screen and (max-width:768px) {
   .interaction:active {
-    scale: 0.95;
+    scale: 0.97;
   }
 
   .menu-button {

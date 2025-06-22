@@ -41,7 +41,7 @@
         </div>
       </n-layout-footer>
     </n-layout>
-    <n-drawer v-model:show="drawerData.active" width="30%" placement="right">
+    <n-drawer v-model:show="drawerData.active" width="35%" placement="right">
       <n-drawer-content :title="drawerData.title">
         <component :is="drawerData.component" />
         <template #footer>
