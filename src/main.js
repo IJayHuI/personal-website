@@ -42,7 +42,7 @@ export const theme = computed(() => {
 })
 
 export const baseUrl = {
-  background: '/bing-background',
+  background: '/background',
   server: '/server'
 }
 
