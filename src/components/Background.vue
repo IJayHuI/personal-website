@@ -1,13 +1,17 @@
 <script setup>
   import { ref } from 'vue'
-  import { baseUrl } from '@/main'
+  import { baseUrl, loadingStatus } from '@/main'
   import axios from 'axios'
 
   const src = ref(null)
+  loadingStatus.value = true
   axios
     .get(`${baseUrl.background}/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN`)
     .then((response) => {
       src.value = 'https://cn.bing.com' + response.data.images[0].url
+      setTimeout(() => {
+        loadingStatus.value = false
+      }, 500)
     })
     .catch((error) => {
       console.error(error)

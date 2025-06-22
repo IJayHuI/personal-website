@@ -1,6 +1,6 @@
 <script setup>
   import { theme } from '@/main'
-  import { getData, loadingStatus, datas, menuOptions } from '@/services/Project'
+  import { getData, datas, menuOptions } from '@/services/Project'
   import BeiAn from '@/components/BeiAn.vue'
   import Content from '@/components/Project/Content.vue'
 
@@ -8,7 +8,6 @@
 </script>
 <template>
   <n-config-provider :theme="theme">
-    <n-spin :show="loadingStatus" :size="70" style="height: 100%; width: 100%; --n-opacity-spinning: 0">
       <n-layout has-sider position="absolute">
         <n-layout-sider collapse-mode="width" :collapsed-width="60" :width="150" show-trigger="bar">
           <n-menu :options="menuOptions" :collapsed-width="60" />
@@ -24,6 +23,5 @@
           </n-layout-footer>
         </n-layout-content>
       </n-layout>
-    </n-spin>
   </n-config-provider>
 </template>

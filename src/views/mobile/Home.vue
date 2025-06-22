@@ -10,7 +10,7 @@
   import { handleItemClick, lightThemeOverrides, darkThemeOverrides, drawerData } from '@/services/Home'
 </script>
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
+  <n-config-provider :theme-overrides="theme === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
     <n-layout position="absolute">
       <n-layout-content position="absolute">
         <n-grid y-gap="20" :cols="1" :collapsed-rows="2" style="height: 100%" responsive="screen">

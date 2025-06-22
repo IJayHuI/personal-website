@@ -2,10 +2,9 @@ import { ref, h } from 'vue'
 import axios from 'axios'
 import { NIcon } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { baseUrl } from '@/main'
+import { baseUrl, loadingStatus } from '@/main'
 import { HomeRound, BookmarksRound } from '@vicons/material'
 
-export const loadingStatus = ref(false)
 export const drawerStatus = ref(false)
 export const datas = ref([])
 export const menuOptions = ref([
@@ -49,7 +48,9 @@ export const getData = () => {
     .get(`${baseUrl.server}/projects?populate=image`)
     .then((response) => {
       datas.value = response.data.data
-      loadingStatus.value = false
+      setTimeout(() => {
+        loadingStatus.value = false
+      }, 500)
     })
     .catch((error) => {
       console.error(error)

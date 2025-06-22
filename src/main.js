@@ -25,6 +25,10 @@ export const baseUrl = {
   server: '/server'
 }
 
+export const loadingStatus = ref(false)
+
+
+
 // 是否移动端
 export const isMobile = ref(window.innerWidth < 768)
 window.addEventListener('resize', () => {
