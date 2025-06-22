@@ -14,7 +14,7 @@
   }, 1000)
 </script>
 <template>
-  <n-card class="interaction" size="huge" @toushstart="">
+  <n-card class="interaction" size="huge" @touchstart="">
     <div class="date">{{ year }}年 {{ month }}月 {{ today }}日 星期{{ dayOfWeek }}</div>
     <div class="time">{{ time }}</div>
   </n-card>

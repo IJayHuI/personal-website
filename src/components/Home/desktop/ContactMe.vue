@@ -2,7 +2,7 @@
   import { contactInfos, handleClickOrHoverContactIcon, contactShowInfo } from '@/services/Home'
 </script>
 <template>
-  <n-card class="interaction" @toushstart="">
+  <n-card class="interaction" @touchstart="">
     <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between">
       <div style="display: flex; gap: 15px">
         <n-button text tag="a" :href="contactShowInfo.link" target="_blank" v-for="item in contactInfos" @mouseenter="handleClickOrHoverContactIcon(item)" @mouseleave="handleClickOrHoverContactIcon('null')">

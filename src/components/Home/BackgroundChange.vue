@@ -39,7 +39,7 @@
   }
 </script>
 <template>
-  <n-card class="interaction" size="huge" @toushstart="">
+  <n-card class="interaction" size="huge" @touchstart="">
     <div style="display: flex; justify-content: center; align-items: center; gap: 20px">
       <n-icon size="40"><AutoAwesomeRound /></n-icon>
       <n-radio-group v-model:value="type" @update:value="backgroundChange">
