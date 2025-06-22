@@ -45,7 +45,6 @@ export const theme = computed(() => {
 watch(
   theme,
   (newVal) => {
-    console.log(newVal)
     if (newVal != null && newVal.name === 'dark') document.body.style.background = 'rgb(16, 16, 20)'
     else document.body.style.background = '#fff'
   },
