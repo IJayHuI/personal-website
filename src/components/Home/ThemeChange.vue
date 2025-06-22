@@ -1,5 +1,5 @@
 <script setup>
-  import { AutoAwesomeRound } from '@vicons/material'
+  import { ContrastRound } from '@vicons/material'
   import { NRadioGroup, NRadioButton } from 'naive-ui'
   import { ref } from 'vue'
   import { themeMode } from '@/main'
@@ -22,8 +22,8 @@
 <template>
   <n-card class="interaction" size="huge" @toushstart="">
     <div style="display: flex; justify-content: center; align-items: center; gap: 20px">
-      <n-icon size="40"><AutoAwesomeRound /></n-icon>
-      <n-radio-group v-model:value="themeMode" size="large">
+      <n-icon size="40"><ContrastRound /></n-icon>
+      <n-radio-group v-model:value="themeMode">
         <n-radio-button v-for="button in buttons" :key="button.value" :value="button.value" :label="button.label" />
       </n-radio-group>
     </div>
