@@ -12,14 +12,16 @@
 
 <template>
   <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
-    <n-spin :show="loadingStatus" :size="100" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0">
-      <Background />
-      <router-view :name="isMobile ? 'mobile' : 'desktop'" v-slot="{ Component }">
-        <transition name="scale">
-          <component :is="Component" class="page-component" />
-        </transition>
-      </router-view>
-    </n-spin>
+    <n-message-provider>
+      <n-spin :show="loadingStatus" :size="100" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0">
+        <Background />
+        <router-view :name="isMobile ? 'mobile' : 'desktop'" v-slot="{ Component }">
+          <transition name="scale">
+            <component :is="Component" class="page-component" />
+          </transition>
+        </router-view>
+      </n-spin>
+    </n-message-provider>
   </n-config-provider>
 </template>
 

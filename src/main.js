@@ -3,10 +3,31 @@ import '@/style.css'
 import App from '@/App.vue'
 
 import router from '@/routes'
-import { create, darkTheme, useOsTheme, NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace } from 'naive-ui'
+import {
+  create,
+  darkTheme,
+  useOsTheme,
+  NConfigProvider,
+  NLayout,
+  NLayoutContent,
+  NLayoutFooter,
+  NLayoutHeader,
+  NLayoutSider,
+  NCard,
+  NIcon,
+  NMenu,
+  NCollapse,
+  NCollapseItem,
+  NButton,
+  NDrawer,
+  NDrawerContent,
+  NSpin,
+  NSpace,
+  NMessageProvider
+} from 'naive-ui'
 import 'vfonts/Lato.css'
 const naive = create({
-  components: [NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace]
+  components: [NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider]
 })
 
 // 主题
@@ -21,13 +42,11 @@ export const theme = computed(() => {
 })
 
 export const baseUrl = {
-  background: '/background',
+  background: '/bing-background',
   server: '/server'
 }
 
 export const loadingStatus = ref(false)
-
-
 
 // 是否移动端
 export const isMobile = ref(window.innerWidth < 768)
