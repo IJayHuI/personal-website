@@ -1,5 +1,6 @@
 <script setup>
   import { techList } from '@/services/Home'
+  import { background } from '@/services/Home'
 </script>
 <template>
   <n-space vertical>
@@ -11,6 +12,7 @@
         <n-space>
           <n-button tag="a" target="_blank" href="https://www.todaybing.com/">前往必应壁纸查看更多</n-button>
           <n-button tag="a" target="_blank" href="https://api.vvhan.com/">前往韩小韩 WebAPI 接口</n-button>
+          <n-button tag="a" target="_blank" :href="background.img">点击查看大图</n-button>
         </n-space>
       </template>
     </n-card>
