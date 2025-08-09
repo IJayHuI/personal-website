@@ -5,8 +5,8 @@
   import ContactMe from '@/components/Home/desktop/ContactMe.vue'
   import DateTime from '@/components/Home/DateTime.vue'
   import Item from '@/components/Home/desktop/Item.vue'
-  import ThemeChange from '@/components/Home/ThemeChange.vue'
-  import BackgroundChange from '@/components/Home/BackgroundChange.vue'
+  import ThemeChange from '@/components/Home/desktop/ThemeChange.vue'
+  import BackgroundChange from '@/components/Home/desktop/BackgroundChange.vue'
   import { theme } from '@/main'
   import { handleItemClick, darkThemeOverrides, lightThemeOverrides, drawerData } from '@/services/Home'
 </script>

@@ -2,7 +2,7 @@
   import { ref } from 'vue'
   import { getBackground } from '@/services/Home'
   import { NRadioGroup, NRadioButton } from 'naive-ui'
-  import { AutoAwesomeRound } from '@vicons/material'
+  import { AutoAwesomeRound, ReplayRound } from '@vicons/material'
   import { loadingStatus } from '@/main'
   import { useMessage } from 'naive-ui'
 
@@ -45,6 +45,9 @@
       <n-radio-group v-model:value="type" @update:value="backgroundChange">
         <n-radio-button v-for="button in buttons" :key="button.value" :value="button.value" :label="button.label" />
       </n-radio-group>
+      <n-button text @click="backgroundChange" v-if="type !== 'bing'">
+        <n-icon size="40"><ReplayRound /></n-icon>
+      </n-button>
     </div>
   </n-card>
 </template>
