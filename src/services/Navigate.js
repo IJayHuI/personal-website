@@ -1,5 +1,4 @@
-import { NIcon } from 'naive-ui'
-import { ref, h } from 'vue'
+import { ref } from 'vue'
 import axios from 'axios'
 import * as icons from '@vicons/material'
 import { baseUrl, loadingStatus } from '@/main'
@@ -34,10 +33,6 @@ export const lightThemeOverrides = {
       colorFocus: 'rgb(255, 255, 255)'
     }
   }
-}
-
-const renderIcon = (icon) => {
-  return () => h(NIcon, null, { default: () => h(icon) })
 }
 
 export const menuOptions = ref([
