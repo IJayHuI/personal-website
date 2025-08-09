@@ -1,7 +1,6 @@
 <script setup>
   import { IosShareRound } from '@vicons/material'
-  import { NIcon } from 'naive-ui'
-  import { h } from 'vue'
+  import { renderIcon } from '@/services/General'
 
   const props = defineProps({
     data: {
@@ -20,12 +19,6 @@
 
   const emit = defineEmits(['update:expandedNames', 'update:drawerData'])
 
-  const renderIcon = () => {
-    return h(NIcon, null, {
-      default: () => h(IosShareRound)
-    })
-  }
-
   const handleUpdateExpandedNames = (names) => {
     emit('update:expandedNames', names)
   }
@@ -42,7 +35,7 @@
         <template v-for="link in item.item">
           <n-button style="min-height: 50px; text-wrap: wrap; padding: 0 38px" tertiary size="large" @click="handleUpdateDrawerData(link)">
             {{ link.name }}
-            <n-button @click.stop style="position: absolute; right: 10px" :render-icon="renderIcon" text tag="a" :href="link.link" target="_blank"></n-button>
+            <n-button @click.stop style="position: absolute; right: 10px" :render-icon="renderIcon(IosShareRound)" text tag="a" :href="link.link" target="_blank"></n-button>
           </n-button>
         </template>
       </div>
