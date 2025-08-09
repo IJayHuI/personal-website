@@ -23,12 +23,15 @@
 </script>
 <template>
   <n-spin style="height: 100%" :show="loadingStatus">
-    <n-timeline>
-      <n-timeline-item v-for="item in timelineData" :time="item.date">
-        <template #default>
-          <div v-html="item.content"></div>
-        </template>
-      </n-timeline-item>
-    </n-timeline>
+    <div style="display: grid;gap: 20px;">
+      <n-button size="large" color="#202328" tag="a" target="_blank" href="https://github.com/IJayHuI/personal-website/releases/">前往 Github Realeases 查看更详细信息</n-button>
+      <n-timeline>
+        <n-timeline-item v-for="item in timelineData" :time="item.date">
+          <template #default>
+            <div v-html="item.content"></div>
+          </template>
+        </n-timeline-item>
+      </n-timeline>
+    </div>
   </n-spin>
 </template>
