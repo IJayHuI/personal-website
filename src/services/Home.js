@@ -199,6 +199,10 @@ export const lightThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(255, 255, 255, 0.7)'
+    },
+    Radio: {
+      buttonColor: 'rgba(255, 255, 255, 0)',
+      buttonBorderColor: 'rgba(255, 255, 255, 0)'
     }
   },
   mobile: {
@@ -217,6 +221,10 @@ export const lightThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(255, 255, 255, 0.7)'
+    },
+    Radio: {
+      buttonColor: 'rgba(255, 255, 255, 0)',
+      buttonBorderColor: 'rgba(255, 255, 255, 0)'
     }
   }
 }
@@ -235,6 +243,10 @@ export const darkThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(44, 44, 50, 0.5)'
+    },
+    Radio: {
+      buttonColor: 'rgba(255, 255, 255, 0)',
+      buttonBorderColor: 'rgba(255, 255, 255, 0)'
     }
   },
   mobile: {
@@ -251,6 +263,10 @@ export const darkThemeOverrides = {
     Drawer: {
       borderRadius: '10px',
       color: 'rgba(44, 44, 50, 0.5)'
+    },
+    Radio: {
+      buttonColor: 'rgba(255, 255, 255, 0)',
+      buttonBorderColor: 'rgba(255, 255, 255, 0)'
     }
   }
 }
