@@ -25,12 +25,15 @@
 
   const backgroundChange = () => {
     loadingStatus.value = true
+    const oldType = localStorage.getItem('background-type')
     localStorage.setItem('background-type', type.value)
     getBackground(localStorage.getItem('background-type'))
       .then((response) => {
         message.success(response)
       })
       .catch((error) => {
+        localStorage.setItem('background-type', oldType)
+        type.value = oldType
         message.error('切换失败')
       })
       .finally(() => {
