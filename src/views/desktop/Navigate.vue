@@ -3,8 +3,20 @@
   import BeiAn from '@/components/BeiAn.vue'
   import Menu from '@/components/Navigate/desktop/Menu.vue'
   import Content from '@/components/Navigate/Content.vue'
-  import { getData, drawerData, datas, expandedNames, menuOptions } from '@/services/Navigate'
+  import { getData, drawerData, datas, expandedNames, menuOptions, copyLink } from '@/services/Navigate'
+  import { useMessage } from 'naive-ui'
 
+  const message = useMessage()
+
+  const handleCopyLink = () => {
+    copyLink(message)
+      .then((response) => {
+        message.success(response)
+      })
+      .catch((error) => {
+        message.error(error)
+      })
+  }
   getData()
 </script>
 <template>
@@ -24,10 +36,28 @@
     </n-layout>
     <n-drawer v-model:show="drawerData.active" width="30%" placement="right">
       <n-drawer-content :title="drawerData.title">
-        {{ drawerData.content == null ? '暂无简介' : drawerData.content }}
+        <div class="drawer-content">
+          <div>
+            <h3>是否需要代理：</h3>
+            {{ drawerData.needProxy ? '是' : '否' }}
+          </div>
+          <div>
+            <h3>类别：</h3>
+            {{ drawerData.category == null ? '暂无类别' : drawerData.category }}
+          </div>
+          <div class="drawer-content-item-2fr">
+            <h3>链接：</h3>
+            {{ drawerData.link == null ? '暂无链接' : drawerData.link }}
+          </div>
+          <div class="drawer-content-item-2fr">
+            <h3>简介：</h3>
+            {{ drawerData.content == null ? '暂无简介' : drawerData.content }}
+          </div>
+        </div>
         <template #footer>
           <n-space>
             <n-button @click="drawerData.active = false">关闭</n-button>
+            <n-button @click="handleCopyLink()">复制链接</n-button>
             <n-button tag="a" :href="drawerData.link" target="_blank" strong type="success">前往</n-button>
           </n-space>
         </template>
@@ -35,3 +65,15 @@
     </n-drawer>
   </n-config-provider>
 </template>
+
+<style scoped>
+  .drawer-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .drawer-content-item-2fr {
+    grid-column: span 2;
+  }
+</style>

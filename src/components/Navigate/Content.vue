@@ -23,8 +23,8 @@
     emit('update:expandedNames', names)
   }
 
-  const handleUpdateDrawerData = (data) => {
-    emit('update:drawerData', { active: true, title: data.name, content: data.introduction, link: data.link })
+  const handleUpdateDrawerData = (data, item) => {
+    emit('update:drawerData', { active: true, title: data.name, content: data.introduction, link: data.link, needProxy: data.needProxy, category: item.name })
   }
 </script>
 
@@ -33,7 +33,7 @@
     <n-collapse-item v-for="item in data" :title="item.name" :name="item.documentId">
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px">
         <template v-for="link in item.item">
-          <n-button style="min-height: 50px; text-wrap: wrap; padding: 0 38px" tertiary size="large" @click="handleUpdateDrawerData(link)">
+          <n-button style="min-height: 50px; text-wrap: wrap; padding: 0 38px" tertiary size="large" @click="handleUpdateDrawerData(link, item)">
             {{ link.name }}
             <n-button @click.stop style="position: absolute; right: 10px" :render-icon="renderIcon(IosShareRound)" text tag="a" :href="link.link" target="_blank"></n-button>
           </n-button>

@@ -11,7 +11,9 @@ export const drawerData = ref({
   active: false,
   title: '',
   content: '',
-  link: ''
+  link: '',
+  needProxy: false,
+  category: ''
 })
 
 // Navigate 主题设置
@@ -60,6 +62,7 @@ export const getData = () => {
     .get(`${baseUrl.server}/navigate-groups?populate=item`)
     .then((response) => {
       datas.value = response.data.data
+      console.log(datas.value)
       datas.value.map((item) => {
         menuOptions.value.push({
           label: item.name,
@@ -75,4 +78,29 @@ export const getData = () => {
     .catch((error) => {
       console.error(error)
     })
+}
+
+export const copyLink = async () => {
+  const link = drawerData.value.link
+  if (!link) throw '暂无可复制的链接'
+  try {
+    if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(link)
+    else {
+      const textarea = document.createElement('textarea')
+      textarea.value = link
+      textarea.style.position = 'fixed'
+      textarea.style.top = '0'
+      textarea.style.left = '0'
+      textarea.style.opacity = '0'
+      document.body.appendChild(textarea)
+      textarea.focus()
+      textarea.select()
+      const successful = document.execCommand('copy')
+      document.body.removeChild(textarea)
+      if (!successful) throw '复制失败，请手动复制'
+    }
+    return '已复制到剪贴板'
+  } catch (error) {
+    throw '复制失败，请手动复制'
+  }
 }
