@@ -1,8 +1,7 @@
 import { ref, h } from 'vue'
 import { RouterLink } from 'vue-router'
-import axios from 'axios'
 import * as icons from '@vicons/material'
-import { baseUrl, loadingStatus, supabase } from '@/main'
+import { loadingStatus, supabase } from '@/main'
 import { renderIcon } from '@/services/General'
 
 export const expandedNames = ref([])

@@ -59,7 +59,6 @@ watch(
 
 export const baseUrl = {
   background: '/background',
-  server: '/server',
   acgBackground: '/acg-background'
 }
 
