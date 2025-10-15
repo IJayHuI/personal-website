@@ -1,10 +1,9 @@
 <script setup>
   import { ref } from 'vue'
   import { getBackground } from '@/services/Home'
-  import { NRadioGroup, NRadioButton } from 'naive-ui'
+  import { NRadioGroup, NRadioButton, useMessage } from 'naive-ui'
   import { AutoAwesomeRound, ReplayRound } from '@vicons/material'
   import { loadingStatus } from '@/main'
-  import { useMessage } from 'naive-ui'
 
   const message = useMessage()
   const type = ref(localStorage.getItem('background-type'))
