@@ -1,7 +1,6 @@
 <script setup>
-  import { isMobile } from '@/main'
   import Background from '@/components/Background.vue'
-  import { loadingStatus, theme } from '@/main'
+  import { loadingStatus, theme, isMobile } from '@/main'
 
   const themeOverrides = {
     Spin: {
