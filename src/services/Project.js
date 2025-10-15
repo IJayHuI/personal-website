@@ -1,12 +1,14 @@
 import { ref, h } from 'vue'
-import axios from 'axios'
 import { NIcon } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { baseUrl, loadingStatus } from '@/main'
+import { loadingStatus, supabase } from '@/main'
 import { HomeRound, BookmarksRound } from '@vicons/material'
 
 export const drawerStatus = ref(false)
-export const datas = ref([])
+export const datas = ref({
+  needGetDatas: true,
+  data: []
+})
 export const menuOptions = ref([
   {
     label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '主页' }),
@@ -42,17 +44,14 @@ export const lightThemeOverrides = {
   }
 }
 
-export const getData = () => {
+export const getData = async () => {
+  if (!datas.value.needGetDatas) return
   loadingStatus.value = true
-  axios
-    .get(`${baseUrl.server}/projects?populate=image`)
-    .then((response) => {
-      datas.value = response.data.data
-      setTimeout(() => {
-        loadingStatus.value = false
-      }, 500)
-    })
-    .catch((error) => {
-      console.error(error)
-    })
+  const { data, error } = await supabase.from('projects').select('*')
+  if (error) console.error(error)
+  else {
+    datas.value.data = data
+    datas.value.needGetDatas = false
+    loadingStatus.value = false
+  }
 }

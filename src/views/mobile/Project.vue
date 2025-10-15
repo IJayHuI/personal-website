@@ -1,6 +1,6 @@
 <script setup>
   import { theme } from '@/main'
-  import { getData, datas, menuOptions, lightThemeOverrides, darkThemeOverrides, drawerStatus } from '../../services/Project'
+  import { getData, menuOptions, lightThemeOverrides, darkThemeOverrides, drawerStatus } from '../../services/Project'
   import BeiAn from '@/components/BeiAn.vue'
   import Content from '@/components/Project/Content.vue'
 
@@ -11,7 +11,7 @@
     <n-layout position="absolute">
       <n-layout-content content-style="padding: 24px">
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px">
-          <Content :data="datas" />
+          <Content />
         </div>
         <n-layout-footer style="border-radius: 3px; margin-top: 24px">
           <div style="padding: 10px 0px 10px 3px; text-align: center">
