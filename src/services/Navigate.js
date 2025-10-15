@@ -1,7 +1,8 @@
-import { ref } from 'vue'
+import { ref, h } from 'vue'
+import { RouterLink } from 'vue-router'
 import axios from 'axios'
 import * as icons from '@vicons/material'
-import { baseUrl, loadingStatus } from '@/main'
+import { baseUrl, loadingStatus, supabase } from '@/main'
 import { renderIcon } from '@/services/General'
 
 export const expandedNames = ref([])
@@ -37,47 +38,55 @@ export const lightThemeOverrides = {
     }
   }
 }
-
-export const menuOptions = ref([
-  {
-    label: '关闭所有',
-    key: 'closeAll',
-    icon: renderIcon(icons['CloseFullscreenRound'])
-  },
-  {
-    label: '展开所有',
-    icon: renderIcon(icons['FormatListBulletedRound']),
-    key: 'expandedAll',
-    onClick: () => {
-      datas.value.map((item) => {
-        expandedNames.value.push(item.documentId)
-      })
-    }
-  }
-])
-
-export const getData = () => {
-  loadingStatus.value = true
-  axios
-    .get(`${baseUrl.server}/navigate-groups?populate=item`)
-    .then((response) => {
-      datas.value = response.data.data
-      console.log(datas.value)
-      datas.value.map((item) => {
-        menuOptions.value.push({
-          label: item.name,
-          key: item.documentId,
-          icon: renderIcon(icons[item.icon])
+export const menu = ref({
+  needGetMenuOptions: true,
+  menuOptions: [
+    {
+      label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '主页' }),
+      key: 'back',
+      icon: renderIcon(icons['HomeRound'])
+    },
+    {
+      label: () => h(RouterLink, { to: { name: 'Project' } }, { default: () => '小项目' }),
+      key: 'project',
+      icon: renderIcon(icons['FolderRound'])
+    },
+    {
+      label: '关闭所有',
+      key: 'closeAll',
+      icon: renderIcon(icons['CloseFullscreenRound'])
+    },
+    {
+      label: '展开所有',
+      icon: renderIcon(icons['FormatListBulletedRound']),
+      key: 'expandedAll',
+      onClick: () => {
+        datas.value.map((item) => {
+          expandedNames.value.push(item.id)
         })
-        expandedNames.value.push(item.documentId)
+      }
+    }
+  ]
+})
+
+export const getData = async () => {
+  if (!menu.value.needGetMenuOptions) return
+  loadingStatus.value = true
+  const { data, error } = await supabase.from('navigate_groups').select('*, navigate_items(*)')
+  if (error) console.error(error)
+  else {
+    datas.value = data
+    datas.value.map((item) => {
+      menu.value.menuOptions.push({
+        label: item.name,
+        key: item.id,
+        icon: renderIcon(icons[item.icon])
       })
-      setTimeout(() => {
-        loadingStatus.value = false
-      }, 500)
+      expandedNames.value.push(item.id)
     })
-    .catch((error) => {
-      console.error(error)
-    })
+    menu.value.needGetMenuOptions = false
+    loadingStatus.value = false
+  }
 }
 
 export const copyLink = async () => {

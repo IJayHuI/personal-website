@@ -1,13 +1,11 @@
 <script setup>
   import { theme } from '@/main'
   import BeiAn from '@/components/BeiAn.vue'
-  import Menu from '@/components/Navigate/desktop/Menu.vue'
   import Content from '@/components/Navigate/Content.vue'
-  import { getData, drawerData, datas, expandedNames, menuOptions, copyLink } from '@/services/Navigate'
+  import { getData, drawerData, copyLink, expandedNames, menu } from '@/services/Navigate'
   import { useMessage } from 'naive-ui'
 
   const message = useMessage()
-
   const handleCopyLink = () => {
     copyLink(message)
       .then((response) => {
@@ -17,16 +15,19 @@
         message.error(error)
       })
   }
+  const handleUpdateExpandedNames = (keys) => {
+    expandedNames.value = [keys]
+  }
   getData()
 </script>
 <template>
   <n-config-provider :theme="theme">
     <n-layout has-sider position="absolute">
       <n-layout-sider collapse-mode="width" :collapsed-width="60" :width="240" show-trigger="bar">
-        <Menu :options="menuOptions" v-model:expandedNames="expandedNames" />
+        <n-menu :options="menu.menuOptions" :collapsed-width="60" @update:value="handleUpdateExpandedNames"></n-menu>
       </n-layout-sider>
       <n-layout-content content-style="padding: 0px 24px;">
-        <Content :data="datas" v-model:expandedNames="expandedNames" v-model:drawerData="drawerData" />
+        <Content />
         <n-layout-footer style="border-radius: 3px; margin: 0px 0px 16px 0px">
           <div style="padding: 10px 0px 10px 3px">
             <BeiAn />
@@ -65,7 +66,6 @@
     </n-drawer>
   </n-config-provider>
 </template>
-
 <style scoped>
   .drawer-content {
     display: grid;
