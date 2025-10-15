@@ -1,25 +1,19 @@
 <script setup>
   import { NTimeline, NTimelineItem } from 'naive-ui'
-  import axios from 'axios'
-  import { ref } from 'vue'
-  import { baseUrl } from '@/main'
+  import { ref, onMounted } from 'vue'
+  import { supabase } from '@/main'
 
   const timelineData = ref([])
   const loadingStatus = ref(false)
-
-  const getData = () => {
+  onMounted(async () => {
     loadingStatus.value = true
-    axios
-      .get(`${baseUrl.server}/web-logs?sort=date:desc&fields[0]=date&fields[1]=content`)
-      .then((response) => {
-        timelineData.value = response.data.data
-        loadingStatus.value = false
-      })
-      .catch((error) => {
-        console.error(error)
-      })
-  }
-  getData()
+    const { data, error } = await supabase.from('web_logs').select('*').order('date', { ascending: false })
+    if (error) console.error(error)
+    else {
+      loadingStatus.value = false
+      timelineData.value = data
+    }
+  })
 </script>
 <template>
   <n-spin style="height: 100%" :show="loadingStatus">
@@ -28,7 +22,9 @@
       <n-timeline>
         <n-timeline-item v-for="item in timelineData" :time="item.date">
           <template #default>
-            <div v-html="item.content"></div>
+            <template v-for="content in item.content">
+              <p>· {{ content }}</p>
+            </template>
           </template>
         </n-timeline-item>
       </n-timeline>
