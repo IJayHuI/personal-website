@@ -58,8 +58,7 @@ watch(
 )
 
 export const baseUrl = {
-  background: '/background',
-  acgBackground: '/acg-background'
+  background: '/background'
 }
 
 // 全局加载状态

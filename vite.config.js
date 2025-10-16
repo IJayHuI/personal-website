@@ -2,7 +2,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
 
-
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [vue()],
@@ -12,11 +11,6 @@ export default defineConfig({
         target: 'https://cn.bing.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/background/, '')
-      },
-      '/acg-background': {
-        target: 'https://api.vvhan.com/api',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/acg-background/, '')
       }
     },
     host: '0.0.0.0'

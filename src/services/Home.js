@@ -22,17 +22,6 @@ export const getBackground = async (type) => {
     } catch (error) {
       throw error
     }
-  } else if (type === 'acg') {
-    try {
-      const response = await axios.get(`${baseUrl.acgBackground}/wallpaper/acg?type=json`)
-      background.value = {
-        img: response.data.url,
-        type: 'acg'
-      }
-      return '现在使用二次元图片作为背景'
-    } catch (error) {
-      throw error
-    }
   } else if (type === 'local') {
     background.value = {
       img: `/local-background/background${Math.round(Math.random() * (10 - 1) + 1)}.jpg`,

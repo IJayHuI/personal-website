@@ -15,10 +15,6 @@
     {
       value: 'local',
       label: '站内壁纸'
-    },
-    {
-      value: 'acg',
-      label: '二次元壁纸'
     }
   ])
 
