@@ -1,6 +1,7 @@
 <script setup>
   import Background from '@/components/Background.vue'
   import { loadingStatus, theme, isMobile } from '@/main'
+  import { zhCN, dateZhCN } from 'naive-ui'
 
   const themeOverrides = {
     Spin: {
@@ -10,7 +11,7 @@
 </script>
 
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="themeOverrides">
+  <n-config-provider :theme="theme" :theme-overrides="themeOverrides" :locale="zhCN" :date-locale="dateZhCN">
     <n-message-provider>
       <n-spin :show="loadingStatus" :size="100" style="position: absolute; top: 0; right: 0; bottom: 0; left: 0">
         <Background />
