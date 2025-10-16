@@ -13,11 +13,6 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/background/, '')
       },
-      '/server': {
-        target: 'https://strapi.jayhu.site/api',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/server/, '')
-      },
       '/acg-background': {
         target: 'https://api.vvhan.com/api',
         changeOrigin: true,
