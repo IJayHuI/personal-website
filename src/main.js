@@ -4,9 +4,7 @@ import App from '@/App.vue'
 
 // Supabase 后端
 import { createClient } from '@supabase/supabase-js'
-const supabaseUrl = 'https://jspchtyovxlpzgbywifs.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpzcGNodHlvdnhscHpnYnl3aWZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjA1MTI1NzEsImV4cCI6MjA3NjA4ODU3MX0.E5HbRAUarb0s8nIK8zB0hO2L54XBjE9XlaiYtiGxzt0'
-export const supabase = createClient(supabaseUrl, supabaseKey)
+export const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY)
 
 import router from '@/routes'
 import {
@@ -29,11 +27,12 @@ import {
   NDrawerContent,
   NSpin,
   NSpace,
-  NMessageProvider
+  NMessageProvider,
+  NScrollbar
 } from 'naive-ui'
 import 'vfonts/Lato.css'
 const naive = create({
-  components: [NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider]
+  components: [NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider, NScrollbar]
 })
 
 // 主题
@@ -56,10 +55,6 @@ watch(
   },
   { immediate: true }
 )
-
-export const baseUrl = {
-  background: '/background'
-}
 
 // 全局加载状态
 export const loadingStatus = ref(false)

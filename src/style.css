@@ -3,11 +3,6 @@
   --background-blur: 20px
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .n-layout-footer,
 .n-card,
 .n-drawer {
