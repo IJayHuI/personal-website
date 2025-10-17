@@ -1,24 +1,23 @@
 @import "tailwindcss";
-:root {
-  --background-blur: 20px
-}
-
-.n-layout-footer,
-.n-card,
-.n-drawer {
-  backdrop-filter: blur(var(--background-blur));
-  -webkit-backdrop-filter: blur(var(--background-blur));
-}
 
 .n-spin-body {
   width: 100%;
   height: 100%;
   z-index: 99;
-  background-color: #222;
 }
 
 .interaction {
   transition: scale 0.15s;
+}
+
+/* 通用隐藏滚动条，仍可滚动 */
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Edge */
 }
 
 @media screen and (min-width:768px) {

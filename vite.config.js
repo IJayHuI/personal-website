@@ -16,6 +16,11 @@ export default defineConfig({
         target: 'https://cn.bing.com',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/background/, '')
+      },
+      '/hitokoto': {
+        target: 'https://v1.hitokoto.cn',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/hitokoto/, '')
       }
     },
     host: '0.0.0.0'
