@@ -1,6 +1,5 @@
 <script setup>
-  import { theme } from '@/main'
-  import BeiAn from '@/components/BeiAn.vue'
+  import JayFooter from '@/components/JayFooter.vue'
   import Content from '@/components/Navigate/Content.vue'
   import { getData, drawerData, copyLink, expandedNames, menu } from '@/services/Navigate'
   import { useMessage } from 'naive-ui'
@@ -21,20 +20,18 @@
   getData()
 </script>
 <template>
-  <n-config-provider :theme="theme">
-    <n-layout has-sider position="absolute">
-      <n-layout-sider collapse-mode="width" :collapsed-width="60" :width="240" show-trigger="bar">
-        <n-menu :options="menu.menuOptions" :collapsed-width="60" @update:value="handleUpdateExpandedNames"></n-menu>
-      </n-layout-sider>
-      <n-layout-content content-style="padding: 0px 24px;">
-        <Content />
-        <n-layout-footer style="border-radius: 3px; margin: 0px 0px 16px 0px">
-          <div style="padding: 10px 0px 10px 3px">
-            <BeiAn />
-          </div>
-        </n-layout-footer>
-      </n-layout-content>
-    </n-layout>
+  <n-layout has-sider position="absolute">
+    <n-layout-sider collapse-mode="width" :collapsed-width="60" :width="240" show-trigger="bar">
+      <n-menu :options="menu.menuOptions" :collapsed-width="60" @update:value="handleUpdateExpandedNames"></n-menu>
+    </n-layout-sider>
+    <n-layout-content content-style="padding: 0px 24px;">
+      <Content />
+      <n-layout-footer style="border-radius: 3px; margin: 0px 0px 16px 0px">
+        <div style="padding: 10px 0px 10px 3px">
+          <jay-footer />
+        </div>
+      </n-layout-footer>
+    </n-layout-content>
     <n-drawer v-model:show="drawerData.active" width="30%" placement="right">
       <n-drawer-content :title="drawerData.title">
         <div class="drawer-content">
@@ -64,7 +61,7 @@
         </template>
       </n-drawer-content>
     </n-drawer>
-  </n-config-provider>
+  </n-layout>
 </template>
 <style scoped>
   .drawer-content {

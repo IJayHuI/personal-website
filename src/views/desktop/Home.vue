@@ -1,66 +1,106 @@
 <script setup>
-  import { NGrid, NGi } from 'naive-ui'
-  import BeiAn from '@/components/BeiAn.vue'
-  import Avatar from '@/components/Home/Avatar.vue'
-  import ContactMe from '@/components/Home/desktop/ContactMe.vue'
-  import DateTime from '@/components/Home/DateTime.vue'
-  import Item from '@/components/Home/desktop/Item.vue'
-  import ThemeChange from '@/components/Home/desktop/ThemeChange.vue'
-  import BackgroundChange from '@/components/Home/desktop/BackgroundChange.vue'
-  import { theme } from '@/main'
-  import { handleItemClick, darkThemeOverrides, lightThemeOverrides, drawerData } from '@/services/Home'
+  import JayFooter from '@/components/JayFooter.vue'
+  import JayAvatar from '@/components/Home/JayAvatar.vue'
+  import JayAbout from '@/components/Home/JayAbout.vue'
+  import JayContactMe from '@/components/Home/desktop/JayContactMe.vue'
+  import JayDatetime from '@/components/Home/JayDatetime.vue'
+  import JayThemeChange from '@/components/Home/JayThemeChange.vue'
+  import JayBackgroundChange from '@/components/Home/JayBackgroundChange.vue'
+  import JayLog from '@/components/Home/JayLog.vue'
+  import JayHeatMap from '@/components/Home/JayHeatMap.vue'
+  import JayYiYan from '@/components/Home/JayYiYan.vue'
+  import * as icons from '@vicons/material'
+  import { darkThemeOverrides, lightThemeOverrides, theme, home, background } from '@/services/Home'
+  import { RouterLink } from 'vue-router'
+  import { onMounted, onBeforeUnmount, computed } from 'vue'
+
+  const handleScroll = () => {
+    const progress = window.scrollY / window.innerHeight
+    background.value.style = {
+      blur: 12 * (1 - progress),
+      scale: 110 + 40 * (1 - progress),
+      brightness: computed(() => {
+        return theme.value.current === null ? 100 - 10 * (1 - progress) : 100 - 50 * (1 - progress)
+      })
+    }
+  }
+  const handleElScroll = () => {
+    const el = document.querySelectorAll('.n-layout-scroll-container')
+    background.value.scrollProgress = (el[el.length - 1].scrollTop / (el[el.length - 1].scrollHeight - el[el.length - 1].clientHeight)).toFixed(1)
+  }
+  onMounted(() => {
+    window.addEventListener('scroll', handleScroll)
+    const el = document.querySelectorAll('.n-layout-scroll-container') // 找到内容容器
+    el[el.length - 1].addEventListener('scroll', handleElScroll)
+  })
+  onBeforeUnmount(() => {
+    window.removeEventListener('scroll', handleScroll)
+    const el = document.querySelectorAll('.n-layout-scroll-container')
+    el[el.length - 1].removeEventListener('scroll', handleElScroll)
+  })
 </script>
 <template>
-  <n-config-provider :theme="theme" :theme-overrides="theme === null ? lightThemeOverrides.desktop : darkThemeOverrides.desktop">
-    <n-layout position="absolute">
-      <n-layout-content position="absolute">
-        <n-grid x-gap="20" :cols="2" style="height: 100%">
-          <n-gi>
-            <div style="display: flex; justify-content: end; align-items: center; height: 100%">
-              <div class="container">
-                <Avatar />
-                <ContactMe />
-              </div>
-            </div>
-          </n-gi>
-          <n-gi>
-            <div class="container">
-              <DateTime />
-              <div style="width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; flex-direction: column">
-                <Item @item-click="handleItemClick" />
-              </div>
-              <ThemeChange />
-              <BackgroundChange />
-            </div>
-          </n-gi>
-        </n-grid>
-      </n-layout-content>
-      <n-layout-footer position="absolute">
-        <div style="text-align: center; margin: 10px">
-          <BeiAn />
+  <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.desktop : darkThemeOverrides.desktop">
+    <n-layout class="!bg-inherit !mx-auto max-w-7xl h-full" has-sider>
+      <n-layout-sider width="300" content-class="p-4">
+        <div class="w-full h-full flex flex-col justify-start items-center gap-2">
+          <jay-avatar v-slide-in />
+          <n-card size="small" v-slide-in class="interaction" title="日志" @touchstart="">
+            <jay-log v-slide-in />
+          </n-card>
+          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="">
+            <n-space>
+              <n-button round secondary size="small" v-for="item in home.techList" tag="a" :href="item.href" target="_blank">
+                {{ item.name }}
+              </n-button>
+            </n-space>
+          </n-card>
+          <n-card size="small" v-slide-in class="interaction" content-class="flex flex-col justify-center items-center">
+            <jay-footer />
+          </n-card>
         </div>
-      </n-layout-footer>
+      </n-layout-sider>
+      <n-layout-content id="scroll" class="!bg-inherit" content-class="p-4 hide-scrollbar *:flex *:flex-col">
+        <div class="justify-between mb-8 h-full">
+          <span class="opacity-0"><!-- 占位 --></span>
+          <div :class="`w-full grid grid-cols-2 *:text-${background.fontColor}`">
+            <div class="flex flex-col items-start justify-center gap-2">
+              <div>
+                <jay-yi-yan />
+              </div>
+              <div class="flex gap-2">
+                <jay-contact-me />
+              </div>
+            </div>
+            <div class="flex flex-col items-end justify-center">
+              <jay-datetime />
+            </div>
+          </div>
+          <n-card v-slide-in title="站点">
+            <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
+              <router-link v-for="site in home.sites" :key="site.router" :to="site.router">
+                <n-card class="interaction">
+                  <div class="flex justify-center items-center gap-2">
+                    <n-icon size="35"><component :is="icons[site.icon]" /></n-icon>
+                    <p class="text-xl font-bold">{{ site.name }}</p>
+                  </div>
+                </n-card>
+              </router-link>
+            </div>
+          </n-card>
+        </div>
+        <div class="gap-2">
+          <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-2">
+            <jay-theme-change />
+            <jay-background-change />
+          </div>
+          <jay-heat-map />
+          <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-2">
+            <jay-about />
+          </div>
+        </div>
+      </n-layout-content>
     </n-layout>
-    <n-drawer v-model:show="drawerData.active" width="35%" placement="right">
-      <n-drawer-content :title="drawerData.title">
-        <component :is="drawerData.component" />
-        <template #footer>
-          <n-button @click="drawerData.active = false">关闭</n-button>
-        </template>
-      </n-drawer-content>
-    </n-drawer>
+    <div :class="`h-screen invisible ${background.scrollDone ? '' : 'hidden'}`"></div>
   </n-config-provider>
 </template>
-
-<style scoped>
-  .container {
-    max-width: 500px;
-    width: 90%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-  }
-</style>

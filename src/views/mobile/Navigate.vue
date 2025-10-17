@@ -1,6 +1,6 @@
 <script setup>
-  import { theme } from '@/main'
-  import BeiAn from '@/components/BeiAn.vue'
+  import { theme } from '@/services/Home'
+  import JayFooter from '@/components/JayFooter.vue'
   import Content from '@/components/Navigate/Content.vue'
   import { getData, drawerData, drawerStatus, lightThemeOverrides, darkThemeOverrides, expandedNames, menu } from '../../services/Navigate'
 
@@ -11,13 +11,13 @@
   getData()
 </script>
 <template>
-  <n-config-provider :theme-overrides="theme === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
+  <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
     <n-layout position="absolute">
       <n-layout-content content-style="padding: 0px 24px;">
         <Content />
         <n-layout-footer style="border-radius: 3px; margin: 0px 0px 16px 0px">
           <div style="padding: 10px 0px 10px 3px; text-align: center">
-            <BeiAn />
+            <jay-footer />
           </div>
         </n-layout-footer>
         <div style="height: 55px"></div>

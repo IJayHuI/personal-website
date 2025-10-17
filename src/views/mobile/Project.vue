@@ -1,13 +1,13 @@
 <script setup>
-  import { theme } from '@/main'
+  import { theme } from '@/services/Home'
   import { getData, menuOptions, lightThemeOverrides, darkThemeOverrides, drawerStatus } from '../../services/Project'
-  import BeiAn from '@/components/BeiAn.vue'
+  import JayFooter from '@/components/JayFooter.vue'
   import Content from '@/components/Project/Content.vue'
 
   getData()
 </script>
 <template>
-  <n-config-provider :theme-overrides="theme === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
+  <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
     <n-layout position="absolute">
       <n-layout-content content-style="padding: 24px">
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px">
@@ -15,7 +15,7 @@
         </div>
         <n-layout-footer style="border-radius: 3px; margin-top: 24px">
           <div style="padding: 10px 0px 10px 3px; text-align: center">
-            <BeiAn />
+            <jay-footer />
           </div>
         </n-layout-footer>
         <div style="height: 55px"></div>
