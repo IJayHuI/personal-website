@@ -37,12 +37,10 @@
           <n-card size="small" v-slide-in class="interaction" title="日志" @touchstart="">
             <jay-log />
           </n-card>
-          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="">
-            <n-space>
-              <n-button round secondary size="small" v-for="item in home.techList" tag="a" :href="item.href" target="_blank">
-                {{ item.name }}
-              </n-button>
-            </n-space>
+          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
+            <n-button round secondary size="small" v-for="item in home.techList" tag="a" :href="item.href" target="_blank">
+              {{ item.name }}
+            </n-button>
           </n-card>
           <n-card size="small" v-slide-in class="interaction" content-class="flex flex-col justify-center items-center">
             <jay-footer />
@@ -65,10 +63,8 @@
               <jay-datetime :date-text-align="'text-right'" :time-text-align="'text-right'" />
             </div>
           </div>
-          <n-card v-slide-in title="站点">
-            <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
-              <jay-site />
-            </div>
+          <n-card v-slide-in title="站点" content-class="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
+            <jay-site />
           </n-card>
         </div>
         <div class="gap-2">

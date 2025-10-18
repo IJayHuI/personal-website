@@ -20,15 +20,13 @@
   }
 </script>
 <template>
-  <n-card v-slide-in class="interaction" size="medium" @touchstart="">
-    <div class="flex justify-center items-center gap-5">
-      <n-icon size="40"><AutoAwesomeRound /></n-icon>
-      <div class="flex gap-2">
-        <n-button :class="button.value == background.type ? '!outline' : ''" @click="backgroundChange(button.value)" secondary round v-for="button in background.buttons">{{ button.label }}</n-button>
-      </div>
-      <n-button text @click="backgroundChange()" v-if="background.type !== 'bing'">
-        <n-icon size="40"><ReplayRound /></n-icon>
-      </n-button>
+  <n-card v-slide-in class="interaction" size="medium" @touchstart="" content-class="flex justify-center items-center gap-5">
+    <n-icon size="40"><AutoAwesomeRound /></n-icon>
+    <div class="flex gap-2">
+      <n-button :class="button.value == background.type ? '!outline' : ''" @click="backgroundChange(button.value)" secondary round v-for="button in background.buttons">{{ button.label }}</n-button>
     </div>
+    <n-button text @click="backgroundChange()" v-if="background.type !== 'bing'">
+      <n-icon size="40"><ReplayRound /></n-icon>
+    </n-button>
   </n-card>
 </template>

@@ -46,10 +46,8 @@
               <jay-contact-me />
             </div>
           </div>
-          <n-card title="站点" size="small">
-            <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2">
-              <jay-site :card-size="'small'" :icon-size="30" :direction="'col'" :text-class="'text-base'" />
-            </div>
+          <n-card title="站点" size="small" content-class="w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2">
+            <jay-site :card-size="'small'" :icon-size="30" :direction="'col'" :text-class="'text-base'" />
           </n-card>
         </div>
         <div class="gap-2">
@@ -60,12 +58,10 @@
           <n-card size="small" v-slide-in class="interaction" title="日志" @touchstart="">
             <jay-log />
           </n-card>
-          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="">
-            <n-space>
-              <n-button round secondary size="small" v-for="item in home.techList" tag="a" :href="item.href" target="_blank">
-                {{ item.name }}
-              </n-button>
-            </n-space>
+          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
+            <n-button round secondary size="small" v-for="item in home.techList" tag="a" :href="item.href" target="_blank">
+              {{ item.name }}
+            </n-button>
           </n-card>
         </div>
       </n-layout-content>

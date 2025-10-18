@@ -11,19 +11,15 @@
 </script>
 <template>
   <router-link v-for="site in home.sites" :key="site.router" :to="site.router">
-    <n-card class="interaction" :size="props.cardSize">
-      <div class="flex justify-center items-center gap-2" :class="`flex-${props.direction}`">
-        <n-icon :size="props.iconSize"><component :is="icons[site.icon]" /></n-icon>
-        <p :class="props.textClass">{{ site.name }}</p>
-      </div>
+    <n-card class="interaction" :size="props.cardSize" :content-class="`flex justify-center items-center gap-2 flex-${props.direction}`">
+      <n-icon :size="props.iconSize"><component :is="icons[site.icon]" /></n-icon>
+      <p :class="props.textClass">{{ site.name }}</p>
     </n-card>
   </router-link>
   <a href="https://www.travellings.cn/go.html">
-    <n-card class="interaction w-full h-full" :size="props.cardSize">
-      <div class="w-full h-full flex justify-center items-center gap-2" :class="`flex-${props.direction}`">
-        <n-icon :size="props.iconSize"><component :is="icons['TrainRound']" /></n-icon>
-        <p :class="props.textClass">开往</p>
-      </div>
+    <n-card class="interaction w-full h-full" :size="props.cardSize" :content-class="`flex justify-center items-center gap-2 flex-${props.direction}`">
+      <n-icon :size="props.iconSize"><component :is="icons['TrainRound']" /></n-icon>
+      <p :class="props.textClass">开往</p>
     </n-card>
   </a>
 </template>
