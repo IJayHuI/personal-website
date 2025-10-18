@@ -11,8 +11,16 @@
     now = new Date()
     datetime.value.time = now.getHours().toString().padStart(2, '0') + ':' + now.getMinutes().toString().padStart(2, '0') + ':' + now.getSeconds().toString().padStart(2, '0')
   }, 1000)
+  const props = defineProps({
+    dateTextSize: { type: String, required: false, default: 'text-xl' },
+    timeTextSize: { type: String, required: false, default: 'text-5xl' },
+    textAlign: { type: String, required: false, default: 'left' }
+  })
 </script>
 <template>
-  <p class="text-xl">{{ datetime.year }}年 {{ datetime.month }}月 {{ datetime.today }}日 星期{{ datetime.dayOfWeek }}</p>
-  <p class="text-5xl">{{ datetime.time }}</p>
+  <div>
+    <p :class="`text-${props.textAlign} ${props.dateTextSize}`">{{ datetime.year }}年 {{ datetime.month }}月 {{ datetime.today }}日</p>
+    <p :class="`text-${props.textAlign} ${props.dateTextSize}`">星期{{ datetime.dayOfWeek }}</p>
+  </div>
+  <p :class="props.timeTextSize">{{ datetime.time }}</p>
 </template>

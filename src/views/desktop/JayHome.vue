@@ -74,7 +74,7 @@
               </div>
             </div>
             <div class="flex flex-col items-end justify-center">
-              <jay-datetime />
+              <jay-datetime :text-align="'right'" />
             </div>
           </div>
           <n-card v-slide-in title="站点">

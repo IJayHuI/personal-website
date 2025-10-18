@@ -222,7 +222,6 @@ export const lightThemeOverrides = {
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(255, 255, 255, 0.4)',
       siderColor: 'rgba(0, 0, 0, 0)'
     }
   },
@@ -266,7 +265,7 @@ export const darkThemeOverrides = {
       paddingHuge: '10px'
     },
     Layout: {
-      color: 'rgba(16, 16, 20, 0.4)',
+      color: 'rgba(0, 0, 0, 0)',
       footerColor: 'rgba(24, 24, 28, 0.4)'
     },
     Drawer: {
