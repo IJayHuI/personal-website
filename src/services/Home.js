@@ -229,7 +229,7 @@ export const lightThemeOverrides = {
   desktop: {
     Card: {
       color: 'rgba(255, 255, 255, 0.4)',
-      actionColor: 'rgba(0,0,0,0)',
+      actionColor: 'rgba(0, 0, 0, 0)',
       borderColor: 'rgba(239, 239, 245, 0.3)',
       borderRadius: '12px'
     },
@@ -242,19 +242,13 @@ export const lightThemeOverrides = {
     Card: {
       color: 'rgba(255, 255, 255, 0.5)',
       colorModal: 'rgba(255, 255, 255, 0.5)',
-      borderColor: 'rgba(239, 239, 245, 0.3)'
+      borderColor: 'rgba(239, 239, 245, 0.3)',
+      actionColor: 'rgba(0, 0, 0, 0)'
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(0, 0, 0, 0)',
+      footerColor: 'rgba(255, 255, 255, 0.5)',
       textColor: '#000'
-    },
-    Drawer: {
-      color: 'rgba(255, 255, 255, 0.7)'
-    },
-    Radio: {
-      buttonColor: 'rgba(255, 255, 255, 0)',
-      buttonBorderColor: 'rgba(255, 255, 255, 0)'
     }
   }
 }
@@ -262,29 +256,23 @@ export const darkThemeOverrides = {
   desktop: {
     Card: {
       color: 'rgba(24, 24, 28, 0.5)',
-      borderRadius: '12px'
+      borderRadius: '12px',
+      actionColor: 'rgba(0, 0, 0, 0)'
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(24, 24, 28, 0.4)',
       siderColor: 'rgba(0, 0, 0, 0)'
     }
   },
   mobile: {
     Card: {
       color: 'rgba(24, 24, 28, 0.5)',
-      colorModal: 'rgba(44, 44, 50, 0.5)'
+      colorModal: 'rgba(44, 44, 50, 0.5)',
+      actionColor: 'rgba(0, 0, 0, 0)'
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
       footerColor: 'rgba(0, 0, 0, 0)'
-    },
-    Drawer: {
-      color: 'rgba(44, 44, 50, 0.5)'
-    },
-    Radio: {
-      buttonColor: 'rgba(255, 255, 255, 0)',
-      buttonBorderColor: 'rgba(255, 255, 255, 0)'
     }
   }
 }

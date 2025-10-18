@@ -8,6 +8,7 @@
   import JayHeatmap from '@/components/Home/JayHeatmap.vue'
   import JayAbout from '@/components/Home/JayAbout.vue'
   import JayContactMe from '@/components/Home/mobile/JayContactMe.vue'
+  import JayLog from '@/components/Home/JayLog.vue'
   import { lightThemeOverrides, darkThemeOverrides, theme, home, handleScroll, background } from '@/services/Home'
   import * as icons from '@vicons/material'
   import { onMounted, onBeforeUnmount } from 'vue'
@@ -58,10 +59,20 @@
           </n-card>
         </div>
         <div class="gap-2">
+          <jay-heatmap :card-size="'small'" :heatmap-size="'small'" />
           <jay-theme-change />
           <jay-background-change />
-          <jay-heatmap :card-size="'small'" :heatmap-size="'small'" />
           <jay-about :card-size="'small'" />
+          <n-card size="small" v-slide-in class="interaction" title="日志" @touchstart="">
+            <jay-log />
+          </n-card>
+          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="">
+            <n-space>
+              <n-button round secondary size="small" v-for="item in home.techList" tag="a" :href="item.href" target="_blank">
+                {{ item.name }}
+              </n-button>
+            </n-space>
+          </n-card>
         </div>
       </n-layout-content>
       <n-layout-footer position="absolute" class="flex flex-row justify-center items-center gap-2 p-1">

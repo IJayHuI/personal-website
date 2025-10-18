@@ -1,4 +1,5 @@
 <script setup>
+  import { background } from '@/services/Home'
   const props = defineProps({
     cardSize: { type: String, required: false, default: 'medium' }
   })
@@ -11,7 +12,7 @@
     <template #action>
       <n-space>
         <n-button secondary round tag="a" target="_blank" href="https://www.todaybing.com/">前往必应壁纸查看更多</n-button>
-        <n-button secondary round tag="a" target="_blank" href="https://www.todaybing.com/">全屏打开背景</n-button>
+        <n-button secondary round tag="a" target="_blank" :href="background.img">全屏打开背景</n-button>
       </n-space>
     </template>
   </n-card>
