@@ -42,7 +42,7 @@
 </script>
 <template>
   <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.desktop : darkThemeOverrides.desktop">
-    <n-layout class="!bg-inherit !mx-auto max-w-7xl h-full" has-sider>
+    <n-layout class="!mx-auto max-w-7xl h-full" has-sider>
       <n-layout-sider width="300" content-class="p-4">
         <div class="w-full h-full flex flex-col justify-start items-center gap-2">
           <jay-avatar v-slide-in />
