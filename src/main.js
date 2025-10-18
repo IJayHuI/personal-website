@@ -13,7 +13,6 @@ import {
   NLayout,
   NLayoutContent,
   NLayoutFooter,
-  NLayoutHeader,
   NLayoutSider,
   NCard,
   NIcon,
@@ -31,7 +30,7 @@ import {
 } from 'naive-ui'
 import 'vfonts/Lato.css'
 const naive = create({
-  components: [NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutHeader, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider, NScrollbar, NCarousel]
+  components: [NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider, NScrollbar, NCarousel]
 })
 
 // 全局加载状态

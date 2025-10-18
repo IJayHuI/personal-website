@@ -61,7 +61,7 @@
           </n-card>
         </div>
       </n-layout-sider>
-      <n-layout-content id="scroll" class="!bg-inherit" :content-class="`p-4 hide-scrollbar *:flex *:flex-col ${background.scrollY == 0 ? '' : 'overflow-hidden'}`">
+      <n-layout-content class="!bg-inherit" :content-class="`p-4 hide-scrollbar *:flex *:flex-col ${background.scrollY == 0 ? '' : 'overflow-hidden'}`">
         <div class="justify-between mb-8 h-full">
           <span class="opacity-0"><!-- 占位 --></span>
           <div :class="`w-full grid grid-cols-2 *:text-${background.fontColor}`">
