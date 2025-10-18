@@ -116,6 +116,7 @@ export const background = ref({
       return theme.value.current === null ? 90 : 50
     })
   },
+  scrollY: 0,
   scrollProgress: '0',
   scrollDone: computed(() => {
     return background.value.scrollProgress >= '0.9'

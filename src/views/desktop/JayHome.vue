@@ -15,7 +15,8 @@
   import { onMounted, onBeforeUnmount, computed } from 'vue'
 
   const handleScroll = () => {
-    const progress = window.scrollY / window.innerHeight
+    background.value.scrollY = window.scrollY
+    const progress = background.value.scrollY / window.innerHeight
     background.value.style = {
       blur: 12 * (1 - progress),
       scale: 110 + 40 * (1 - progress),
@@ -60,7 +61,7 @@
           </n-card>
         </div>
       </n-layout-sider>
-      <n-layout-content id="scroll" class="!bg-inherit" content-class="p-4 hide-scrollbar *:flex *:flex-col">
+      <n-layout-content id="scroll" class="!bg-inherit" :content-class="`p-4 hide-scrollbar *:flex *:flex-col ${background.scrollY == 0 ? '' : 'overflow-hidden'}`">
         <div class="justify-between mb-8 h-full">
           <span class="opacity-0"><!-- 占位 --></span>
           <div :class="`w-full grid grid-cols-2 *:text-${background.fontColor}`">
