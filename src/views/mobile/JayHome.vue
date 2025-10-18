@@ -9,6 +9,7 @@
   import JayAbout from '@/components/Home/JayAbout.vue'
   import JayContactMe from '@/components/Home/mobile/JayContactMe.vue'
   import JayLog from '@/components/Home/JayLog.vue'
+  import JaySite from '@/components/Home/JaySite.vue'
   import { lightThemeOverrides, darkThemeOverrides, theme, home, handleScroll, background } from '@/services/Home'
   import * as icons from '@vicons/material'
   import { onMounted, onBeforeUnmount } from 'vue'
@@ -47,14 +48,7 @@
           </div>
           <n-card title="站点" size="small">
             <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2">
-              <router-link v-for="site in home.sites" :key="site.router" :to="site.router">
-                <n-card class="interaction">
-                  <div class="flex flex-col justify-center items-center gap-2">
-                    <n-icon size="30"><component :is="icons[site.icon]" /></n-icon>
-                    <p class="text-base">{{ site.name }}</p>
-                  </div>
-                </n-card>
-              </router-link>
+              <jay-site :card-size="'small'" :icon-size="30" :direction="'col'" :text-class="'text-base'" />
             </div>
           </n-card>
         </div>

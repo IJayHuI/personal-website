@@ -9,9 +9,8 @@
   import JayLog from '@/components/Home/JayLog.vue'
   import JayHeatmap from '@/components/Home/JayHeatmap.vue'
   import JayYiYan from '@/components/Home/JayYiYan.vue'
-  import * as icons from '@vicons/material'
+  import JaySite from '@/components/Home/JaySite.vue'
   import { darkThemeOverrides, lightThemeOverrides, theme, home, background, handleScroll } from '@/services/Home'
-  import { RouterLink } from 'vue-router'
   import { onMounted, onBeforeUnmount } from 'vue'
 
   const handleElScroll = () => {
@@ -68,14 +67,7 @@
           </div>
           <n-card v-slide-in title="站点">
             <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
-              <router-link v-for="site in home.sites" :key="site.router" :to="site.router">
-                <n-card class="interaction">
-                  <div class="flex justify-center items-center gap-2">
-                    <n-icon size="35"><component :is="icons[site.icon]" /></n-icon>
-                    <p class="text-xl font-bold">{{ site.name }}</p>
-                  </div>
-                </n-card>
-              </router-link>
+              <jay-site />
             </div>
           </n-card>
         </div>
