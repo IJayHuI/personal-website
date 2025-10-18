@@ -1,0 +1,54 @@
+# 说明（EN）：This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# 文档（EN）：https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+# 说明（ZH）：本工作流用于在 CI 中安装依赖、构建前端，并上传构建产物
+
+name: Build
+
+on:
+  # 触发条件配置
+  push:
+    tags:
+      - 'v*'  # 当推送以 'v' 开头的 tag 时触发
+
+jobs:
+  # 定义构建 Job
+  build:
+    # 运行环境，这里使用最新的 Ubuntu
+    runs-on: ubuntu-latest
+    strategy:
+      # 使用矩阵以便未来需要多 Node.js 版本时易于扩展
+      matrix:
+        node-version: [22.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    # 检出仓库代码
+    - uses: actions/checkout@v4
+    
+    # 安装 pnpm
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: latest
+        
+    # 安装并缓存 Node.js 与 pnpm 依赖缓存
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'pnpm'
+        
+    # 安装依赖（使用 --frozen-lockfile 保证可重复安装）
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+
+    # 在 interface 目录下执行构建
+    - name: Build
+      run: pnpm run build
+
+    # 上传构建产物供后续流程或下载（保留 dist 目录）
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with: 
+        name: dist
+        path: /dist
