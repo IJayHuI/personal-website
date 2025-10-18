@@ -1,6 +1,6 @@
 <script setup>
   import { onBeforeMount, onMounted, onUnmounted } from 'vue'
-  import { loadingStatus } from '@/main'
+  import { loadingStatus, isMobile } from '@/main'
   import { background, getBackground } from '@/services/Home'
   import { useMessage } from 'naive-ui'
 
@@ -28,9 +28,11 @@
       })
   })
   onMounted(() => {
+    if (isMobile) return
     window.addEventListener('mousemove', handleMouseMove)
   })
   onUnmounted(() => {
+    if (isMobile) return
     window.removeEventListener('mousemove', handleMouseMove)
     document.documentElement.style.removeProperty('--move-x')
     document.documentElement.style.removeProperty('--move-y')
