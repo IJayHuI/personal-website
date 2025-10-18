@@ -7,24 +7,13 @@
   import JayThemeChange from '@/components/Home/JayThemeChange.vue'
   import JayBackgroundChange from '@/components/Home/JayBackgroundChange.vue'
   import JayLog from '@/components/Home/JayLog.vue'
-  import JayHeatMap from '@/components/Home/JayHeatMap.vue'
+  import JayHeatmap from '@/components/Home/JayHeatmap.vue'
   import JayYiYan from '@/components/Home/JayYiYan.vue'
   import * as icons from '@vicons/material'
-  import { darkThemeOverrides, lightThemeOverrides, theme, home, background } from '@/services/Home'
+  import { darkThemeOverrides, lightThemeOverrides, theme, home, background, handleScroll } from '@/services/Home'
   import { RouterLink } from 'vue-router'
-  import { onMounted, onBeforeUnmount, computed } from 'vue'
+  import { onMounted, onBeforeUnmount } from 'vue'
 
-  const handleScroll = () => {
-    background.value.scrollY = window.scrollY
-    const progress = background.value.scrollY / window.innerHeight
-    background.value.style = {
-      blur: 12 * (1 - progress),
-      scale: 110 + 40 * (1 - progress),
-      brightness: computed(() => {
-        return theme.value.current === null ? 100 - 10 * (1 - progress) : 100 - 50 * (1 - progress)
-      })
-    }
-  }
   const handleElScroll = () => {
     const el = document.querySelectorAll('.n-layout-scroll-container')
     background.value.scrollProgress = (el[el.length - 1].scrollTop / (el[el.length - 1].scrollHeight - el[el.length - 1].clientHeight)).toFixed(1)
@@ -74,7 +63,7 @@
               </div>
             </div>
             <div class="flex flex-col items-end justify-center">
-              <jay-datetime :text-align="'right'" />
+              <jay-datetime :date-text-align="'right'" :time-text-align="'right'" />
             </div>
           </div>
           <n-card v-slide-in title="站点">
@@ -95,7 +84,7 @@
             <jay-theme-change />
             <jay-background-change />
           </div>
-          <jay-heat-map />
+          <jay-heatmap />
           <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-2">
             <jay-about />
           </div>

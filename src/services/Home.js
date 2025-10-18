@@ -211,6 +211,18 @@ export const headIconRotateClick = () => {
   else headIcon.value.infos.text = headIcon.value.infos.texts[headIcon.value.infos.clickCount]
   if (headIcon.value.rotateStatus) headIcon.value.infos.clickCount++
 }
+
+export const handleScroll = () => {
+  background.value.scrollY = window.scrollY
+  const progress = background.value.scrollY / window.innerHeight
+  background.value.style = {
+    blur: 12 * (1 - progress),
+    scale: 110 + 40 * (1 - progress),
+    brightness: computed(() => {
+      return theme.value.current === null ? 100 - 10 * (1 - progress) : 100 - 50 * (1 - progress)
+    })
+  }
+}
 // Home 主题设置
 export const lightThemeOverrides = {
   desktop: {
@@ -229,12 +241,11 @@ export const lightThemeOverrides = {
     Card: {
       color: 'rgba(255, 255, 255, 0.5)',
       colorModal: 'rgba(255, 255, 255, 0.5)',
-      borderColor: 'rgba(239, 239, 245, 0.3)',
-      paddingHuge: '10px'
+      borderColor: 'rgba(239, 239, 245, 0.3)'
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(255, 255, 255, 0.4)',
+      footerColor: 'rgba(0, 0, 0, 0)',
       textColor: '#000'
     },
     Drawer: {
@@ -261,12 +272,11 @@ export const darkThemeOverrides = {
   mobile: {
     Card: {
       color: 'rgba(24, 24, 28, 0.5)',
-      colorModal: 'rgba(44, 44, 50, 0.5)',
-      paddingHuge: '10px'
+      colorModal: 'rgba(44, 44, 50, 0.5)'
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(24, 24, 28, 0.4)'
+      footerColor: 'rgba(0, 0, 0, 0)'
     },
     Drawer: {
       color: 'rgba(44, 44, 50, 0.5)'
