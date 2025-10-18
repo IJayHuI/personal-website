@@ -111,7 +111,7 @@ export const background = ref({
   needGetData: true,
   style: {
     blur: 12,
-    scale: 140,
+    scale: 150,
     brightness: computed(() => {
       return theme.value.current === null ? 90 : 50
     })
@@ -212,6 +212,7 @@ export const headIconRotateClick = () => {
   if (headIcon.value.rotateStatus) headIcon.value.infos.clickCount++
 }
 
+// 监听滚动设置背景样式
 export const handleScroll = () => {
   background.value.scrollY = window.scrollY
   const progress = background.value.scrollY / window.innerHeight

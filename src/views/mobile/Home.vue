@@ -60,8 +60,8 @@
         <div class="gap-2">
           <jay-theme-change />
           <jay-background-change />
-          <jay-heatmap />
-          <jay-about />
+          <jay-heatmap :card-size="'small'" :heatmap-size="'small'" />
+          <jay-about :card-size="'small'" />
         </div>
       </n-layout-content>
       <n-layout-footer position="absolute" class="flex flex-row justify-center items-center gap-2 p-1">

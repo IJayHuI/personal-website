@@ -33,7 +33,7 @@ export default {
     const delay = isBelowViewport(el) ? calculateDelay(el, 10) : calculateDelay(el)
     const animation = el.animate(
       [
-        { transform: `matrix(1, 0, 0, 1, 0, ${distance})`, opacity: 1 },
+        { transform: `matrix(1, 0, 0, 1, 0, ${distance})`, opacity: 0 },
         { transform: 'matrix(1, 0, 0, 1, 0, 0)', opacity: 1 }
       ],
       {

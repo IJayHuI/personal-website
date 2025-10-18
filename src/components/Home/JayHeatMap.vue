@@ -17,11 +17,15 @@
       }
     }
   })
+  const props = defineProps({
+    cardSize: { type: String, required: false, default: 'medium' },
+    heatmapSize: { type: String, required: false, default: 'large' }
+  })
 </script>
 <template>
-  <n-card v-slide-in :title="`最近一年有${heatmap.totalContributions}次贡献`" class="interaction" size="huge" @touchstart="">
+  <n-card v-slide-in :title="`最近一年有${heatmap.totalContributions}次贡献`" class="interaction" :size="props.cardSize" @touchstart="">
     <n-scrollbar x-scrollable class="max-w-full" content-class="flex justify-center">
-      <n-heatmap :data="heatmap.heatmapData" :loading-data="heatmap.heatmapData" :loading="heatmap.loadingStatus" size="large" :fill-calendar-leading="true" />
+      <n-heatmap :data="heatmap.heatmapData" :loading-data="heatmap.heatmapData" :loading="heatmap.loadingStatus" :size="props.heatmapSize" :fill-calendar-leading="true" />
     </n-scrollbar>
   </n-card>
 </template>
