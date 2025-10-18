@@ -53,8 +53,8 @@
       <n-layout-content class="!bg-inherit" :content-class="`p-4 hide-scrollbar *:flex *:flex-col ${background.scrollY == 0 ? '' : 'overflow-hidden'}`">
         <div class="justify-between mb-8 h-full">
           <span class="opacity-0"><!-- 占位 --></span>
-          <div :style="{ color: background.fontColor }" class="w-full grid grid-cols-2">
-            <div class="flex flex-col items-start justify-center gap-2">
+          <div :style="{ color: background.fontColor }" class="*:flex w-full grid grid-cols-2">
+            <div class="flex-col justify-center gap-2">
               <div>
                 <jay-yi-yan />
               </div>
@@ -62,7 +62,7 @@
                 <jay-contact-me />
               </div>
             </div>
-            <div class="flex flex-col items-end justify-center">
+            <div class="flex-col items-end justify-center">
               <jay-datetime :date-text-align="'text-right'" :time-text-align="'text-right'" />
             </div>
           </div>

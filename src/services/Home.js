@@ -113,7 +113,7 @@ export const background = ref({
     blur: 12,
     scale: 150,
     brightness: computed(() => {
-      return theme.value.current === null ? 90 : 50
+      return theme.value.current === null ? 80 : 50
     })
   },
   scrollY: 0,
@@ -220,7 +220,7 @@ export const handleScroll = () => {
     blur: 12 * (1 - progress),
     scale: 110 + 40 * (1 - progress),
     brightness: computed(() => {
-      return theme.value.current === null ? 100 - 10 * (1 - progress) : 100 - 50 * (1 - progress)
+      return theme.value.current === null ? 100 - 20 * (1 - progress) : 100 - 50 * (1 - progress)
     })
   }
 }
@@ -243,7 +243,8 @@ export const lightThemeOverrides = {
       color: 'rgba(255, 255, 255, 0.5)',
       colorModal: 'rgba(255, 255, 255, 0.5)',
       borderColor: 'rgba(239, 239, 245, 0.3)',
-      actionColor: 'rgba(0, 0, 0, 0)'
+      actionColor: 'rgba(0, 0, 0, 0)',
+      borderRadius: '12px'
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
@@ -268,7 +269,8 @@ export const darkThemeOverrides = {
     Card: {
       color: 'rgba(24, 24, 28, 0.5)',
       colorModal: 'rgba(44, 44, 50, 0.5)',
-      actionColor: 'rgba(0, 0, 0, 0)'
+      actionColor: 'rgba(0, 0, 0, 0)',
+      borderRadius: '12px'
     },
     Layout: {
       color: 'rgba(0, 0, 0, 0)',
