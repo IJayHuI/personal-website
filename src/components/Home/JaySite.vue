@@ -16,7 +16,7 @@
       <p :class="props.textClass">{{ site.name }}</p>
     </n-card>
   </router-link>
-  <a href="https://www.travellings.cn/go.html">
+  <a href="https://www.travellings.cn/go.html" target="_blank">
     <n-card class="interaction w-full h-full" :size="props.cardSize" :content-class="`flex justify-center items-center gap-2 flex-${props.direction}`">
       <n-icon :size="props.iconSize"><component :is="icons['TrainRound']" /></n-icon>
       <p :class="props.textClass">开往</p>

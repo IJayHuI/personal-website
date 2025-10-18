@@ -12,6 +12,9 @@ export const themeOverrides = {
   },
   Spin: {
     opacitySpinning: 1
+  },
+  Layout: {
+    footerColor: 'rgba(255, 255, 255, 0)'
   }
 }
 
