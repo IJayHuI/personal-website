@@ -1,5 +1,5 @@
-import { ref, computed } from 'vue'
 import axios from 'axios'
+import { ref, computed } from 'vue'
 import { darkTheme, useOsTheme } from 'naive-ui'
 import { getFontColorFromImage } from '@/services/General'
 
@@ -14,15 +14,16 @@ export const heatmap = ref({
   heatmapData: [],
   needGetData: true
 }) // 热力图
-export const headIcon = ref({
+export const avatar = ref({
   rotateStatus: false,
-  imgs: {
-    background: 'background-image: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%);',
-    icon: '/avatar/icon1.png'
-  },
+  backColor: '135deg, #E2B0FF 10%, #9F44D3 100%',
   infos: {
     clickCount: 0,
-    text: '你好',
+    text: computed(() => {
+      if (avatar.value.infos.clickCount === 0) return '你好'
+      if (avatar.value.infos.clickCount <= 8) return avatar.value.infos.texts[avatar.value.infos.clickCount - 1]
+      return `算了，你点吧！统计：${avatar.value.infos.clickCount - avatar.value.infos.texts.length}`
+    }),
     texts: ['这里没有东西', '哟，又点了一次！', '真没有！', '你有点执着啊！', '你还在点？认真的吗？', '够了吧，这真没东西！', '行行行，你赢了！', '最后一次了，别再点了！'],
     backgroundLinearGradient: [
       '135deg, #FDEB71 10%, #F8D800 100%',
@@ -200,16 +201,10 @@ export const getBackground = async (type) => {
 }
 
 // 头像部分
-export const headIconClick = () => {
-  headIcon.value.imgs = {
-    background: `background-image: linear-gradient(${headIcon.value.infos.backgroundLinearGradient[Math.round(Math.random() * (headIcon.value.infos.backgroundLinearGradient.length - 1))]});`,
-    icon: `/avatar/icon${Math.round(Math.random() * (6 - 1) + 1)}.png`
-  }
-}
-export const headIconRotateClick = () => {
-  if (headIcon.value.infos.clickCount > headIcon.value.infos.texts.length - 1) headIcon.value.infos.text = `算了，你点吧！${headIcon.value.infos.clickCount - headIcon.value.infos.texts.length + 1}`
-  else headIcon.value.infos.text = headIcon.value.infos.texts[headIcon.value.infos.clickCount]
-  if (headIcon.value.rotateStatus) headIcon.value.infos.clickCount++
+export const avatarBackClick = () => {
+  if (!avatar.value.rotateStatus) return
+  avatar.value.infos.clickCount++
+  avatar.value.backColor = avatar.value.infos.backgroundLinearGradient[Math.round(Math.random() * avatar.value.infos.backgroundLinearGradient.length - 1)]
 }
 
 // 监听滚动设置背景样式
@@ -273,8 +268,7 @@ export const darkThemeOverrides = {
       borderRadius: '12px'
     },
     Layout: {
-      color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(0, 0, 0, 0)'
+      color: 'rgba(0, 0, 0, 0)'
     }
   }
 }
