@@ -53,7 +53,7 @@
       <n-layout-content class="!bg-inherit" :content-class="`p-4 hide-scrollbar *:flex *:flex-col ${background.scrollY == 0 ? '' : 'overflow-hidden'}`">
         <div class="justify-between mb-8 h-full">
           <span class="opacity-0"><!-- 占位 --></span>
-          <div :class="`w-full grid grid-cols-2 *:text-${background.fontColor}`">
+          <div :style="{ color: background.fontColor }" class="w-full grid grid-cols-2">
             <div class="flex flex-col items-start justify-center gap-2">
               <div>
                 <jay-yi-yan />
@@ -63,7 +63,7 @@
               </div>
             </div>
             <div class="flex flex-col items-end justify-center">
-              <jay-datetime :date-text-align="'right'" :time-text-align="'right'" />
+              <jay-datetime :date-text-align="'text-right'" :time-text-align="'text-right'" />
             </div>
           </div>
           <n-card v-slide-in title="站点">

@@ -34,9 +34,9 @@
       <n-layout-content position="absolute" class="!bg-inherit !bottom-8" :content-class="`p-2 hide-scrollbar *:flex *:flex-col ${background.scrollY == 0 ? '' : 'overflow-hidden'}`">
         <div class="h-full justify-between items-center mb-4 gap-2">
           <jay-avatar class="!w-68" />
-          <div class="w-full *:w-full flex flex-col gap-1">
+          <div class="w-full *:w-full flex flex-col gap-1" :style="{ color: background.fontColor }">
             <div class="grid grid-cols-2 items-center">
-              <jay-datetime :date-text-align="'left'" :time-text-align="'right'" />
+              <jay-datetime :date-text-align="'text-left'" :time-text-align="'text-right'" />
             </div>
             <div>
               <jay-yi-yan />
