@@ -5,6 +5,14 @@
   import { useMessage } from 'naive-ui'
 
   const message = useMessage()
+  const strength = 20
+  const handleMouseMove = (e) => {
+    const { innerWidth, innerHeight } = window
+    const x = (e.clientX / innerWidth - 0.5) * 2
+    const y = (e.clientY / innerHeight - 0.5) * 2
+    document.documentElement.style.setProperty('--move-x', `${x * strength}px`)
+    document.documentElement.style.setProperty('--move-y', `${y * strength}px`)
+  }
   onBeforeMount(() => {
     if (!background.value.needGetData) return
     loadingStatus.value = true
@@ -20,14 +28,6 @@
       })
   })
   onMounted(() => {
-    const strength = 20
-    const handleMouseMove = (e) => {
-      const { innerWidth, innerHeight } = window
-      const x = (e.clientX / innerWidth - 0.5) * 2
-      const y = (e.clientY / innerHeight - 0.5) * 2
-      document.documentElement.style.setProperty('--move-x', `${x * strength}px`)
-      document.documentElement.style.setProperty('--move-y', `${y * strength}px`)
-    }
     window.addEventListener('mousemove', handleMouseMove)
   })
   onUnmounted(() => {

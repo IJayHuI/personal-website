@@ -1,6 +1,3 @@
-<script setup>
-  import { background } from '@/services/Home'
-</script>
 <template>
   <n-card v-slide-in class="interaction" title="简介" @touchstart=""> 一个简单的个人主页。此项目是我学前端的作品。有我在大学中的期末大作业，以及实训的项目。持续更新... </n-card>
   <n-card v-slide-in class="interaction" title="背景" @touchstart="">

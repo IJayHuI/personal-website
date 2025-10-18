@@ -4,7 +4,7 @@ const config = [
   {
     path: '/',
     name: 'Home',
-    desktop: () => import('./views/desktop/Home.vue'),
+    desktop: () => import('./views/desktop/JayHome.vue'),
     mobile: () => import('./views/mobile/Home.vue')
   },
   {
