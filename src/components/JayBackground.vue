@@ -29,7 +29,7 @@
   })
   onMounted(() => {
     if (isMobile.value) return
-    else window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('mousemove', handleMouseMove)
   })
   onUnmounted(() => {
     window.removeEventListener('mousemove', handleMouseMove)
