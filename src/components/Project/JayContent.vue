@@ -7,8 +7,11 @@
       <template #cover>
         <img :src="item.image" :alt="item.name" />
       </template>
-      <h2>{{ item.name }}</h2>
-      <p>{{ item.introduction }}</p>
+      <p class="text-xl font-bold">{{ item.name }}</p>
+      <n-space>
+        <p>兼容性：{{ item.compatibility }}</p>
+        <p>简介：{{ item.introduction }}</p>
+      </n-space>
       <template #action>
         <n-space>
           <n-button secondary tag="a" :href="item.github_link" target="_blank">前往 Github</n-button>
