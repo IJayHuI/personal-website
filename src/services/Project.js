@@ -22,24 +22,25 @@ export const menuOptions = ref([
   }
 ])
 
-export const darkThemeOverrides = {
-  mobile: {
-    Button: {
-      color: 'rgb(16, 16, 20)',
-      colorHover: 'rgb(16, 16, 20)',
-      colorPressed: 'rgb(16, 16, 20)',
-      colorFocus: 'rgb(16, 16, 20)'
+export const themeOverrides = {
+  light: {
+    mobile: {
+      Button: {
+        color: 'rgb(16, 16, 20)',
+        colorHover: 'rgb(16, 16, 20)',
+        colorPressed: 'rgb(16, 16, 20)',
+        colorFocus: 'rgb(16, 16, 20)'
+      }
     }
-  }
-}
-
-export const lightThemeOverrides = {
-  mobile: {
-    Button: {
-      color: 'rgb(255, 255, 255)',
-      colorHover: 'rgb(255, 255, 255)',
-      colorPressed: 'rgb(255, 255, 255)',
-      colorFocus: 'rgb(255, 255, 255)'
+  },
+  dark: {
+    mobile: {
+      Button: {
+        color: 'rgb(16, 16, 20)',
+        colorHover: 'rgb(16, 16, 20)',
+        colorPressed: 'rgb(16, 16, 20)',
+        colorFocus: 'rgb(16, 16, 20)'
+      }
     }
   }
 }

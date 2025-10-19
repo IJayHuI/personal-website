@@ -220,55 +220,53 @@ export const handleScroll = () => {
   }
 }
 // Home 主题设置
-export const lightThemeOverrides = {
-  desktop: {
-    Card: {
-      color: 'rgba(255, 255, 255, 0.4)',
-      actionColor: 'rgba(0, 0, 0, 0)',
-      borderColor: 'rgba(239, 239, 245, 0.3)',
-      borderRadius: '12px'
+export const themeOverrides = {
+  light: {
+    desktop: {
+      Card: {
+        color: 'rgba(255, 255, 255, 0.4)',
+        borderColor: 'rgba(239, 239, 245, 0.3)',
+        borderRadius: '12px'
+      },
+      Layout: {
+        color: 'rgba(0, 0, 0, 0)',
+        siderColor: 'rgba(0, 0, 0, 0)'
+      }
     },
-    Layout: {
-      color: 'rgba(0, 0, 0, 0)',
-      siderColor: 'rgba(0, 0, 0, 0)'
+    mobile: {
+      Card: {
+        color: 'rgba(255, 255, 255, 0.5)',
+        colorModal: 'rgba(255, 255, 255, 0.5)',
+        borderColor: 'rgba(239, 239, 245, 0.3)',
+        borderRadius: '12px'
+      },
+      Layout: {
+        color: 'rgba(0, 0, 0, 0)',
+        footerColor: 'rgba(255, 255, 255, 0.5)',
+        textColor: '#000'
+      }
     }
   },
-  mobile: {
-    Card: {
-      color: 'rgba(255, 255, 255, 0.5)',
-      colorModal: 'rgba(255, 255, 255, 0.5)',
-      borderColor: 'rgba(239, 239, 245, 0.3)',
-      actionColor: 'rgba(0, 0, 0, 0)',
-      borderRadius: '12px'
+  dark: {
+    desktop: {
+      Card: {
+        color: 'rgba(24, 24, 28, 0.5)',
+        borderRadius: '12px'
+      },
+      Layout: {
+        color: 'rgba(0, 0, 0, 0)',
+        siderColor: 'rgba(0, 0, 0, 0)'
+      }
     },
-    Layout: {
-      color: 'rgba(0, 0, 0, 0)',
-      footerColor: 'rgba(255, 255, 255, 0.5)',
-      textColor: '#000'
-    }
-  }
-}
-export const darkThemeOverrides = {
-  desktop: {
-    Card: {
-      color: 'rgba(24, 24, 28, 0.5)',
-      borderRadius: '12px',
-      actionColor: 'rgba(0, 0, 0, 0)'
-    },
-    Layout: {
-      color: 'rgba(0, 0, 0, 0)',
-      siderColor: 'rgba(0, 0, 0, 0)'
-    }
-  },
-  mobile: {
-    Card: {
-      color: 'rgba(24, 24, 28, 0.5)',
-      colorModal: 'rgba(44, 44, 50, 0.5)',
-      actionColor: 'rgba(0, 0, 0, 0)',
-      borderRadius: '12px'
-    },
-    Layout: {
-      color: 'rgba(0, 0, 0, 0)'
+    mobile: {
+      Card: {
+        color: 'rgba(24, 24, 28, 0.5)',
+        colorModal: 'rgba(44, 44, 50, 0.5)',
+        borderRadius: '12px'
+      },
+      Layout: {
+        color: 'rgba(0, 0, 0, 0)'
+      }
     }
   }
 }

@@ -15,6 +15,9 @@ export const themeOverrides = {
   },
   Layout: {
     footerColor: 'rgba(255, 255, 255, 0)'
+  },
+  Card: {
+    actionColor: 'rgba(0, 0, 0, 0)'
   }
 }
 
