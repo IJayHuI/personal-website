@@ -1,5 +1,4 @@
 <script setup>
-  import JayBackground from '@/components/JayBackground.vue'
   import { loadingStatus, isMobile } from '@/main'
   import { theme } from '@/services/Home'
   import { themeOverrides } from '@/services/General'
@@ -11,7 +10,6 @@
   <n-config-provider :theme="theme.current" :theme-overrides="themeOverrides" :locale="zhCN" :date-locale="dateZhCN">
     <n-message-provider>
       <n-spin class="!absolute top-0 right-0 bottom-0 left-0" :show="loadingStatus" :size="100">
-        <jay-background v-if="router.currentRoute.value.path == '/'" />
         <router-view :name="isMobile ? 'mobile' : 'desktop'" v-slot="{ Component }">
           <transition name="scale">
             <component :is="Component" class="page-component" />

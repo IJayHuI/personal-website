@@ -7,27 +7,7 @@ import { createClient } from '@supabase/supabase-js'
 export const supabase = createClient(import.meta.env.VITE_SUPABASE_URL, import.meta.env.VITE_SUPABASE_KEY)
 
 import router from '@/routes'
-import {
-  create,
-  NConfigProvider,
-  NLayout,
-  NLayoutContent,
-  NLayoutFooter,
-  NLayoutSider,
-  NCard,
-  NIcon,
-  NMenu,
-  NCollapse,
-  NCollapseItem,
-  NButton,
-  NDrawer,
-  NDrawerContent,
-  NSpin,
-  NSpace,
-  NMessageProvider,
-  NScrollbar,
-  NCarousel
-} from 'naive-ui'
+import { create, NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider, NScrollbar, NCarousel } from 'naive-ui'
 import 'vfonts/Lato.css'
 const naive = create({
   components: [NConfigProvider, NLayout, NLayoutContent, NLayoutFooter, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider, NScrollbar, NCarousel]
