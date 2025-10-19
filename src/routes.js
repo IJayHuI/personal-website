@@ -16,11 +16,10 @@ const config = [
   {
     path: '/project',
     name: 'Project',
-    desktop: () => import('./views/desktop/Project.vue'),
-    mobile: () => import('./views/mobile/Project.vue')
+    desktop: () => import('./views/desktop/JayProject.vue'),
+    mobile: () => import('./views/mobile/JayProject.vue')
   }
 ]
-
 const getRoutes = () => {
   return config.map((route) => ({
     path: route.path,
@@ -31,11 +30,9 @@ const getRoutes = () => {
     }
   }))
 }
-
 // 创建路由
 const router = createRouter({
   history: createWebHistory(),
   routes: getRoutes()
 })
-
 export default router

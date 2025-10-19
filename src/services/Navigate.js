@@ -17,10 +17,13 @@ export const themeOverrides = {
   light: {
     mobile: {
       Button: {
-        color: 'rgb(16, 16, 20)',
-        colorHover: 'rgb(16, 16, 20)',
-        colorPressed: 'rgb(16, 16, 20)',
-        colorFocus: 'rgb(16, 16, 20)'
+        color: 'white',
+        colorHover: 'white',
+        colorPressed: 'white',
+        colorFocus: 'white'
+      },
+      Drawer: {
+        borderRadius: '12px'
       }
     }
   },
@@ -31,6 +34,9 @@ export const themeOverrides = {
         colorHover: 'rgb(16, 16, 20)',
         colorPressed: 'rgb(16, 16, 20)',
         colorFocus: 'rgb(16, 16, 20)'
+      },
+      Drawer: {
+        borderRadius: '12px'
       }
     }
   }

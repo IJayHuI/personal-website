@@ -2,23 +2,17 @@ import { ref, h } from 'vue'
 import { NIcon } from 'naive-ui'
 import { RouterLink } from 'vue-router'
 import { loadingStatus, supabase } from '@/main'
-import { HomeRound, BookmarksRound } from '@vicons/material'
+import { HomeRound } from '@vicons/material'
 
-export const drawerStatus = ref(false)
 export const datas = ref({
   needGetDatas: true,
   data: []
 })
 export const menuOptions = ref([
   {
-    label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '主页' }),
+    label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '返回' }),
     key: 'back',
     icon: () => h(NIcon, null, { default: () => h(HomeRound) })
-  },
-  {
-    label: () => h(RouterLink, { to: { name: 'Navigate' } }, { default: () => '导航页' }),
-    key: 'project',
-    icon: () => h(NIcon, null, { default: () => h(BookmarksRound) })
   }
 ])
 
@@ -26,10 +20,10 @@ export const themeOverrides = {
   light: {
     mobile: {
       Button: {
-        color: 'rgb(16, 16, 20)',
-        colorHover: 'rgb(16, 16, 20)',
-        colorPressed: 'rgb(16, 16, 20)',
-        colorFocus: 'rgb(16, 16, 20)'
+        color: 'white',
+        colorHover: 'white',
+        colorPressed: 'white',
+        colorFocus: 'white'
       }
     }
   },

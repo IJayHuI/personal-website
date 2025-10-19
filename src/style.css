@@ -1,40 +1,41 @@
 @import "tailwindcss";
+
 .n-spin-body {
   width: 100%;
   height: 100%;
   z-index: 99;
 }
+
 .n-collapse-item {
   border-top: 0 !important;
 }
+
 .interaction {
   transition: scale 0.15s;
 }
+
 /* 通用隐藏滚动条，仍可滚动 */
 .hide-scrollbar {
   scrollbar-width: none;
 }
+
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, Edge */
 }
+
 @media screen and (min-width:768px) {
   .interaction:hover {
     scale: 1.03;
   }
+
   .interaction:active {
     scale: 1;
   }
 }
+
 @media screen and (max-width:768px) {
   .interaction:active {
     scale: 0.97;
-  }
-  .menu-button {
-    border-radius: 0;
-    width: 100%;
-    height: 55px;
-    position: absolute;
-    bottom: 0
   }
 }
