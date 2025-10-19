@@ -1,13 +1,13 @@
 <script setup>
   import { theme } from '@/services/Home'
-  import { getData, menuOptions, lightThemeOverrides, darkThemeOverrides, drawerStatus } from '../../services/Project'
+  import { getData, menuOptions, themeOverrides, drawerStatus } from '../../services/Project'
   import JayFooter from '@/components/JayFooter.vue'
   import Content from '@/components/Project/Content.vue'
 
   getData()
 </script>
 <template>
-  <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
+  <n-config-provider :theme-overrides="theme.current === null ? themeOverrides.light.mobile : themeOverrides.dark.mobile">
     <n-layout position="absolute">
       <n-layout-content content-style="padding: 24px">
         <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px">

@@ -3,7 +3,7 @@
   import JayFooter from '@/components/JayFooter.vue'
   import JayContent from '@/components/Navigate/JayContent.vue'
   import JayDrawerContent from '@/components/Navigate/JayDrawerContent.vue'
-  import { getData, drawer, lightThemeOverrides, darkThemeOverrides, expandedNames, menu } from '@/services/Navigate'
+  import { getData, drawer, themeOverrides, expandedNames, menu } from '@/services/Navigate'
   import { renderIcon } from '@/services/General'
   import { MenuRound, HomeRound } from '@vicons/material'
 
@@ -14,7 +14,7 @@
   getData()
 </script>
 <template>
-  <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
+  <n-config-provider :theme-overrides="theme.current === null ? themeOverrides.light.mobile : themeOverrides.dark.mobile">
     <n-layout position="absolute">
       <n-layout-content content-class="p-4">
         <jay-content :grid-cols="'grid-cols-2'" :jump-button-place="'bottom'" />

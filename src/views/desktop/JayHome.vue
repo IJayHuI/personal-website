@@ -11,7 +11,7 @@
   import JayYiYan from '@/components/Home/JayYiYan.vue'
   import JaySite from '@/components/Home/JaySite.vue'
   import JayBackground from '@/components/JayBackground.vue'
-  import { darkThemeOverrides, lightThemeOverrides, theme, home, background, handleScroll } from '@/services/Home'
+  import { themeOverrides, theme, home, background, handleScroll } from '@/services/Home'
   import { onMounted, onBeforeUnmount } from 'vue'
 
   const handleElScroll = () => {
@@ -30,7 +30,7 @@
   })
 </script>
 <template>
-  <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.desktop : darkThemeOverrides.desktop">
+  <n-config-provider :theme-overrides="theme.current === null ? themeOverrides.light.desktop : themeOverrides.dark.desktop">
     <jay-background />
     <n-layout class="!mx-auto max-w-7xl h-full" has-sider>
       <n-layout-sider width="300" content-class="p-4">
