@@ -10,6 +10,7 @@
   import JayContactMe from '@/components/Home/mobile/JayContactMe.vue'
   import JayLog from '@/components/Home/JayLog.vue'
   import JaySite from '@/components/Home/JaySite.vue'
+  import JayBackground from '@/components/JayBackground.vue'
   import { lightThemeOverrides, darkThemeOverrides, theme, home, handleScroll, background } from '@/services/Home'
   import * as icons from '@vicons/material'
   import { onMounted, onBeforeUnmount } from 'vue'
@@ -31,6 +32,7 @@
 </script>
 <template>
   <n-config-provider :theme-overrides="theme.current === null ? lightThemeOverrides.mobile : darkThemeOverrides.mobile">
+    <jay-background />
     <n-layout class="h-full">
       <n-layout-content position="absolute" class="!bg-inherit !bottom-8" :content-class="`p-2 hide-scrollbar *:flex *:flex-col ${background.scrollY == 0 ? '' : 'overflow-hidden'}`">
         <div class="h-full justify-between items-center mb-4 gap-2">

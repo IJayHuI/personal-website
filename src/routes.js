@@ -10,8 +10,8 @@ const config = [
   {
     path: '/navigate',
     name: 'Navigate',
-    desktop: () => import('./views/desktop/Navigate.vue'),
-    mobile: () => import('./views/mobile/Navigate.vue')
+    desktop: () => import('./views/desktop/JayNavigate.vue'),
+    mobile: () => import('./views/mobile/JayNavigate.vue')
   },
   {
     path: '/project',

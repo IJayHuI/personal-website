@@ -6,14 +6,10 @@ import { renderIcon } from '@/services/General'
 
 export const expandedNames = ref([])
 export const datas = ref([])
-export const drawerStatus = ref(false)
-export const drawerData = ref({
-  active: false,
-  title: '',
-  content: '',
-  link: '',
-  needProxy: false,
-  category: ''
+export const drawer = ref({
+  menuDrawerStatus: false,
+  status: false,
+  datas: { active: false, title: '', content: '', link: '', needProxy: false, category: '' }
 })
 
 // Navigate 主题设置
@@ -41,14 +37,9 @@ export const menu = ref({
   needGetMenuOptions: true,
   menuOptions: [
     {
-      label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '主页' }),
+      label: () => h(RouterLink, { to: { name: 'Home' } }, { default: () => '返回' }),
       key: 'back',
       icon: renderIcon(icons['HomeRound'])
-    },
-    {
-      label: () => h(RouterLink, { to: { name: 'Project' } }, { default: () => '小项目' }),
-      key: 'project',
-      icon: renderIcon(icons['FolderRound'])
     },
     {
       label: '关闭所有',

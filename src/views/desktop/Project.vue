@@ -2,7 +2,6 @@
   import { getData, menuOptions } from '@/services/Project'
   import JayFooter from '@/components/JayFooter.vue'
   import Content from '@/components/Project/Content.vue'
-
   getData()
 </script>
 <template>
