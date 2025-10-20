@@ -1,15 +1,13 @@
-import axios from 'axios'
+import { supabase } from '@/main'
 import { ref, computed } from 'vue'
 import { darkTheme, useOsTheme } from 'naive-ui'
 import { getFontColorFromImage } from '@/services/General'
 
 export const log = ref({
-  loadingStatus: true,
   datas: [],
   needGetData: true
 }) // 日志
 export const heatmap = ref({
-  loadingStatus: true,
   totalContributions: 0,
   heatmapData: [],
   needGetData: true
@@ -161,10 +159,6 @@ export const home = ref({
       name: 'Supabase'
     },
     {
-      href: 'https://www.axios-http.cn/',
-      name: 'Axios'
-    },
-    {
       href: 'https://xicons.org/#/',
       name: 'xicons'
     }
@@ -178,17 +172,17 @@ export const yiYan = ref({
 // 背景
 export const getBackground = async (type) => {
   if (type === 'bing') {
-    try {
-      const response = await axios.get('/background/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN')
-      background.value.img = `https://cn.bing.com${response.data.images[0].url}`
+    const { data, error } = await supabase.functions.invoke('bing-background')
+    if (error) {
+      await getBackground('local')
+      throw '获取 Bing 图片失败，已切换为站内壁纸'
+    } else {
+      background.value.img = `https://cn.bing.com${data.url}`
       background.value.type = 'bing'
       background.value.needGetData = false
       background.value.fontColor = await getFontColorFromImage(background.value.img)
       localStorage.setItem('background-type', type)
       return '现在使用 Bing 作为背景'
-    } catch (error) {
-      await getBackground('local')
-      throw '获取 Bing 图片失败，已切换为站内壁纸'
     }
   } else if (type === 'local') {
     background.value.img = `/local-background/background${Math.round(Math.random() * (10 - 1) + 1)}.jpg`

@@ -1,19 +1,16 @@
 <script setup>
   import { onBeforeMount } from 'vue'
-  import axios from 'axios'
+  import { supabase } from '@/main'
   import { yiYan } from '@/services/Home'
 
-  onBeforeMount(() => {
+  onBeforeMount(async () => {
     if (!yiYan.value.needGetData) return
-    axios
-      .get('/hitokoto/?c=i')
-      .then((response) => {
-        yiYan.value = response.data
-        yiYan.value.needGetData = false
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error)
-      })
+    const { data, error } = await supabase.functions.invoke('hitokoto')
+    if (error) console.error(error)
+    else {
+      yiYan.value = data
+      yiYan.value.needGetData = false
+    }
   })
 </script>
 <template>

@@ -1,6 +1,6 @@
 <script setup>
   import { onBeforeMount, onMounted, onUnmounted } from 'vue'
-  import { loadingStatus, isMobile } from '@/main'
+  import { loading, isMobile } from '@/main'
   import { background, getBackground } from '@/services/Home'
   import { useMessage } from 'naive-ui'
 
@@ -15,7 +15,7 @@
   }
   onBeforeMount(() => {
     if (!background.value.needGetData) return
-    loadingStatus.value = true
+    loading.value.projectCount++
     getBackground(localStorage.getItem('background-type'))
       .then((response) => {
         message.success(response)
@@ -24,7 +24,7 @@
         message.error(error)
       })
       .finally(() => {
-        loadingStatus.value = false
+        loading.value.projectCount--
       })
   })
   onMounted(() => {

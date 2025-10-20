@@ -1,4 +1,4 @@
-import { createApp, ref } from 'vue'
+import { computed, createApp, ref } from 'vue'
 import '@/style.css'
 import App from '@/App.vue'
 
@@ -14,7 +14,10 @@ const naive = create({
 })
 
 // 全局加载状态
-export const loadingStatus = ref(false)
+export const loading = ref({
+  status: computed(() => {return loading.value.projectCount !== 0}),
+  projectCount: 0
+})
 
 // 初始化背景类型设置
 if (!localStorage.getItem('background-type')) localStorage.setItem('background-type', 'bing')

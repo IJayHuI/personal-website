@@ -1,5 +1,5 @@
 <script setup>
-  import { loadingStatus, isMobile } from '@/main'
+  import { loading, isMobile } from '@/main'
   import { theme } from '@/services/Home'
   import { themeOverrides } from '@/services/General'
   import { zhCN, dateZhCN } from 'naive-ui'
@@ -8,7 +8,7 @@
 <template>
   <n-config-provider :theme="theme.current" :theme-overrides="themeOverrides" :locale="zhCN" :date-locale="dateZhCN">
     <n-message-provider>
-      <n-spin class="!absolute top-0 right-0 bottom-0 left-0" :show="loadingStatus" :size="100">
+      <n-spin class="!absolute top-0 right-0 bottom-0 left-0" :show="loading.status" :size="100">
         <router-view :name="isMobile ? 'mobile' : 'desktop'" v-slot="{ Component }">
           <transition name="scale">
             <component :is="Component" class="absolute w-full h-full" />

@@ -1,7 +1,7 @@
 import { ref, h } from 'vue'
 import { NIcon } from 'naive-ui'
 import { RouterLink } from 'vue-router'
-import { loadingStatus, supabase } from '@/main'
+import { loading, supabase } from '@/main'
 import { HomeRound } from '@vicons/material'
 
 export const datas = ref({
@@ -41,12 +41,12 @@ export const themeOverrides = {
 
 export const getData = async () => {
   if (!datas.value.needGetDatas) return
-  loadingStatus.value = true
+  loading.value.projectCount++
   const { data, error } = await supabase.from('projects').select('*')
   if (error) console.error(error)
   else {
     datas.value.data = data
     datas.value.needGetDatas = false
-    loadingStatus.value = false
   }
+  loading.value.projectCount--
 }

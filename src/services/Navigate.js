@@ -1,7 +1,7 @@
 import { ref, h } from 'vue'
 import { RouterLink } from 'vue-router'
 import * as icons from '@vicons/material'
-import { loadingStatus, supabase } from '@/main'
+import { loading, supabase } from '@/main'
 import { renderIcon } from '@/services/General'
 
 export const expandedNames = ref([])
@@ -69,7 +69,7 @@ export const menu = ref({
 
 export const getData = async () => {
   if (!menu.value.needGetMenuOptions) return
-  loadingStatus.value = true
+  loading.value.projectCount++
   const { data, error } = await supabase.from('navigate_groups').select('*, navigate_items(*)')
   if (error) console.error(error)
   else {
@@ -83,8 +83,8 @@ export const getData = async () => {
       expandedNames.value.push(item.id)
     })
     menu.value.needGetMenuOptions = false
-    loadingStatus.value = false
   }
+  loading.value.projectCount--
 }
 
 export const copyLink = async () => {

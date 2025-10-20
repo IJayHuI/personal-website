@@ -2,11 +2,11 @@
   import { getBackground, background } from '@/services/Home'
   import { useMessage } from 'naive-ui'
   import { AutoAwesomeRound, ReplayRound } from '@vicons/material'
-  import { loadingStatus } from '@/main'
+  import { loading } from '@/main'
 
   const message = useMessage()
   const backgroundChange = (type = localStorage.getItem('background-type')) => {
-    loadingStatus.value = true
+    loading.value.projectCount++
     getBackground(type)
       .then((response) => {
         message.success(response)
@@ -15,7 +15,7 @@
         message.error(error)
       })
       .finally(() => {
-        loadingStatus.value = false
+        loading.value.projectCount--
       })
   }
 </script>
