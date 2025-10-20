@@ -109,7 +109,7 @@ export const background = ref({
   type: null,
   needGetData: true,
   style: {
-    blur: 12,
+    blur: 20,
     scale: 150,
     brightness: computed(() => {
       return theme.value.current === null ? 80 : 50
@@ -206,7 +206,7 @@ export const handleScroll = () => {
   background.value.scrollY = window.scrollY
   const progress = background.value.scrollY / window.innerHeight
   background.value.style = {
-    blur: 12 * (1 - progress),
+    blur: 20 * (1 - progress),
     scale: 110 + 40 * (1 - progress),
     brightness: computed(() => {
       return theme.value.current === null ? 100 - 20 * (1 - progress) : 100 - 50 * (1 - progress)
