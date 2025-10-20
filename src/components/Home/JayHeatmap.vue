@@ -9,13 +9,7 @@
     loading.value.projectCount++
     const { data, error } = await supabase.functions.invoke('heatmap')
     if (error) console.error(error)
-    else {
-      heatmap.value = {
-        totalContributions: data.totalContributions,
-        heatmapData: data.heatmapData,
-        needGetData: false
-      }
-    }
+    else heatmap.value = { totalContributions: data.totalContributions, heatmapData: data.heatmapData, needGetData: false }
     loading.value.projectCount--
   })
   const props = defineProps({

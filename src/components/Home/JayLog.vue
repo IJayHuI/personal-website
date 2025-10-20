@@ -7,15 +7,9 @@
   onBeforeMount(async () => {
     if (!log.value.needGetData) return
     loading.value.projectCount++
-
-    const { data, error } = await supabase.from('web_logs').select('*').order('date', { ascending: false })
+    const { data, error } = await supabase.functions.invoke('releases')
     if (error) console.error(error)
-    else {
-      log.value = {
-        datas: data,
-        needGetData: false
-      }
-    }
+    else log.value = { datas: data, needGetData: false }
     loading.value.projectCount--
   })
 </script>
@@ -23,13 +17,9 @@
   <n-scrollbar class="max-h-60" content-class="grid gap-2">
     <n-button secondary class="whitespace-normal !text-wrap" size="large" tag="a" target="_blank" href="https://github.com/IJayHuI/personal-website/releases/">前往 Github Realeases 查看更详细信息</n-button>
     <n-timeline>
-      <n-timeline-item v-for="item in log.datas" :time="item.date">
-        <template #default>
-          <template v-for="content in item.content">
-            <p>- {{ content }}</p>
-          </template>
-        </template>
-      </n-timeline-item>
+      <template v-for="item in log.datas" :key="item.id">
+        <n-timeline-item :type="item.prerelease ? 'warning' : 'success'" v-if="!item.draft" :time="item.published_at.replace('T', ' ').replace('Z', '')" :title="`版本：${item.tag_name.slice(1)}`" />
+      </template>
     </n-timeline>
   </n-scrollbar>
 </template>
