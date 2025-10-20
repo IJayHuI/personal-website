@@ -23,7 +23,7 @@ const calculateDelay = (el, baseDelay = 3.5) => {
 
 const isBelowViewport = (el) => {
   const rect = el.getBoundingClientRect()
-  return rect.top + distance >= window.innerHeight
+  return rect.top - distance <= window.innerHeight
 }
 
 export default {

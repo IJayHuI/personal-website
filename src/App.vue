@@ -3,7 +3,6 @@
   import { theme } from '@/services/Home'
   import { themeOverrides } from '@/services/General'
   import { zhCN, dateZhCN } from 'naive-ui'
-  import router from '@/routes'
 </script>
 
 <template>
@@ -12,7 +11,7 @@
       <n-spin class="!absolute top-0 right-0 bottom-0 left-0" :show="loadingStatus" :size="100">
         <router-view :name="isMobile ? 'mobile' : 'desktop'" v-slot="{ Component }">
           <transition name="scale">
-            <component :is="Component" class="page-component" />
+            <component :is="Component" class="absolute w-full h-full" />
           </transition>
         </router-view>
       </n-spin>
@@ -21,17 +20,10 @@
 </template>
 
 <style>
-  .page-component {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-  }
-
   .scale-enter-active,
   .scale-leave-active {
     transition: all 0.3s ease-in-out;
   }
-
   .scale-enter-from,
   .scale-leave-to {
     opacity: 0;

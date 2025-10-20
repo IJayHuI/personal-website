@@ -11,6 +11,7 @@
   import JayYiYan from '@/components/Home/JayYiYan.vue'
   import JaySite from '@/components/Home/JaySite.vue'
   import JayBackground from '@/components/JayBackground.vue'
+  import JayScrollTip from '@/components/Home/JayScrollTip.vue'
   import { themeOverrides, theme, home, background, handleScroll } from '@/services/Home'
   import { onMounted, onBeforeUnmount } from 'vue'
 
@@ -65,9 +66,12 @@
               <jay-datetime :date-text-align="'text-right'" :time-text-align="'text-right'" />
             </div>
           </div>
-          <n-card v-slide-in title="站点" content-class="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
-            <jay-site />
-          </n-card>
+          <div v-slide-in>
+            <n-card title="站点" content-class="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
+              <jay-site />
+            </n-card>
+            <jay-scroll-tip />
+          </div>
         </div>
         <div class="gap-2">
           <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-2">

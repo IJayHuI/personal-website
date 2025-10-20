@@ -11,8 +11,8 @@
   import JayLog from '@/components/Home/JayLog.vue'
   import JaySite from '@/components/Home/JaySite.vue'
   import JayBackground from '@/components/JayBackground.vue'
+  import JayScrollTip from '@/components/Home/JayScrollTip.vue'
   import { themeOverrides, theme, home, handleScroll, background } from '@/services/Home'
-  import * as icons from '@vicons/material'
   import { onMounted, onBeforeUnmount } from 'vue'
 
   const handleElScroll = () => {
@@ -48,9 +48,12 @@
               <jay-contact-me />
             </div>
           </div>
-          <n-card title="站点" size="small" content-class="w-full grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2">
-            <jay-site :card-size="'small'" :icon-size="30" :direction="'col'" :text-class="'text-base'" />
-          </n-card>
+          <div class="w-full">
+            <n-card title="站点" size="small" content-class="grid grid-cols-[repeat(auto-fill,minmax(100px,1fr))] gap-2">
+              <jay-site :card-size="'small'" :icon-size="30" :direction="'col'" :text-class="'text-base'" />
+            </n-card>
+            <jay-scroll-tip />
+          </div>
         </div>
         <div class="gap-2">
           <jay-heatmap :card-size="'small'" :heatmap-size="'small'" />
