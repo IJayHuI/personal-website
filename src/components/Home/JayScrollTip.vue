@@ -10,7 +10,6 @@
     <n-icon :size="props.size" style="animation: floatY 8s infinite">
       <ArrowUpwardRound />
     </n-icon>
-    <p style="animation: floatY 6s 0.1s infinite">向上滑动继续浏览</p>
   </div>
 </template>
 <style>
