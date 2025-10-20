@@ -14,22 +14,22 @@
   }
 </script>
 <template>
-  <n-drawer-content :title="drawer.datas.title" body-content-class="grid grid-cols-2 gap-4 !h-max">
+  <n-drawer-content :title="drawer.datas.name" body-content-class="grid grid-cols-2 gap-4 !h-max">
     <div>
       <p class="text-base font-bold">是否需要代理：</p>
-      <p>{{ drawer.datas.needProxy ? '是' : '否' }}</p>
+      <p>{{ drawer.datas.need_proxy ? '是' : '否' }}</p>
     </div>
     <div>
       <p class="text-base font-bold">类别：</p>
-      <p>{{ drawer.datas.category == null ? '暂无类别' : drawer.datas.category }}</p>
+      <p>{{ drawer.datas.category === null ? '暂无类别' : drawer.datas.category }}</p>
     </div>
     <div class="col-span-2">
       <p class="text-base font-bold">链接：</p>
-      <p>{{ drawer.datas.link == null ? '暂无链接' : drawer.datas.link }}</p>
+      <p>{{ drawer.datas.link === null ? '暂无链接' : drawer.datas.link }}</p>
     </div>
     <div class="col-span-2">
       <p class="text-base font-bold">简介：</p>
-      <p>{{ drawer.datas.content == null ? '暂无简介' : drawer.datas.content }}</p>
+      <p>{{ drawer.datas.introduction === null ? '暂无简介' : drawer.datas.introduction }}</p>
     </div>
     <template #footer>
       <n-space>

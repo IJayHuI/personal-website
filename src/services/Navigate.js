@@ -9,7 +9,7 @@ export const datas = ref([])
 export const drawer = ref({
   menuDrawerStatus: false,
   status: false,
-  datas: { active: false, title: '', content: '', link: '', needProxy: false, category: '' }
+  datas: { name: '', introduction: '', link: '', need_proxy: false, category: '' }
 })
 
 // Navigate 主题设置

@@ -8,7 +8,7 @@
   }
   const handleUpdateDrawerData = (data, item) => {
     drawer.value.status = true
-    drawer.value.datas = { title: data.name, content: data.introduction, link: data.link, needProxy: data.needProxy, category: item.name }
+    drawer.value.datas = { ...data, category: item.name }
   }
   const props = defineProps({
     gridCols: { type: String, required: false, default: 'grid-cols-[repeat(auto-fill,minmax(250px,1fr))]' }
