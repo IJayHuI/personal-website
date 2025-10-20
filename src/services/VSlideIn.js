@@ -38,7 +38,7 @@ export default {
       ],
       {
         duration: duration,
-        easing: 'ease-in-out',
+        easing: 'ease-out',
         fill: 'forwards',
         delay: delay
       }
