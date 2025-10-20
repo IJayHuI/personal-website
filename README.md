@@ -8,7 +8,8 @@
 - Vite
 - Vue Router
 - Naive UI
-- Axios
+- tailwindcss
+- Supabase
 
 ## 项目结构
 
