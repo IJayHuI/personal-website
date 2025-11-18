@@ -73,7 +73,7 @@
             <jay-scroll-tip />
           </div>
         </div>
-        <div class="gap-2">
+        <div class="gap-2 min-h-full">
           <div class="w-full grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-2">
             <jay-theme-change />
             <jay-background-change />
