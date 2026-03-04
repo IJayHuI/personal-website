@@ -1,45 +1,19 @@
 <script setup lang="ts">
-  import JayLoading from './components/JayLoading.vue'
+  import { zhCN, dateZhCN, darkTheme } from 'naive-ui'
+
   import themeOverrides from './theme/general.json'
 
-  import { onBeforeUnmount, onMounted } from 'vue'
-  import { storeToRefs } from 'pinia'
-  import { useGeneralStore } from './stores'
-  import { zhCN, dateZhCN } from 'naive-ui'
+  import JayGui from './containers/JayGui.vue'
 
-  const general = useGeneralStore()
-  const { theme, loading, isMobile } = storeToRefs(general)
+  import { useStores } from './stores'
 
-  onMounted(() => general.init())
-  onBeforeUnmount(() => general.dispose())
+  const { general } = useStores()
 </script>
 
 <template>
-  <n-config-provider :theme="theme.current" :theme-overrides="themeOverrides" :locale="zhCN" :date-locale="dateZhCN">
+  <n-config-provider :theme="general.isDark ? darkTheme : null" :theme-overrides="themeOverrides" :locale="zhCN" :date-locale="dateZhCN">
     <n-message-provider>
-      <n-spin class="!absolute top-0 right-0 bottom-0 left-0" :show="loading.status" :size="200" :rotate="false">
-        <template #icon>
-          <jay-loading />
-        </template>
-        <router-view :name="isMobile ? 'mobile' : 'desktop'" v-slot="{ Component }">
-          <transition name="scale">
-            <component :is="Component" class="!absolute w-full h-full" />
-          </transition>
-        </router-view>
-      </n-spin>
+      <jay-gui />
     </n-message-provider>
   </n-config-provider>
 </template>
-
-<style>
-  .scale-enter-active,
-  .scale-leave-active {
-    transition: all 0.5s ease-in-out;
-  }
-  .scale-enter-from,
-  .scale-leave-to {
-    opacity: 0;
-    filter: blur(20px);
-    transform: scale(0.95);
-  }
-</style>
