@@ -1,0 +1,22 @@
+{
+  "light": {
+    "mobile": {
+      "Button": {
+        "color": "white",
+        "colorHover": "white",
+        "colorPressed": "white",
+        "colorFocus": "white"
+      }
+    }
+  },
+  "dark": {
+    "mobile": {
+      "Button": {
+        "color": "rgb(16, 16, 20)",
+        "colorHover": "rgb(16, 16, 20)",
+        "colorPressed": "rgb(16, 16, 20)",
+        "colorFocus": "rgb(16, 16, 20)"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "light": {
+    "mobile": {
+      "Button": {
+        "color": "white",
+        "colorHover": "white",
+        "colorPressed": "white",
+        "colorFocus": "white"
+      },
+      "Drawer": {
+        "borderRadius": "12px"
+      }
+    }
+  },
+  "dark": {
+    "mobile": {
+      "Button": {
+        "color": "rgb(16, 16, 20)",
+        "colorHover": "rgb(16, 16, 20)",
+        "colorPressed": "rgb(16, 16, 20)",
+        "colorFocus": "rgb(16, 16, 20)"
+      },
+      "Drawer": {
+        "borderRadius": "12px"
+      }
+    }
+  }
+}

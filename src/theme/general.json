@@ -1,0 +1,14 @@
+{
+  "common": {
+    "borderRadius": "8px"
+  },
+  "Spin": {
+    "opacitySpinning": 0
+  },
+  "Layout": {
+    "footerColor": "rgba(255, 255, 255, 0)"
+  },
+  "Card": {
+    "actionColor": "rgba(0, 0, 0, 0)"
+  }
+}
