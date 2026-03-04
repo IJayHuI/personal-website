@@ -1,0 +1,22 @@
+{
+  "sites": [
+    {
+      "name": "导航页",
+      "icon": "BookmarksRound",
+      "type": "router",
+      "router": "/navigate"
+    },
+    {
+      "name": "小项目",
+      "icon": "FolderRound",
+      "type": "router",
+      "router": "/project"
+    },
+    {
+      "name": "开往",
+      "icon": "TrainRound",
+      "type": "link",
+      "link": "https://www.travellings.cn/go.html"
+    }
+  ]
+}
