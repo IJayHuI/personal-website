@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
+import type { BackgroundScrollResult } from '../lib/background'
+
 export type BackgroundMode = 'local' | 'bing'
 
 export const useHomeStore = defineStore(
@@ -9,19 +11,40 @@ export const useHomeStore = defineStore(
     // 壁纸
     const backgroundMode = ref<BackgroundMode>('bing')
     const backgroundSrc = ref<string>('')
+    const backgroundBlur = ref<number>(0)
+    const backgroundBrightness = ref<number>(0)
+    const backgroundScale = ref<number>(0)
+    const backgroundStartStyle = ref<BackgroundScrollResult>({ blur: 0, brightness: 0, scale: 0 })
+    const backgroundEndStyle = ref<BackgroundScrollResult>({ blur: 0, brightness: 0, scale: 0 })
     const needGetBackground = ref<boolean>(true)
 
     // 头像
     const avatarSrc = ref<string>('')
     const avatarRotateStatus = ref<boolean>(false)
     const avatarClickCount = ref<number>(0)
-    const avatarBackText = ref<string>('')
+    const avatarBackText = ref<string>('你好')
+    const avatarBackColor = ref<string>('135deg, #FDEB71 10%, #F8D800 100%')
 
     function setBackgroundMode(v: BackgroundMode) {
       backgroundMode.value = v
     }
     function setBackgroundSrc(v: string) {
       backgroundSrc.value = v
+    }
+    function setBackgroundBlur(v: number) {
+      backgroundBlur.value = v
+    }
+    function setBackgroundBrightness(v: number) {
+      backgroundBrightness.value = v
+    }
+    function setBackgroundScale(v: number) {
+      backgroundScale.value = v
+    }
+    function setBackgroundStartStyle(v: BackgroundScrollResult) {
+      backgroundStartStyle.value = v
+    }
+    function setBackgroundEndStyle(v: BackgroundScrollResult) {
+      backgroundEndStyle.value = v
     }
     function setNeedGetBackground(v: boolean) {
       needGetBackground.value = v
@@ -38,25 +61,40 @@ export const useHomeStore = defineStore(
     function setAvatarBackText(v: string) {
       avatarBackText.value = v
     }
+    function setAvatarBackColor(v: string) {
+      avatarBackColor.value = v
+    }
 
     return {
       backgroundMode,
       backgroundSrc,
+      backgroundBlur,
+      backgroundBrightness,
+      backgroundScale,
+      backgroundStartStyle,
+      backgroundEndStyle,
       needGetBackground,
 
       avatarSrc,
       avatarRotateStatus,
       avatarClickCount,
       avatarBackText,
+      avatarBackColor,
 
       setBackgroundMode,
       setBackgroundSrc,
+      setBackgroundBlur,
+      setBackgroundBrightness,
+      setBackgroundScale,
+      setBackgroundStartStyle,
+      setBackgroundEndStyle,
       setNeedGetBackground,
 
       setAvatarSrc,
       setAvatarRotateStatus,
       avatarClickCountAdd,
-      setAvatarBackText
+      setAvatarBackText,
+      setAvatarBackColor
     }
   },
   {

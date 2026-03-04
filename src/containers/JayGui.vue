@@ -6,10 +6,11 @@
 
   import { isMobile } from '../lib/is-mobile'
   import { getIsDark } from '../lib/theme-mode'
+  import { calculateShowBackgroundProgress } from '../lib/background'
 
   import JayGui from '../components/JayGui.vue'
 
-  const { general } = useStores()
+  const { general, home } = useStores()
   const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
 
   // 同步移动设备状态
@@ -20,10 +21,22 @@
   const setBodyBackground = (mode: ThemeMode) => {
     document.body.style.backgroundColor = getIsDark(mode) ? darkTheme.common.bodyColor : '#fff'
   }
-  // 处理系统主题变化事件，更新暗色模式状态和页面背景颜色
+  // 处理系统主题变化事件
   const handleSystemThemeChange = () => {
+    // 更新暗色模式状态和页面背景颜色
     general.setIsDark(getIsDark('system'))
     setBodyBackground('system')
+
+    // 更新背景显示元素的起始和结束样式，并根据当前元素位置调整背景模糊度、亮度和缩放
+    home.setBackgroundStartStyle({ blur: 20, brightness: getIsDark('system') ? 50 : 70, scale: 130 })
+    home.setBackgroundEndStyle({ blur: 0, brightness: 100, scale: general.isMobile ? 100 : 115 })
+    const showBackgroundElement = document.getElementById('show-background')
+    const windowHeight = window.innerHeight
+    let elementPlace = showBackgroundElement ? Math.round(showBackgroundElement.getBoundingClientRect().top) : window.innerHeight
+    const { blur, brightness, scale } = calculateShowBackgroundProgress(windowHeight, elementPlace, home.backgroundStartStyle, home.backgroundEndStyle)
+    home.setBackgroundBlur(blur)
+    home.setBackgroundBrightness(brightness)
+    home.setBackgroundScale(scale)
   }
 
   // 监听主题模式变化，更新暗色模式状态和页面背景颜色，并根据系统主题变化添加或移除事件监听器

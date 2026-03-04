@@ -45,5 +45,5 @@
   })
 </script>
 <template>
-  <jay-background :is-mobile="general.isMobile" :background-src="home.backgroundSrc" />
+  <jay-background :is-mobile="general.isMobile" :background-src="home.backgroundSrc" :background-blur="home.backgroundBlur" :background-brightness="home.backgroundBrightness" :background-scale="home.backgroundScale" />
 </template>

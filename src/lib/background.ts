@@ -8,6 +8,12 @@ export type GetBackgroundResult = {
   mode: BackgroundMode
 }
 
+export type BackgroundScrollResult = {
+  blur: number
+  brightness: number
+  scale: number
+}
+
 const getLocalBackgroundImage = () => {
   const index = Math.floor(Math.random() * 10) + 1
   return `/local-background/background${index}.jpg`
@@ -37,5 +43,16 @@ export const getBackground = async (mode: BackgroundMode): Promise<GetBackground
     img,
     message: '现在使用 Bing 作为背景',
     mode: 'bing'
+  }
+}
+
+export const calculateShowBackgroundProgress = (windowHeight: number, elementPlace: number, start: BackgroundScrollResult, end: BackgroundScrollResult): BackgroundScrollResult => {
+  if (elementPlace >= windowHeight) return start
+  if (elementPlace <= 0) return end
+  const progress = 1 - elementPlace / windowHeight
+  return {
+    blur: (1 - progress) * start.blur,
+    brightness: start.brightness + progress * (100 - start.brightness),
+    scale: start.scale - progress * (start.scale - end.scale)
   }
 }
