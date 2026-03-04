@@ -9,6 +9,11 @@ const naive = create({
 })
 
 import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 const pinia = createPinia()
+pinia.use(piniaPluginPersistedstate)
 
-createApp(App).use(naive).use(pinia).mount('#app')
+import router from './routes'
+
+
+createApp(App).use(router).use(naive).use(pinia).mount('#app')
