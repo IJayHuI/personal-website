@@ -25,6 +25,9 @@ export const useHomeStore = defineStore(
     const avatarBackText = ref<string>('你好')
     const avatarBackColor = ref<string>('135deg, #FDEB71 10%, #F8D800 100%')
 
+    // 日期时间
+    const datetime = ref<Date>(new Date())
+
     function setBackgroundMode(v: BackgroundMode) {
       backgroundMode.value = v
     }
@@ -64,6 +67,9 @@ export const useHomeStore = defineStore(
     function setAvatarBackColor(v: string) {
       avatarBackColor.value = v
     }
+    function setDatetime(v: Date) {
+      datetime.value = v
+    }
 
     return {
       backgroundMode,
@@ -81,6 +87,8 @@ export const useHomeStore = defineStore(
       avatarBackText,
       avatarBackColor,
 
+      datetime,
+
       setBackgroundMode,
       setBackgroundSrc,
       setBackgroundBlur,
@@ -94,7 +102,9 @@ export const useHomeStore = defineStore(
       setAvatarRotateStatus,
       avatarClickCountAdd,
       setAvatarBackText,
-      setAvatarBackColor
+      setAvatarBackColor,
+
+      setDatetime
     }
   },
   {
