@@ -14,6 +14,11 @@ export type LogData = {
   publishedAt: string
 }
 
+export type YiYanData = {
+  hitokoto: string
+  from: string
+}
+
 export const useHomeStore = defineStore(
   'home',
   () => {
@@ -40,6 +45,11 @@ export const useHomeStore = defineStore(
 
     // 日期时间
     const datetime = ref<Date>(new Date())
+
+    // 一言
+    const hitokoto = ref<string>('')
+    const from = ref<string>('')
+    const needGetHitokoto = ref<boolean>(true)
 
     function setBackgroundMode(v: BackgroundMode) {
       backgroundMode.value = v
@@ -89,6 +99,15 @@ export const useHomeStore = defineStore(
     function setDatetime(v: Date) {
       datetime.value = v
     }
+    function setHitokoto(v: string) {
+      hitokoto.value = v
+    }
+    function setFrom(v: string) {
+      from.value = v
+    }
+    function setNeedGetHitokoto(v: boolean) {
+      needGetHitokoto.value = v
+    }
 
     return {
       backgroundMode,
@@ -111,6 +130,10 @@ export const useHomeStore = defineStore(
 
       datetime,
 
+      hitokoto,
+      from,
+      needGetHitokoto,
+
       setBackgroundMode,
       setBackgroundSrc,
       setBackgroundBlur,
@@ -129,7 +152,11 @@ export const useHomeStore = defineStore(
       setLogDatas,
       setNeedGetLogDatas,
 
-      setDatetime
+      setDatetime,
+
+      setHitokoto,
+      setFrom,
+      setNeedGetHitokoto
     }
   },
   {
