@@ -5,6 +5,15 @@ import type { BackgroundScrollResult } from '../lib/background'
 
 export type BackgroundMode = 'local' | 'bing'
 
+export type LogData = {
+  id: number
+  tagName: string
+  name: string
+  draft: boolean
+  prerelease: boolean
+  publishedAt: string
+}
+
 export const useHomeStore = defineStore(
   'home',
   () => {
@@ -24,6 +33,10 @@ export const useHomeStore = defineStore(
     const avatarClickCount = ref<number>(0)
     const avatarBackText = ref<string>('你好')
     const avatarBackColor = ref<string>('135deg, #FDEB71 10%, #F8D800 100%')
+
+    // 日志
+    const logDatas = ref<LogData[]>([])
+    const needGetLogDatas = ref<boolean>(true)
 
     // 日期时间
     const datetime = ref<Date>(new Date())
@@ -67,6 +80,12 @@ export const useHomeStore = defineStore(
     function setAvatarBackColor(v: string) {
       avatarBackColor.value = v
     }
+    function setLogDatas(v: LogData[]) {
+      logDatas.value = v
+    }
+    function setNeedGetLogDatas(v: boolean) {
+      needGetLogDatas.value = v
+    }
     function setDatetime(v: Date) {
       datetime.value = v
     }
@@ -87,6 +106,9 @@ export const useHomeStore = defineStore(
       avatarBackText,
       avatarBackColor,
 
+      logDatas,
+      needGetLogDatas,
+
       datetime,
 
       setBackgroundMode,
@@ -103,6 +125,9 @@ export const useHomeStore = defineStore(
       avatarClickCountAdd,
       setAvatarBackText,
       setAvatarBackColor,
+
+      setLogDatas,
+      setNeedGetLogDatas,
 
       setDatetime
     }
