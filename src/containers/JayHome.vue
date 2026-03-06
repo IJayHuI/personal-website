@@ -87,5 +87,5 @@
   })
 </script>
 <template>
-  <jay-home :is-mobile="general.isMobile" :set-theme-mode="setThemeMode" :set-background-mode="setBackgroundMode" />
+  <jay-home :is-dark="general.isDark" :is-mobile="general.isMobile" :is-loading="general.loading.status" :set-theme-mode="setThemeMode" :set-background-mode="setBackgroundMode" />
 </template>

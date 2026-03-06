@@ -10,19 +10,21 @@
     defineProps<{
       isDark?: boolean
       isMobile?: boolean
+      isLoading?: boolean
       setThemeMode?: (mode: ThemeMode) => void
       setBackgroundMode?: (mode: BackgroundMode) => void
     }>(),
     {
       isDark: false,
       isMobile: false,
+      isLoading: false,
       setThemeMode: () => {},
       setBackgroundMode: () => {}
     }
   )
 </script>
 <template>
-  <div>
+  <div :class="isLoading ? 'absolute top-0 right-0 bottom-0 left-0 overflow-scroll' : ''">
     <jay-background />
     <n-config-provider v-if="!props.isMobile" :theme-overrides="props.isDark ? homeTheme.dark.desktop : homeTheme.light.desktop">
       <div class="!relative max-w-7xl m-auto flex gap-4 pl-4 pr-4">

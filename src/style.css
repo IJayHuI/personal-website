@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+.n-spin-container {
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    position: absolute;
+}
+
 .interaction {
     transition: scale 0.15s;
 }
