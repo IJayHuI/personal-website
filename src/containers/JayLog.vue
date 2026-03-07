@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { onBeforeMount } from 'vue'
 
-  import JayLog from '../components/JayLog.vue'
+  import JayLog from '../components/home/JayLog.vue'
 
   import { getLogs } from '../lib/log'
 
