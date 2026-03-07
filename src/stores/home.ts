@@ -19,6 +19,11 @@ export type YiYanData = {
   from: string
 }
 
+export type HeatmapData = {
+  timestamp: number
+  count: number
+}
+
 export const useHomeStore = defineStore(
   'home',
   () => {
@@ -51,6 +56,11 @@ export const useHomeStore = defineStore(
     const from = ref<string>('')
     const needGetHitokoto = ref<boolean>(true)
 
+    // 热力图
+    const heatmapDatas = ref<HeatmapData[]>([])
+    const heatmapDatasSum = ref<number>(0)
+    const needGetHeatmapDatas = ref<boolean>(true)
+
     function setBackgroundMode(v: BackgroundMode) {
       backgroundMode.value = v
     }
@@ -75,6 +85,7 @@ export const useHomeStore = defineStore(
     function setNeedGetBackground(v: boolean) {
       needGetBackground.value = v
     }
+
     function setAvatarSrc(v: string) {
       avatarSrc.value = v
     }
@@ -90,15 +101,18 @@ export const useHomeStore = defineStore(
     function setAvatarBackColor(v: string) {
       avatarBackColor.value = v
     }
+
     function setLogDatas(v: LogData[]) {
       logDatas.value = v
     }
     function setNeedGetLogDatas(v: boolean) {
       needGetLogDatas.value = v
     }
+
     function setDatetime(v: Date) {
       datetime.value = v
     }
+
     function setHitokoto(v: string) {
       hitokoto.value = v
     }
@@ -107,6 +121,16 @@ export const useHomeStore = defineStore(
     }
     function setNeedGetHitokoto(v: boolean) {
       needGetHitokoto.value = v
+    }
+
+    function setHeatmapDatas(v: HeatmapData[]) {
+      heatmapDatas.value = v
+    }
+    function setHeatmapDatasSum(v: number) {
+      heatmapDatasSum.value = v
+    }
+    function setNeedGetHeatmapDatas(v: boolean) {
+      needGetHeatmapDatas.value = v
     }
 
     return {
@@ -134,6 +158,10 @@ export const useHomeStore = defineStore(
       from,
       needGetHitokoto,
 
+      heatmapDatas,
+      heatmapDatasSum,
+      needGetHeatmapDatas,
+
       setBackgroundMode,
       setBackgroundSrc,
       setBackgroundBlur,
@@ -156,7 +184,11 @@ export const useHomeStore = defineStore(
 
       setHitokoto,
       setFrom,
-      setNeedGetHitokoto
+      setNeedGetHitokoto,
+
+      setHeatmapDatas,
+      setHeatmapDatasSum,
+      setNeedGetHeatmapDatas
     }
   },
   {
