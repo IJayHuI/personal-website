@@ -15,5 +15,6 @@ pinia.use(piniaPluginPersistedstate)
 
 import router from './routes'
 
+import slideIn from './directives/slide-in'
 
-createApp(App).use(router).use(naive).use(pinia).mount('#app')
+createApp(App).use(router).use(naive).use(pinia).directive('slide-in', slideIn).mount('#app')

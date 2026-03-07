@@ -88,17 +88,17 @@
 
           <section class="flex flex-col gap-4">
             <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
-              <jay-theme-change :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
+              <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
 
-              <jay-background-change :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
+              <jay-background-change v-slide-in :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
             </div>
 
-            <jay-heatmap />
+            <jay-heatmap v-slide-in />
 
             <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
-              <jay-introduction />
+              <jay-introduction v-slide-in />
 
-              <jay-background-introduction :background-src="props.backgroundSrc" />
+              <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
             </div>
           </section>
         </main>
