@@ -1,0 +1,5 @@
+<template>
+  <n-card title="简介" class="interaction" size="medium" @touchstart="">
+    <p>一个简单的个人主页。此项目是我学前端的作品。有我在大学中的期末大作业，以及实训的项目。持续更新...</p>
+  </n-card>
+</template>
