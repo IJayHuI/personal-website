@@ -18,5 +18,31 @@
       "type": "link",
       "link": "https://www.travellings.cn/go.html"
     }
+  ],
+  "contactMe": [
+    {
+      "link": "https://github.com/IJayHuI",
+      "icon": "/contact-me/github.svg",
+      "text": "Github",
+      "mobileText": "去 GitHub 主页"
+    },
+    {
+      "link": "https://space.bilibili.com/474262477",
+      "icon": "/contact-me/bilibili.svg",
+      "text": "(゜-゜)つロ 干杯~-bilibili",
+      "mobileText": "去 Bilibili 主页"
+    },
+    {
+      "link": "mailto:2949763264@qq.com",
+      "icon": "/contact-me/email.svg",
+      "text": "email～",
+      "mobileText": "给我发邮件"
+    },
+    {
+      "link": "https://t.me/IJayHuI",
+      "icon": "/contact-me/telegram.svg",
+      "text": "Oops!",
+      "mobileText": "去 Telegram"
+    }
   ]
 }
