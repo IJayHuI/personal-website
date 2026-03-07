@@ -12,6 +12,7 @@
   const message = useMessage()
 
   onBeforeMount(async () => {
+    if (!home.needGetHitokoto) return
     general.loadingEventAdd()
     getYiYan()
       .then((response: YiYanData) => {
