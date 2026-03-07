@@ -14,7 +14,7 @@
 </script>
 
 <template>
-  <n-spin class="!absolute !z-9 top-0 right-0 bottom-0 left-0" :show="props.loadingStatus" :size="200" :rotate="false">
+  <n-spin :show="props.loadingStatus" :size="200" :rotate="false">
     <template #icon>
       <jay-loading />
     </template>
@@ -22,10 +22,6 @@
       {{ props.loadingText }}
     </template>
 
-    <router-view v-slot="{ Component }">
-      <transition name="scale">
-        <component :is="Component" class="!absolute w-full h-full" />
-      </transition>
-    </router-view>
+    <router-view />
   </n-spin>
 </template>

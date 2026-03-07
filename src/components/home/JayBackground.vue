@@ -25,7 +25,8 @@
       transform: `scale(${props.backgroundScale}%) translate(var(--move-x, 0px), var(--move-y, 0px))`
     }"
     :src="props.backgroundSrc"
-    alt="背景图片" />
+    alt="背景图片"
+    id="background" />
   <img
     v-else
     class="fixed w-full h-full object-cover bg-cover -z-9"
@@ -33,5 +34,6 @@
       filter: `blur(${props.backgroundBlur}px) brightness(${props.backgroundBrightness}%)`
     }"
     :src="props.backgroundSrc"
-    alt="背景图片" />
+    alt="背景图片"
+    id="background" />
 </template>

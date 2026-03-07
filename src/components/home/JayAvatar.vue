@@ -25,7 +25,7 @@
       <div class="w-full h-full absolute" :style="`background-image: linear-gradient(${props.backColor})`"></div>
       <p class="z-9 text-2xl">{{ props.backText }}</p>
     </div>
-    <n-button @click.stop @click="props.setRotateStatus" size="large" type="info" circle class="z-9 !absolute right-7 bottom-7">
+    <n-button @click.stop @click="props.setRotateStatus" size="large" type="info" circle class="z-9 !absolute right-6 bottom-6">
       <n-icon>
         <UTurnLeftRound />
       </n-icon>
