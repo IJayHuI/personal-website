@@ -16,7 +16,7 @@
   // 设置主题模式
   const setThemeMode = (mode: ThemeMode) => {
     general.setThemeMode(mode)
-    home.setBackgroundStartStyle({ blur: 20, brightness: getIsDark(mode) ? 50 : 70, scale: 130 })
+    home.setBackgroundStartStyle({ blur: 20, brightness: getIsDark(mode) ? 30 : 50, scale: 130 })
     home.setBackgroundEndStyle({ blur: 0, brightness: 100, scale: general.isMobile ? 100 : 115 })
     setBackgroundScroll()
   }
@@ -81,9 +81,9 @@
 
   // 初始设置背景模糊度、亮度和缩放，并设置背景显示元素的起始和结束样式
   home.setBackgroundBlur(20)
-  home.setBackgroundBrightness(general.isDark ? 50 : 70)
+  home.setBackgroundBrightness(general.isDark ? 30 : 50)
   home.setBackgroundScale(130)
-  home.setBackgroundStartStyle({ blur: 20, brightness: general.isDark ? 50 : 70, scale: 130 })
+  home.setBackgroundStartStyle({ blur: 20, brightness: general.isDark ? 30 : 50, scale: 130 })
   home.setBackgroundEndStyle({ blur: 0, brightness: 100, scale: general.isMobile ? 100 : 115 })
 
   onMounted(() => {

@@ -26,7 +26,7 @@
 </script>
 <template>
   <div v-if="!isMobile" class="flex gap-2">
-    <n-button tag="a" :href="item.link" target="_blank" class="overflow-hidden !transition-[max-width] !duration-600 !max-w-19.75 hover:!max-w-xl !ease-in-out" size="large" round v-for="item in props.contactList" secondary>
+    <n-button tag="a" :href="item.link" target="_blank" class="overflow-hidden !transition-[max-width] !duration-600 !max-w-19.75 hover:!max-w-xl !ease-in-out !text-white" size="large" round v-for="item in props.contactList" secondary>
       <div class="flex items-center gap-6">
         <n-icon size="35">
           <component :is="renderIcon(item.icon)" />

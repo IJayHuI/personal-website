@@ -11,7 +11,7 @@
   )
 </script>
 <template>
-  <div class="w-full flex justify-center items-center mt-5 mb-5">
+  <div class="w-full flex justify-center items-center mt-5 mb-5 text-white">
     <n-icon :size="props.size" style="animation: floatY 8s infinite">
       <arrow-upward-round />
     </n-icon>

@@ -65,7 +65,7 @@
           <section class="min-h-screen flex flex-col justify-between relative">
             <div></div>
 
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between text-white">
               <div class="flex-1 flex flex-col gap-2">
                 <div class="w-2/3">
                   <jay-yi-yan />
