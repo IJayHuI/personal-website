@@ -36,6 +36,16 @@
         home.setNeedGetBackground(false)
       })
   }
+  const randomBackground = () => {
+    general.loadingEventAdd()
+    getBackground('local')
+      .then((response: GetBackgroundResult) => {
+        home.setBackgroundSrc(response.img)
+      })
+      .finally(() => {
+        general.loadingEventSubtract()
+      })
+  }
   // 根据背景显示元素与视口的位置关系计算背景模糊度、亮度和缩放，并设置到状态中
   const setBackgroundScroll = () => {
     const windowHeight = window.innerHeight
@@ -87,5 +97,14 @@
   })
 </script>
 <template>
-  <jay-home :is-dark="general.isDark" :is-mobile="general.isMobile" :is-loading="general.loading.status" :set-theme-mode="setThemeMode" :set-background-mode="setBackgroundMode" />
+  <jay-home
+    :is-dark="general.isDark"
+    :is-mobile="general.isMobile"
+    :is-loading="general.loading.status"
+    :theme-mode="general.themeMode"
+    :background-mode="home.backgroundMode"
+    :background-src="home.backgroundSrc"
+    :set-theme-mode="setThemeMode"
+    :set-background-mode="setBackgroundMode"
+    :random-background="randomBackground" />
 </template>
