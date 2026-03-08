@@ -7,6 +7,14 @@
     position: absolute;
 }
 
+.n-card {
+    backdrop-filter: blur(8px);
+}
+
+.n-collapse-item {
+    border-top: 0 !important;
+}
+
 .interaction {
     transition: scale 0.2s;
 }

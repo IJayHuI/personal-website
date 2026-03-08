@@ -142,7 +142,7 @@
 
           <jay-heatmap v-slide-in />
 
-          <n-card title="日志" class="interaction">
+          <n-card title="日志" class="interaction" v-slide-in>
             <jay-log />
           </n-card>
 

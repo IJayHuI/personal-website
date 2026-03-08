@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/navigate',
     name: 'Navigate',
-    component: () => import('./containers/JayNavigate.vue')
+    component: () => import('./containers/navigate/JayNavigate.vue')
   },
   {
     path: '/project',
