@@ -31,7 +31,8 @@
     v-else
     class="fixed w-full h-full object-cover bg-cover -z-9"
     :style="{
-      filter: `blur(${props.backgroundBlur}px) brightness(${props.backgroundBrightness}%)`
+      filter: `blur(${props.backgroundBlur}px) brightness(${props.backgroundBrightness}%)`,
+      transform: `scale(${props.backgroundScale}%)`
     }"
     :src="props.backgroundSrc"
     alt="背景图片"
