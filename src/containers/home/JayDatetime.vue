@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import JayDatetime from '../components/home/JayDatetime.vue'
+  import JayDatetime from '../../components/home/JayDatetime.vue'
 
-  import { useStores } from '../stores'
+  import { useStores } from '../../stores'
 
   const { home } = useStores()
   let now = new Date()

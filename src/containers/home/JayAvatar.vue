@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import JayAvatar from '../components/home/JayAvatar.vue'
+  import JayAvatar from '../../components/home/JayAvatar.vue'
 
-  import { useStores } from '../stores'
+  import { useStores } from '../../stores'
 
   const { home } = useStores()
   const avatarBackColor: string[] = [

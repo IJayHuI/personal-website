@@ -1,7 +1,7 @@
 <script setup lang="ts">
-  import JaySite from '../components/home/JaySite.vue'
+  import JaySite from '../../components/home/JaySite.vue'
 
-  import homeConfig from '../configs/home.json'
+  import homeConfig from '../../configs/home.json'
 
   const props = withDefaults(
     defineProps<{

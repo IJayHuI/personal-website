@@ -2,11 +2,11 @@
   import { onBeforeMount } from 'vue'
   import { useMessage } from 'naive-ui'
 
-  import JayHeatmap from '../components/home/JayHeatmap.vue'
+  import JayHeatmap from '../../components/home/JayHeatmap.vue'
 
-  import { useStores } from '../stores'
+  import { useStores } from '../../stores'
 
-  import { getHeatmapDatas } from '../lib/heatmap'
+  import { getHeatmapDatas } from '../../lib/heatmap'
 
   const { general, home } = useStores()
   const message = useMessage()

@@ -2,12 +2,12 @@
   import { useMessage } from 'naive-ui'
   import { onMounted, onBeforeUnmount } from 'vue'
 
-  import JayHome from '../components/home/JayHome.vue'
+  import JayHome from '../../components/home/JayHome.vue'
 
-  import { getBackground, calculateShowBackgroundProgress, type GetBackgroundResult } from '../lib/background'
-  import { getIsDark } from '../lib/theme-mode'
+  import { getBackground, calculateShowBackgroundProgress, type GetBackgroundResult } from '../../lib/background'
+  import { getIsDark } from '../../lib/theme-mode'
 
-  import { useStores, type BackgroundMode, type ThemeMode } from '../stores'
+  import { useStores, type BackgroundMode, type ThemeMode } from '../../stores'
 
   const { general, home } = useStores()
   const message = useMessage()

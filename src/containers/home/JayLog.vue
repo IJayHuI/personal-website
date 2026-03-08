@@ -1,11 +1,11 @@
 <script setup lang="ts">
   import { onBeforeMount } from 'vue'
 
-  import JayLog from '../components/home/JayLog.vue'
+  import JayLog from '../../components/home/JayLog.vue'
 
-  import { getLogs } from '../lib/log'
+  import { getLogs } from '../../lib/log'
 
-  import { useStores, type LogData } from '../stores'
+  import { useStores, type LogData } from '../../stores'
 
   const { general, home } = useStores()
 

@@ -3,16 +3,16 @@
 
   import homeTheme from '../../theme/home.json'
 
-  import JayBackground from '../../containers/JayBackground.vue'
-  import JayAvatar from '../../containers/JayAvatar.vue'
-  import JayLog from '../../containers/JayLog.vue'
-  import JayYiYan from '../../containers/JayYiYan.vue'
-  import JayDatetime from '../../containers/JayDatetime.vue'
-  import JaySite from '../../containers/JaySite.vue'
+  import JayBackground from '../../containers/home/JayBackground.vue'
+  import JayAvatar from '../../containers/home/JayAvatar.vue'
+  import JayLog from '../../containers/home/JayLog.vue'
+  import JayYiYan from '../../containers/home/JayYiYan.vue'
+  import JayDatetime from '../../containers/home/JayDatetime.vue'
+  import JaySite from '../../containers/home/JaySite.vue'
   import JayFooter from '../../containers/JayFooter.vue'
-  import JayHeatmap from '../../containers/JayHeatmap.vue'
-  import JayContactMe from '../../containers/JayContactMe.vue'
-  import JayTechList from '../../containers/JayTechList.vue'
+  import JayHeatmap from '../../containers/home/JayHeatmap.vue'
+  import JayContactMe from '../../containers/home/JayContactMe.vue'
+  import JayTechList from '../../containers/home/JayTechList.vue'
 
   import JayThemeChange from './JayThemeChange.vue'
   import JayBackgroundChange from './JayBackgroundChange.vue'
@@ -118,7 +118,7 @@
 
           <div class="flex flex-col gap-1 text-white">
             <div class="flex flex-row justify-between items-center">
-              <jay-datetime date-text-size="text-lg" time-text-size="text-4xl"/>
+              <jay-datetime date-text-size="text-lg" time-text-size="text-4xl" />
             </div>
 
             <div>

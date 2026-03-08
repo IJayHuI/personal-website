@@ -9,7 +9,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/home',
     name: 'Home',
-    component: () => import('./containers/JayHome.vue')
+    component: () => import('./containers/home/JayHome.vue')
   },
   {
     path: '/navigate',

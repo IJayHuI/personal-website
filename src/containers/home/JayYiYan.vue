@@ -2,11 +2,11 @@
   import { onBeforeMount } from 'vue'
   import { useMessage } from 'naive-ui'
 
-  import JayYiYan from '../components/home/JayYiYan.vue'
+  import JayYiYan from '../../components/home/JayYiYan.vue'
 
-  import { getYiYan } from '../lib/yi-yan'
+  import { getYiYan } from '../../lib/yi-yan'
 
-  import { useStores, type YiYanData } from '../stores'
+  import { useStores, type YiYanData } from '../../stores'
 
   const { general, home } = useStores()
   const message = useMessage()

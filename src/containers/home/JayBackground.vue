@@ -2,11 +2,11 @@
   import { onBeforeMount, onMounted, onUnmounted } from 'vue'
   import { useMessage } from 'naive-ui'
 
-  import JayBackground from '../components/home/JayBackground.vue'
+  import JayBackground from '../../components/home/JayBackground.vue'
 
-  import { useStores } from '../stores'
+  import { useStores } from '../../stores'
 
-  import { getBackground, type GetBackgroundResult } from '../lib/background'
+  import { getBackground, type GetBackgroundResult } from '../../lib/background'
 
   const { general, home } = useStores()
   const message = useMessage()

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-  import JayContactMe from '../components/home/JayContactMe.vue'
+  import JayContactMe from '../../components/home/JayContactMe.vue'
 
-  import { useStores } from '../stores'
+  import { useStores } from '../../stores'
 
   const { general } = useStores()
 
-  import homeConfig from '../configs/home.json'
+  import homeConfig from '../../configs/home.json'
 </script>
 
 <template>
