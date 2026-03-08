@@ -44,5 +44,35 @@
       "text": "Oops!",
       "mobileText": "去 Telegram"
     }
+  ],
+  "techList": [
+    {
+      "href": "https://www.naiveui.com/zh-CN/os-theme",
+      "name": "Naive UI"
+    },
+    {
+      "href": "https://vitejs.cn/",
+      "name": "Vite"
+    },
+    {
+      "href": "https://cn.vuejs.org/",
+      "name": "Vue"
+    },
+    {
+      "href": "https://tailwindcss.com/",
+      "name": "tailwindcss"
+    },
+    {
+      "href": "https://supabase.com/",
+      "name": "Supabase"
+    },
+    {
+      "href": "https://xicons.org/#/",
+      "name": "xicons"
+    },
+    {
+      "href": "https://pinia.vuejs.org/zh/",
+      "name": "Pinia"
+    }
   ]
 }
