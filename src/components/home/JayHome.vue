@@ -12,6 +12,7 @@
   import JayFooter from '../../containers/JayFooter.vue'
   import JayHeatmap from '../../containers/JayHeatmap.vue'
   import JayContactMe from '../../containers/JayContactMe.vue'
+  import JayTechList from '../../containers/JayTechList.vue'
 
   import JayThemeChange from './JayThemeChange.vue'
   import JayBackgroundChange from './JayBackgroundChange.vue'
@@ -54,6 +55,10 @@
 
           <n-card title="日志" class="interaction">
             <jay-log />
+          </n-card>
+
+          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
+            <jay-tech-list />
           </n-card>
 
           <n-card content-class="flex flex-col" class="interaction">
@@ -104,7 +109,57 @@
         </main>
       </div>
     </n-config-provider>
-    <n-config-provider v-else :theme-overrides="props.isDark ? homeTheme.dark.mobile : homeTheme.light.mobile"> </n-config-provider>
+    <n-config-provider v-else :theme-overrides="props.isDark ? homeTheme.dark.mobile : homeTheme.light.mobile">
+      <main class="flex flex-col gap-2 p-2">
+        <section class="w-full h-[calc(100dvh-53px)] flex flex-col justify-between">
+          <div class="w-2/3 mx-auto">
+            <jay-avatar />
+          </div>
+
+          <div class="flex flex-col gap-1 text-white">
+            <div class="flex flex-row justify-between items-center">
+              <jay-datetime date-text-size="text-lg" time-text-size="text-4xl"/>
+            </div>
+
+            <div>
+              <jay-yi-yan hitokoto-size="text-base" from-size="text-sm" />
+            </div>
+
+            <jay-contact-me />
+          </div>
+
+          <div>
+            <jay-site card-size="small" :icon-size="30" direction="col" text-class="text-base" item-size="100px" />
+
+            <jay-scroll-tip :size="28" />
+          </div>
+        </section>
+
+        <section class="flex flex-col gap-2">
+          <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
+
+          <jay-background-change v-slide-in :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
+
+          <jay-heatmap v-slide-in />
+
+          <n-card title="日志" class="interaction">
+            <jay-log />
+          </n-card>
+
+          <jay-introduction v-slide-in />
+
+          <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
+
+          <n-card v-slide-in class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
+            <jay-tech-list />
+          </n-card>
+        </section>
+
+        <n-card size="small" class="!sticky bottom-0" content-class="flex flex-row gap-1 text-xs">
+          <jay-footer />
+        </n-card>
+      </main>
+    </n-config-provider>
     <div id="show-background" class="h-screen invisible"></div>
   </div>
 </template>
