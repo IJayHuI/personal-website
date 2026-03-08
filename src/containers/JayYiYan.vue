@@ -10,6 +10,16 @@
 
   const { general, home } = useStores()
   const message = useMessage()
+  const props = withDefaults(
+    defineProps<{
+      hitokotoSize?: string
+      fromSize?: string
+    }>(),
+    {
+      hitokotoSize: 'text-xl',
+      fromSize: 'text-base'
+    }
+  )
 
   onBeforeMount(async () => {
     if (!home.needGetHitokoto) return
@@ -29,5 +39,5 @@
   })
 </script>
 <template>
-  <jay-yi-yan :hitokoto="home.hitokoto" :from="home.from" />
+  <jay-yi-yan :hitokoto="home.hitokoto" :from="home.from" :hitokoto-size="props.hitokotoSize" :from-size="props.fromSize" />
 </template>

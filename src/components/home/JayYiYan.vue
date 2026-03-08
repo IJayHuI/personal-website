@@ -3,14 +3,18 @@
     defineProps<{
       hitokoto: string
       from: string
+      hitokotoSize?: string
+      fromSize?: string
     }>(),
     {
       hitokoto: '',
-      from: ''
+      from: '',
+      hitokotoSize: 'text-xl',
+      fromSize: 'text-base'
     }
   )
 </script>
 <template>
-  <p class="text-xl">{{ props.hitokoto }}</p>
-  <p class="text-end">- {{ props.from }}</p>
+  <p :class="props.hitokotoSize">{{ props.hitokoto }}</p>
+  <p :class="`text-end ${props.fromSize}`">- {{ props.from }}</p>
 </template>
