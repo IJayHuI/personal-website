@@ -8,6 +8,7 @@
       iconSize?: number
       direction?: string
       textClass?: string
+      itemSize?: string
       sites?: {
         name: string
         icon: string
@@ -21,6 +22,7 @@
       iconSize: 35,
       direction: 'row',
       textClass: 'text-xl font-bold',
+      itemSize: '200px',
       sites: () => []
     }
   )
@@ -30,7 +32,7 @@
   }
 </script>
 <template>
-  <n-card title="站点" content-class="w-full grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-2">
+  <n-card :size="props.cardSize" title="站点" content-class="w-full grid gap-2 grid-cols-[repeat(auto-fill,minmax(var(--item-size),1fr))]" :style="{ '--item-size': props.itemSize }">
     <template v-for="site in props.sites" :key="site.router">
       <router-link v-if="site.type === 'router' && site.router" :to="site.router">
         <n-card class="interaction" :size="props.cardSize" :content-class="`flex justify-center items-center gap-2 flex-${props.direction}`">

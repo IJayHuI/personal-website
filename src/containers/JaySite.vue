@@ -9,15 +9,17 @@
       iconSize?: number
       direction?: string
       textClass?: string
+      itemSize?: string
     }>(),
     {
       cardSize: 'medium',
       iconSize: 35,
       direction: 'row',
-      textClass: 'text-xl font-bold'
+      textClass: 'text-xl font-bold',
+      itemSize: '200px'
     }
   )
 </script>
 <template>
-  <jay-site :sites="homeConfig.sites" :card-size="props.cardSize" :icon-size="props.iconSize" :direction="props.direction" :text-class="props.textClass" />
+  <jay-site :sites="homeConfig.sites" :card-size="props.cardSize" :icon-size="props.iconSize" :direction="props.direction" :text-class="props.textClass" :item-size="props.itemSize" />
 </template>
