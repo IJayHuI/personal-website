@@ -23,7 +23,7 @@
 
   let timeoutId: ReturnType<typeof setTimeout> | null = null
 
-  const handleClick = (item: ContactItem, index: number, event: MouseEvent) => {
+  const handleClick = (index: number, event: MouseEvent) => {
     if (expanded.value !== index) {
       expanded.value = index
       event.preventDefault()
@@ -75,7 +75,7 @@
       secondary
       class="overflow-hidden !transition-[max-width] !duration-1000 !max-w-16.5 !ease-in-out !text-white"
       :class="[expanded === index ? '!max-w-xl' : '']"
-      @click="handleClick(item, index, $event)">
+      @click="handleClick(index, $event)">
       <div class="flex items-center gap-6">
         <n-icon size="30">
           <component :is="renderIcon(item.icon)" />
