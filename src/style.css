@@ -39,6 +39,18 @@
     filter: blur(0);
 }
 
+.scale-enter-active,
+.scale-leave-active {
+    transition: all 0.3s ease-in-out;
+}
+
+.scale-enter-from,
+.scale-leave-to {
+    opacity: 0;
+    filter: blur(8px);
+    transform: scale(0.98);
+}
+
 @media screen and (min-width:768px) {
     .interaction:hover {
         scale: 1.03;

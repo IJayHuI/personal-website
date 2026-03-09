@@ -46,7 +46,7 @@
   )
 </script>
 <template>
-  <div :class="props.isLoading ? 'absolute w-full h-full overflow-hidden' : null">
+  <div :class="props.isLoading ? 'overflow-hidden' : null">
     <jay-background />
     <n-config-provider v-if="!props.isMobile" :theme-overrides="props.isDark ? homeTheme.dark.desktop : homeTheme.light.desktop">
       <div class="max-w-7xl mx-auto w-full flex gap-4 px-4">

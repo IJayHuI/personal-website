@@ -22,6 +22,10 @@
       {{ props.loadingText }}
     </template>
 
-    <router-view />
+    <router-view v-slot="{ Component }">
+      <transition name="scale">
+        <component :is="Component" class="!absolute w-full h-full" />
+      </transition>
+    </router-view>
   </n-spin>
 </template>
