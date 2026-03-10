@@ -53,8 +53,8 @@
         <aside class="w-3xs sticky top-4 self-start flex flex-col gap-4">
           <jay-avatar />
 
-          <n-card title="日志" class="interaction">
-            <jay-log />
+          <n-card title="简介" class="interaction" size="small" @touchstart="">
+            <jay-introduction />
           </n-card>
 
           <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
@@ -92,18 +92,20 @@
           </section>
 
           <section class="flex flex-col gap-4">
-            <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
-              <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
-
-              <jay-background-change v-slide-in :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
-            </div>
-
             <jay-heatmap v-slide-in />
 
-            <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
-              <jay-introduction v-slide-in />
+            <n-card title="日志" class="interaction" v-slide-in>
+              <jay-log />
+            </n-card>
 
+            <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
               <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
+
+              <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
+                <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
+
+                <jay-background-change v-slide-in :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
+              </div>
             </div>
           </section>
         </main>
@@ -136,23 +138,23 @@
         </section>
 
         <section class="flex flex-col gap-2">
-          <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
-
-          <jay-background-change v-slide-in :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
-
           <jay-heatmap v-slide-in />
 
           <n-card title="日志" class="interaction" v-slide-in>
             <jay-log />
           </n-card>
-
-          <jay-introduction v-slide-in />
-
+          <n-card title="简介" class="interaction" v-slide-in>
+            <jay-introduction />
+          </n-card>
           <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
 
           <n-card v-slide-in class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
             <jay-tech-list />
           </n-card>
+
+          <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
+
+          <jay-background-change v-slide-in :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
         </section>
 
         <n-card size="small" class="!sticky bottom-0" content-class="flex flex-row gap-1 text-xs">
