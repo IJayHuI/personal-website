@@ -23,8 +23,8 @@
     </template>
 
     <router-view v-slot="{ Component }">
-      <transition name="scale">
-        <component :is="Component" class="!absolute w-full h-full" />
+      <transition name="page">
+        <component :is="Component" :key="$route.fullPath" class="!absolute inset-0" />
       </transition>
     </router-view>
   </n-spin>
