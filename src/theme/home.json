@@ -2,48 +2,26 @@
   "light": {
     "desktop": {
       "Card": {
-        "color": "rgba(255, 255, 255, 0.6)",
-        "borderColor": "rgba(239, 239, 245, 0.3)",
-        "borderRadius": "12px"
-      },
-      "Layout": {
-        "color": "rgba(0, 0, 0, 0)",
-        "siderColor": "rgba(0, 0, 0, 0)"
+        "color": "rgba(255, 255, 255, 0.6)"
       }
     },
     "mobile": {
       "Card": {
         "color": "rgba(255, 255, 255, 0.6)",
-        "colorModal": "rgba(255, 255, 255, 0.5)",
-        "borderColor": "rgba(239, 239, 245, 0.3)",
-        "borderRadius": "12px"
-      },
-      "Layout": {
-        "color": "rgba(0, 0, 0, 0)",
-        "footerColor": "rgba(255, 255, 255, 0.5)",
-        "textColor": "#000"
+        "colorModal": "rgba(255, 255, 255, 0.5)"
       }
     }
   },
   "dark": {
     "desktop": {
       "Card": {
-        "color": "rgba(24, 24, 28, 0.5)",
-        "borderRadius": "12px"
-      },
-      "Layout": {
-        "color": "rgba(0, 0, 0, 0)",
-        "siderColor": "rgba(0, 0, 0, 0)"
+        "color": "rgba(24, 24, 28, 0.5)"
       }
     },
     "mobile": {
       "Card": {
         "color": "rgba(24, 24, 28, 0.5)",
-        "colorModal": "rgba(44, 44, 50, 0.5)",
-        "borderRadius": "12px"
-      },
-      "Layout": {
-        "color": "rgba(0, 0, 0, 0)"
+        "colorModal": "rgba(44, 44, 50, 0.5)"
       }
     }
   }

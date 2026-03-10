@@ -9,6 +9,7 @@
     "footerColor": "rgba(255, 255, 255, 0)"
   },
   "Card": {
-    "actionColor": "rgba(0, 0, 0, 0)"
+    "actionColor": "rgba(0, 0, 0, 0)",
+    "borderRadius": "12px"
   }
 }
