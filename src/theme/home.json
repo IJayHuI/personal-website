@@ -2,7 +2,7 @@
   "light": {
     "desktop": {
       "Card": {
-        "color": "rgba(255, 255, 255, 0.4)",
+        "color": "rgba(255, 255, 255, 0.6)",
         "borderColor": "rgba(239, 239, 245, 0.3)",
         "borderRadius": "12px"
       },
@@ -13,7 +13,7 @@
     },
     "mobile": {
       "Card": {
-        "color": "rgba(255, 255, 255, 0.5)",
+        "color": "rgba(255, 255, 255, 0.6)",
         "colorModal": "rgba(255, 255, 255, 0.5)",
         "borderColor": "rgba(239, 239, 245, 0.3)",
         "borderRadius": "12px"
