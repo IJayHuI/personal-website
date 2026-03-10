@@ -57,7 +57,7 @@
             <jay-introduction />
           </n-card>
 
-          <n-card size="small" v-slide-in class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
+          <n-card size="small" class="interaction" title="技术栈" @touchstart="" content-class="flex flex-row flex-wrap gap-2">
             <jay-tech-list />
           </n-card>
 
