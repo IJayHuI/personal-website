@@ -157,7 +157,7 @@
           <jay-background-change v-slide-in :set-background-mode="props.setBackgroundMode" :background-mode="props.backgroundMode" :random-background="props.randomBackground" />
         </section>
 
-        <n-card size="small" class="!sticky bottom-0" content-class="flex flex-row gap-1 text-xs">
+        <n-card size="small" class="!sticky bottom-0" content-class="flex flex-row justify-center gap-1 text-xs">
           <jay-footer />
         </n-card>
       </main>
