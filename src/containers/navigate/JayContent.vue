@@ -25,5 +25,5 @@
   )
 </script>
 <template>
-  <jay-content :grid-cols="props.gridCols" :datas="navigate.navigateContent" :expanded-category="navigate.expandedCategory" :update-expanded-category="updateExpandedCategory" :item-click="itemClick" />
+  <jay-content :grid-cols="props.gridCols" :datas="navigate.navigateContent" :expanded-category="navigate.expandedCategory" :highlight-items="navigate.highlightItems" :update-expanded-category="updateExpandedCategory" :item-click="itemClick" />
 </template>

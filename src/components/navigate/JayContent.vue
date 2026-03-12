@@ -9,6 +9,7 @@
     defineProps<{
       gridCols?: string
       datas: NavigateGroup[]
+      highlightItems: Set<number>
       expandedCategory: Set<number>
       updateExpandedCategory: (key: number[]) => void
       itemClick: (item: NavigateItem) => void
@@ -16,6 +17,7 @@
     {
       gridCols: '250px',
       datas: () => [],
+      highlightItems: () => new Set<number>(),
       expandedCategory: () => new Set<number>(),
       updateExpandedCategory: () => {}
     }
@@ -27,7 +29,7 @@
     <n-collapse-item v-for="group in datas" :title="group.name" :name="group.id">
       <div class="grid grid-cols-[repeat(auto-fill,minmax(var(--item-size),1fr))] gap-2" :style="{ '--item-size': props.gridCols }">
         <template v-for="item in group.groupItems">
-          <n-button v-if="item.visible" class="min-h-13 !pr-8 !text-wrap" secondary @click="itemClick(item)">
+          <n-button v-if="item.visible && props.highlightItems.has(item.id)" class="min-h-13 !pr-8 !text-wrap" secondary @click="itemClick(item)">
             {{ item.name }}
             <n-button @click.stop class="!absolute right-2" :render-icon="renderIcon(IosShareRound)" text tag="a" :href="item.link" target="_blank" />
           </n-button>

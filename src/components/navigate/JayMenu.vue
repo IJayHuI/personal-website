@@ -22,7 +22,7 @@
   <n-menu v-if="!props.isMobile" :options="props.options" :collapsed-width="64" @update:value="updateExpandedCategory" />
   <n-drawer v-else :show="props.status" height="50%" placement="bottom" @update:show="closeDrawer">
     <n-drawer-content title="菜单">
-      <n-menu :options="props.options.slice(1)" @update:value="updateExpandedCategory" />
+      <n-menu :options="props.options" @update:value="updateExpandedCategory" />
       <template #footer>
         <n-space>
           <n-button type="error" secondary @click="closeDrawer()">关闭</n-button>

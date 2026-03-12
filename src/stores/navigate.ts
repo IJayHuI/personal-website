@@ -24,12 +24,16 @@ export type NavigateGroup = {
 export const useNavigateStore = defineStore('navigate', () => {
   const needGetDatas = ref<boolean>(true)
 
+  // 搜索框
+  const inputBox = ref<string>('')
+
   // 菜单
   const menuOptions = ref<MenuOption[]>([])
 
   // 内容
   const expandedCategory = ref(new Set<number>())
   const navigateContent = ref<NavigateGroup[]>([])
+  const highlightItems = ref(new Set<number>())
 
   // 抽屉
   const drawerGroup = ref<NavigateGroup>()
@@ -37,6 +41,9 @@ export const useNavigateStore = defineStore('navigate', () => {
   const contentDrawerStatus = ref<boolean>(false)
   const menuDrawerStatus = ref<boolean>(false)
 
+  function setInputBox(v: string) {
+    inputBox.value = v
+  }
   function setNeedGetDatas(v: boolean) {
     needGetDatas.value = v
   }
@@ -55,6 +62,9 @@ export const useNavigateStore = defineStore('navigate', () => {
   function setNavigateContent(v: NavigateGroup[]) {
     navigateContent.value = v
   }
+  function setHighlightItems(v: number[]) {
+    highlightItems.value = new Set(v)
+  }
   function setDrawerGroup(v: NavigateGroup) {
     drawerGroup.value = v
   }
@@ -69,19 +79,25 @@ export const useNavigateStore = defineStore('navigate', () => {
   }
 
   return {
+    inputBox,
+
     menuOptions,
     needGetDatas,
 
     expandedCategory,
     navigateContent,
+    highlightItems,
 
     drawerGroup,
     drawerItem,
     contentDrawerStatus,
     menuDrawerStatus,
 
+    setInputBox,
+
     setMenuOptions,
     setNeedGetDatas,
+    setHighlightItems,
 
     setExpandedCategory,
     addExpandedCategory,
