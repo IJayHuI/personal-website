@@ -23,6 +23,9 @@ importers:
       pinia-plugin-persistedstate:
         specifier: ^4.7.1
         version: 4.7.1(pinia@3.0.4(typescript@5.9.3)(vue@3.5.29(typescript@5.9.3)))
+      pinyin-match:
+        specifier: ^1.2.10
+        version: 1.2.10
       tailwindcss:
         specifier: ^4.2.1
         version: 4.2.1
@@ -707,6 +710,9 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
+
+  pinyin-match@1.2.10:
+    resolution: {integrity: sha512-Xo1uMd9n56/xP2EAn7yfApnTmAGCLGqxFIm1fuOnSMty0xhqRF3+ZwVjp2yWFD/alv60RUWa/cZoQSeTSp1HxA==}
 
   postcss@8.5.6:
     resolution: {integrity: sha512-3Ybi1tAuwAP9s0r1UQ2J4n5Y0G05bJkpUIO0/bI9MhwmD70S5aTWbXGBwxHrelT+XM1k6dM0pk+SwNkpTRN7Pg==}
@@ -1452,6 +1458,8 @@ snapshots:
       vue: 3.5.29(typescript@5.9.3)
     optionalDependencies:
       typescript: 5.9.3
+
+  pinyin-match@1.2.10: {}
 
   postcss@8.5.6:
     dependencies:
