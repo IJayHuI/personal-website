@@ -75,9 +75,6 @@ export const search = (datas: NavigateGroup[], keyword: string) => {
     }
   }
   for (const group of datas) {
-    const groupMatch = PinyinMatch.match(group.name, keyword) || PinyinMatch.match(group.icon, keyword)
-    if (groupMatch) groupIds.add(group.id)
-
     for (const item of group.groupItems) {
       const itemMatch = PinyinMatch.match(item.name, keyword) || PinyinMatch.match(item.link, keyword) || PinyinMatch.match(item.introduction, keyword)
       if (itemMatch) {
