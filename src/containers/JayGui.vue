@@ -61,5 +61,5 @@
 </script>
 
 <template>
-  <jay-gui :loading-status="general.loading.status" :loading-text="general.loading.text" />
+  <jay-gui :loading-status="general.loading.status" :is-dark="general.isDark" :loading-text="general.loading.text" />
 </template>
