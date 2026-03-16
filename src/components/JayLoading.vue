@@ -1,35 +1,78 @@
+<script setup lang="ts">
+  const props = withDefaults(
+    defineProps<{
+      isDark?: boolean
+    }>(),
+    {
+      isDark: false
+    }
+  )
+</script>
 <template>
-  <div
-    class="circle w-full h-full rounded-full !border-t-white before:rounded-full before:absolute before:!border-t-[#a4a4a4] before:top-[5px] before:right-[5px] before:bottom-[5px] before:left-[5px] after:absolute after:rounded-full after:!border-t-[#d3d3d3] after:top-[15px] after:right-[15px] after:bottom-[15px] after:left-[15px]"></div>
+  <div class="circle dark" v-if="!props.isDark"></div>
+  <div class="circle light" v-else></div>
 </template>
 <style scoped>
   .circle,
   .circle::after,
   .circle::before {
+    border-radius: 50%;
     border: 3px solid transparent;
   }
+  .circle::after,
+  .circle::before {
+    content: '';
+    position: absolute;
+  }
   .circle {
+    width: 100%;
+    height: 100%;
+    position: relative;
     animation: spin 1.8s linear infinite;
   }
+  /* 第二层 */
   .circle::before {
+    inset: 5px;
     animation: spin-reverse 0.6s linear infinite;
   }
+  /* 第三层 */
   .circle::after {
+    inset: 12px;
     animation: spin 1s linear infinite;
   }
+  .light {
+    border-top-color: white;
+  }
+  .light::before {
+    border-top-color: #a4a4a4;
+  }
+  .light::after {
+    border-top-color: #d3d3d3;
+  }
+  .dark {
+    border-top-color: black;
+  }
+  .dark::before {
+    border-top-color: #666;
+  }
+  .dark::after {
+    border-top-color: #999;
+  }
+  /* 顺时针 */
   @keyframes spin {
-    0% {
+    from {
       transform: rotate(0deg);
     }
-    100% {
+    to {
       transform: rotate(360deg);
     }
   }
+  /* 逆时针 */
   @keyframes spin-reverse {
-    0% {
+    from {
       transform: rotate(0deg);
     }
-    100% {
+    to {
       transform: rotate(-360deg);
     }
   }
