@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { HomeRound } from '@vicons/material'
+  import { NAvatar } from 'naive-ui'
 
   import projectTheme from '../../theme/project.json'
 
@@ -7,7 +8,6 @@
 
   import JayFooter from '../../containers/JayFooter.vue'
   import JayContent from '../../containers/project/JayContent.vue'
-  import JayMenu from '../../containers/project/JayMenu.vue'
 
   const props = withDefaults(
     defineProps<{
@@ -22,10 +22,19 @@
 </script>
 <template>
   <n-config-provider v-if="!props.isMobile">
-    <n-layout position="absolute" has-sider>
-      <n-layout-sider collapse-mode="width" :collapsed-width="64" :width="192" show-trigger="bar" :default-collapsed="true"><jay-menu /></n-layout-sider>
-      <n-layout class="pl-6" content-class="py-4 pr-4">
-        <n-layout-content><jay-content /></n-layout-content>
+    <n-layout position="absolute">
+      <n-layout-header class="w-full h-16 p-2 flex flex-row justify-between items-center">
+        <div class="w-64 flex gap-2 items-center">
+          <n-avatar size="large" src="/avatar.jpg" />
+          <router-link to="/">
+            <n-button size="large" secondary :render-icon="renderIcon(HomeRound)">返回主页</n-button>
+          </router-link>
+        </div>
+        <p class="text-2xl font-bold">Project 项目页</p>
+        <div class="w-64"></div>
+      </n-layout-header>
+      <n-layout content-class="p-4">
+        <n-layout><jay-content /></n-layout>
         <n-layout-footer><jay-footer /></n-layout-footer>
       </n-layout>
     </n-layout>
