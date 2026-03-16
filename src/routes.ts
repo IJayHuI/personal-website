@@ -26,6 +26,9 @@ const routes: Array<RouteRecordRaw> = [
 // 创建路由
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior() {
+    return { top: 0 }
+  }
 })
 export default router
