@@ -53,7 +53,7 @@
         <aside class="w-3xs sticky top-4 self-start flex flex-col gap-4">
           <jay-avatar />
 
-          <n-card title="简介" class="interaction" size="small" @touchstart="">
+          <n-card size="small" title="简介" class="interaction" @touchstart="">
             <jay-introduction />
           </n-card>
 
@@ -61,7 +61,7 @@
             <jay-tech-list />
           </n-card>
 
-          <n-card content-class="flex flex-col" class="interaction">
+          <n-card size="small" content-class="flex flex-col" class="interaction">
             <jay-footer />
           </n-card>
         </aside>
