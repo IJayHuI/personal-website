@@ -33,7 +33,7 @@
         <p class="text-2xl font-bold">Project 项目页</p>
         <div class="w-64"></div>
       </n-layout-header>
-      <n-layout content-class="p-4">
+      <n-layout position="absolute" class="!top-16" content-class="p-4">
         <n-layout><jay-content /></n-layout>
         <n-layout-footer><jay-footer /></n-layout-footer>
       </n-layout>
