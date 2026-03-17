@@ -29,19 +29,3 @@
     opacity: 1;
     transform: scale(1);
 }
-
-@media screen and (min-width:768px) {
-    .interaction:hover {
-        scale: 1.03;
-    }
-
-    .interaction:active {
-        scale: 1;
-    }
-}
-
-@media screen and (max-width:768px) {
-    .interaction:active {
-        scale: 0.97;
-    }
-}
