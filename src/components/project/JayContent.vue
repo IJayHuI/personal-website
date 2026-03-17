@@ -11,7 +11,7 @@
   )
 </script>
 <template>
-  <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4 mb-4">
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
     <n-card v-for="project in datas">
       <template #cover>
         <img :src="project.image" :alt="project.name" />
