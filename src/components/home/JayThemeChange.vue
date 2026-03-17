@@ -15,7 +15,7 @@
   )
 </script>
 <template>
-  <n-card class="interaction" size="medium" @touchstart="" content-class="flex justify-center items-center gap-5">
+  <n-card v-interaction size="medium" content-class="flex justify-center items-center gap-5">
     <n-icon size="40"><contrast-round /></n-icon>
     <div class="flex gap-2">
       <n-button :class="props.themeMode === 'dark' ? '!outline' : ''" @click="props.setThemeMode('dark')" secondary round>暗色</n-button>

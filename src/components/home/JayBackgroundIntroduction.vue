@@ -11,7 +11,7 @@
   )
 </script>
 <template>
-  <n-card :size="props.cardSize" class="interaction" title="背景" @touchstart="">
+  <n-card :size="props.cardSize" v-interaction title="背景">
     <p class="text-base font-bold">下划查看清晰图片。</p>
     <p>本站使用 Bing 必应壁纸作为网页背景。如果无法正常访问则使用站内图片代替。</p>
     <template #action>

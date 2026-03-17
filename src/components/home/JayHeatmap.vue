@@ -19,7 +19,7 @@
   )
 </script>
 <template>
-  <n-card :title="`热力图 · 最近一年 Github 有 ${props.heatmapTotalContributions} 提交`" class="interaction" :size="props.cardSize" @touchstart="">
+  <n-card :title="`热力图 · 最近一年 Github 有 ${props.heatmapTotalContributions} 提交`" v-interaction :size="props.cardSize">
     <n-scrollbar x-scrollable>
       <div class="min-w-max flex justify-center mb-3">
         <n-heatmap :data="props.heatmapData" :size="props.heatmapSize" :fill-calendar-leading="true" />

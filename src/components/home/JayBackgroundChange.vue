@@ -17,7 +17,7 @@
   )
 </script>
 <template>
-  <n-card class="interaction" size="medium" @touchstart="" content-class="flex justify-center items-center gap-5">
+  <n-card v-interaction size="medium" content-class="flex justify-center items-center gap-5">
     <n-icon size="40"><auto-awesome-round /></n-icon>
     <div class="flex gap-2">
       <n-button :class="props.backgroundMode === 'bing' ? '!outline' : ''" @click="props.setBackgroundMode('bing')" secondary round>bing壁纸</n-button>
