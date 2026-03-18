@@ -1,23 +1,27 @@
 <script setup lang="ts">
   import { onBeforeMount, onMounted, onUnmounted } from 'vue'
   import { useMessage } from 'naive-ui'
+  import gsap from 'gsap'
 
   import JayBackground from '../../components/home/JayBackground.vue'
 
   import { useStores } from '../../stores'
 
-  import { getBackground, type GetBackgroundResult } from '../../lib/background'
+  import { getBackground, calculateMouseMove, type GetBackgroundResult } from '../../lib/background'
 
   const { general, home } = useStores()
   const message = useMessage()
-  const strength = 20
+  const state = {
+    x: 0,
+    y: 0
+  }
+  let targetX = 0
+  let targetY = 0
 
   const handleMouseMove = (e: MouseEvent) => {
-    const { innerWidth, innerHeight } = window
-    const x = (e.clientX / innerWidth - 0.5) * 2
-    const y = (e.clientY / innerHeight - 0.5) * 2
-    document.documentElement.style.setProperty('--move-x', `${x * strength}px`)
-    document.documentElement.style.setProperty('--move-y', `${y * strength}px`)
+    const result = calculateMouseMove(e)
+    targetX = result.targetX
+    targetY = result.targetY
   }
 
   onBeforeMount(() => {
@@ -37,6 +41,13 @@
   onMounted(() => {
     if (general.isMobile) return
     window.addEventListener('mousemove', handleMouseMove)
+    gsap.ticker.add(() => {
+      state.x += (targetX - state.x) * 0.08
+      state.y += (targetY - state.y) * 0.08
+
+      document.documentElement.style.setProperty('--move-x', `${state.x}px`)
+      document.documentElement.style.setProperty('--move-y', `${state.y}px`)
+    })
   })
   onUnmounted(() => {
     window.removeEventListener('mousemove', handleMouseMove)
