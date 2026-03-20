@@ -13,6 +13,12 @@
       "router": "/project"
     },
     {
+      "name": "关于",
+      "icon": "InfoRound",
+      "type": "router",
+      "router": "/about"
+    },
+    {
       "name": "开往",
       "icon": "TrainRound",
       "type": "link",
