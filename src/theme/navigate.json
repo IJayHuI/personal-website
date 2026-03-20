@@ -9,6 +9,9 @@
       },
       "Drawer": {
         "borderRadius": "12px"
+      },
+      "Input": {
+        "fontSizeLarge": "16px"
       }
     }
   },
@@ -22,6 +25,12 @@
       },
       "Drawer": {
         "borderRadius": "12px"
+      },
+      "Input": {
+        "fontSizeLarge": "16px",
+        "color": "rgb(16, 16, 20)",
+        "colorFocus": "rgb(16, 16, 20)",
+        "border": "1px solid rgba(255, 255, 255, 0.09)"
       }
     }
   }

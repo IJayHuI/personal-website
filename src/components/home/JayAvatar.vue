@@ -19,7 +19,7 @@
   )
 </script>
 <template>
-  <div class="w-full *:duration-500 *:transition-transform *:backface-hidden *:rounded-full *:absolute *:h-full *:w-full aspect-square perspective-normal interaction" @touchstart="">
+  <div v-interaction class="w-full *:duration-500 *:transition-transform *:backface-hidden *:rounded-full *:absolute *:h-full *:w-full aspect-square perspective-normal">
     <img :class="` ${props.rotateStatus ? '-rotate-y-180' : ''}`" src="/avatar.jpg" />
     <div class="overflow-hidden flex justify-center items-center rotate-y-180" :class="props.rotateStatus ? '!rotate-y-0' : ''" @click="props.avatarBackClick">
       <div class="w-full h-full absolute" :style="`background-image: linear-gradient(${props.backColor})`"></div>

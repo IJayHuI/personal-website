@@ -25,7 +25,7 @@
 </script>
 
 <template>
-  <n-collapse class="mb-4" :expanded-names="[...props.expandedCategory]" @update:expanded-names="updateExpandedCategory">
+  <n-collapse :expanded-names="[...props.expandedCategory]" @update:expanded-names="updateExpandedCategory">
     <n-collapse-item v-for="group in datas" :title="group.name" :name="group.id">
       <div class="grid grid-cols-[repeat(auto-fill,minmax(var(--item-size),1fr))] gap-2" :style="{ '--item-size': props.gridCols }">
         <template v-for="item in group.groupItems">

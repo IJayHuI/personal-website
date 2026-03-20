@@ -19,10 +19,10 @@
 <template>
   <img
     v-if="!props.isMobile"
-    class="fixed w-full h-full object-cover bg-cover -z-9"
+    class="fixed w-full h-full object-cover bg-cover -z-9 translate-[var(--move-x)] translate-y-[var(--move-y)]"
     :style="{
       filter: `blur(${props.backgroundBlur}px) brightness(${props.backgroundBrightness}%)`,
-      transform: `scale(${props.backgroundScale}%) translate(var(--move-x, 0px), var(--move-y, 0px))`
+      transform: `scale(${props.backgroundScale}%)`
     }"
     :src="props.backgroundSrc"
     alt="背景图片"

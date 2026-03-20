@@ -57,15 +57,28 @@
   </n-config-provider>
   <n-config-provider v-else :theme-overrides="props.isDark ? navigateTheme.dark.mobile : navigateTheme.light.mobile">
     <n-layout position="absolute">
-      <n-layout content-class="p-2 py-4">
-        <n-layout-content><jay-content grid-cols="150px" /></n-layout-content>
-        <n-layout-footer class="flex gap-1 justify-center"><jay-footer /></n-layout-footer>
-      </n-layout>
-      <n-layout-footer class="w-full grid grid-cols-2 sticky bottom-0">
-        <router-link to="/">
-          <n-button size="large" :bordered="false" class="!w-full !rounded-none" :render-icon="renderIcon(HomeRound)">返回</n-button>
-        </router-link>
-        <n-button size="large" :bordered="false" class="!w-full !rounded-none" @click="openMenuDrawer()" :render-icon="renderIcon(MenuRound)">菜单</n-button>
+      <n-layout-header class="h-16 p-2 flex flex-row justify-between items-center sticky top-0">
+        <n-avatar size="large" src="/avatar.jpg" />
+        <p class="text-2xl font-bold">Navigate 导航页</p>
+      </n-layout-header>
+      <n-layout-content class="p-2">
+        <jay-content grid-cols="150px" />
+        <n-layout-footer class="mt-2 flex gap-1 justify-center"><jay-footer /></n-layout-footer>
+      </n-layout-content>
+      <n-layout-footer class="sticky bottom-0 flex flex-col gap-2">
+        <div class="px-2">
+          <n-input size="large" @update:value="updateValue" :value="props.inputValue" type="text" placeholder="搜索" clearable>
+            <template #prefix>
+              <n-icon :component="SearchRound" />
+            </template>
+          </n-input>
+        </div>
+        <div class="w-full grid grid-cols-2">
+          <router-link to="/">
+            <n-button size="large" :bordered="false" class="!w-full !h-16 !rounded-none" :render-icon="renderIcon(HomeRound)">返回</n-button>
+          </router-link>
+          <n-button size="large" :bordered="false" class="!w-full !h-16 !rounded-none" @click="openMenuDrawer()" :render-icon="renderIcon(MenuRound)">菜单</n-button>
+        </div>
       </n-layout-footer>
     </n-layout>
     <jay-drawer placement="bottom" size="50%" />
