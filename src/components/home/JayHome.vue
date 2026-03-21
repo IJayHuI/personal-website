@@ -64,7 +64,7 @@
           trigger: '#show-background',
           start: 'top 100%',
           end: 'top 0',
-          scrub: true
+          scrub: 1
         }
       })
       .fromTo(
@@ -75,8 +75,7 @@
         },
         {
           filter: `blur(0px) brightness(100%)`,
-          scale: props.isMobile ? 1 : 1.15,
-          ease: 'none'
+          scale: props.isMobile ? 1 : 1.15
         }
       )
   }
@@ -88,6 +87,12 @@
   })
   watch(
     () => props.isDark,
+    () => {
+      createBackgroundAnimation()
+    }
+  )
+  watch(
+    () => props.isMobile,
     () => {
       createBackgroundAnimation()
     }
