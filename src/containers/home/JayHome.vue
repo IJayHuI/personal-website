@@ -105,7 +105,7 @@
     :is-loading="general.loading.status"
     :theme-mode="general.themeMode"
     :background-mode="home.backgroundMode"
-    :background-src="home.backgroundSrc"
+    :bing-background-src="home.bingBackgroundSrc"
     :set-theme-mode="setThemeMode"
     :set-background-mode="setBackgroundMode"
     :random-background="randomBackground" />

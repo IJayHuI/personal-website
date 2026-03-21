@@ -27,7 +27,7 @@
       isLoading?: boolean
       themeMode?: ThemeMode
       backgroundMode?: BackgroundMode
-      backgroundSrc?: string
+      bingBackgroundSrc?: string
       setThemeMode?: (mode: ThemeMode) => void
       setBackgroundMode?: (mode: BackgroundMode) => void
       randomBackground?: () => void
@@ -38,7 +38,7 @@
       isLoading: false,
       themeMode: 'system',
       backgroundMode: 'bing',
-      backgroundSrc: '',
+      bingBackgroundSrc: '',
       setThemeMode: () => {},
       setBackgroundMode: () => {},
       randomBackground: () => {}
@@ -99,7 +99,7 @@
             </n-card>
 
             <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
-              <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
+              <jay-background-introduction v-slide-in :bing-background-src="props.bingBackgroundSrc" />
 
               <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
                 <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
@@ -146,7 +146,7 @@
           <n-card title="简介" v-interaction v-slide-in>
             <jay-introduction />
           </n-card>
-          <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
+          <jay-background-introduction v-slide-in :bing-background-src="props.bingBackgroundSrc" />
 
           <n-card v-slide-in v-interaction title="技术栈" content-class="flex flex-row flex-wrap gap-2">
             <jay-tech-list />

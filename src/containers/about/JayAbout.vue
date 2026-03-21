@@ -9,5 +9,5 @@
 </script>
 
 <template>
-  <jay-about :sections="aboutConfig.sections" :is-mobile="general.isMobile" :bing-background-src="home.backgroundSrc" />
+  <jay-about :sections="aboutConfig.sections" :is-mobile="general.isMobile" :bing-background-src="home.bingBackgroundSrc" />
 </template>
