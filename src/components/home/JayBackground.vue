@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { onMounted, onUnmounted, ref } from 'vue'
+  import { onMounted, onUnmounted, ref, watch } from 'vue'
   import gsap from 'gsap'
 
   import { calculateMouseMove } from '../../lib/background'
@@ -34,8 +34,19 @@
   onUnmounted(() => {
     window.removeEventListener('mousemove', handleMouseMove)
   })
+  watch(
+    () => props.isMobile,
+    (isMobile) => {
+      if (isMobile) {
+        window.removeEventListener('mousemove', handleMouseMove)
+        gsap.to(background.value, {
+          x: 0,
+          y: 0
+        })
+      } else window.addEventListener('mousemove', handleMouseMove)
+    }
+  )
 </script>
 <template>
-  <img ref="background" v-if="!props.isMobile" class="fixed w-full h-full object-cover bg-cover -z-9" :src="props.backgroundSrc" alt="背景图片" id="background" />
-  <img v-else class="fixed w-full h-full object-cover bg-cover -z-9" :src="props.backgroundSrc" alt="背景图片" id="background" />
+  <img ref="background" class="fixed w-full h-full object-cover bg-cover -z-9" :src="props.backgroundSrc" alt="背景图片" id="background" />
 </template>
