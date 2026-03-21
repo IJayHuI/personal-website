@@ -1,8 +1,6 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-import type { BackgroundScrollResult } from '../lib/background'
-
 export type BackgroundMode = 'local' | 'bing'
 
 export type LogData = {
@@ -31,11 +29,6 @@ export const useHomeStore = defineStore(
     const backgroundMode = ref<BackgroundMode>('bing')
     const backgroundSrc = ref<string>('')
     const bingBackgroundSrc = ref<string>('')
-    const backgroundBlur = ref<number>(0)
-    const backgroundBrightness = ref<number>(0)
-    const backgroundScale = ref<number>(0)
-    const backgroundStartStyle = ref<BackgroundScrollResult>({ blur: 0, brightness: 0, scale: 0 })
-    const backgroundEndStyle = ref<BackgroundScrollResult>({ blur: 0, brightness: 0, scale: 0 })
     const needGetBackground = ref<boolean>(true)
 
     // 头像
@@ -70,21 +63,6 @@ export const useHomeStore = defineStore(
     }
     function setBingBackgroundSrc(v: string) {
       bingBackgroundSrc.value = v
-    }
-    function setBackgroundBlur(v: number) {
-      backgroundBlur.value = v
-    }
-    function setBackgroundBrightness(v: number) {
-      backgroundBrightness.value = v
-    }
-    function setBackgroundScale(v: number) {
-      backgroundScale.value = v
-    }
-    function setBackgroundStartStyle(v: BackgroundScrollResult) {
-      backgroundStartStyle.value = v
-    }
-    function setBackgroundEndStyle(v: BackgroundScrollResult) {
-      backgroundEndStyle.value = v
     }
     function setNeedGetBackground(v: boolean) {
       needGetBackground.value = v
@@ -141,11 +119,6 @@ export const useHomeStore = defineStore(
       backgroundMode,
       backgroundSrc,
       bingBackgroundSrc,
-      backgroundBlur,
-      backgroundBrightness,
-      backgroundScale,
-      backgroundStartStyle,
-      backgroundEndStyle,
       needGetBackground,
 
       avatarSrc,
@@ -170,11 +143,6 @@ export const useHomeStore = defineStore(
       setBackgroundMode,
       setBackgroundSrc,
       setBingBackgroundSrc,
-      setBackgroundBlur,
-      setBackgroundBrightness,
-      setBackgroundScale,
-      setBackgroundStartStyle,
-      setBackgroundEndStyle,
       setNeedGetBackground,
 
       setAvatarSrc,

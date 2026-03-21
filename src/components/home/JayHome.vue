@@ -1,4 +1,8 @@
 <script setup lang="ts">
+  import { gsap } from 'gsap'
+  import ScrollTrigger from 'gsap/ScrollTrigger'
+  import { onMounted, onUnmounted, watch } from 'vue'
+
   import type { ThemeMode, BackgroundMode } from '../../stores'
 
   import homeTheme from '../../theme/home.json'
@@ -42,6 +46,50 @@
       setThemeMode: () => {},
       setBackgroundMode: () => {},
       randomBackground: () => {}
+    }
+  )
+  let tl: gsap.core.Timeline | null = null
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const createBackgroundAnimation = () => {
+    // 先销毁旧的 timeline
+    tl?.kill()
+    tl = null
+
+    // 创建新的 timeline
+    tl = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#show-background',
+          start: 'top 100%',
+          end: 'top 0',
+          scrub: true
+        }
+      })
+      .fromTo(
+        '#background',
+        {
+          filter: `blur(20px) brightness(${props.isDark ? 30 : 50}%)`,
+          scale: 1.3
+        },
+        {
+          filter: `blur(0px) brightness(100%)`,
+          scale: props.isMobile ? 1 : 1.15,
+          ease: 'none'
+        }
+      )
+  }
+
+  onMounted(createBackgroundAnimation)
+  onUnmounted(() => {
+    tl?.kill()
+    tl = null
+  })
+  watch(
+    () => props.isDark,
+    () => {
+      createBackgroundAnimation()
     }
   )
 </script>
