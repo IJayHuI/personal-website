@@ -27,16 +27,34 @@
   onBeforeMount(() => {
     if (!home.needGetBackground) return
     general.loadingEventAdd()
-    getBackground(home.backgroundMode)
+    getBackground('bing')
       .then((response: GetBackgroundResult) => {
-        message.success(response.message)
-        home.setBackgroundSrc(response.img)
-        home.setBackgroundMode(response.mode)
+        home.setBingBackgroundSrc(response.img)
+
+        if (home.backgroundMode === 'bing') {
+          message.success(response.message)
+          home.setBackgroundSrc(response.img)
+          home.setBackgroundMode(response.mode)
+        }
+
+        home.setNeedGetBackground(false)
       })
       .finally(() => {
         general.loadingEventSubtract()
-        home.setNeedGetBackground(false)
       })
+
+    if (home.backgroundMode === 'local') {
+      general.loadingEventAdd()
+      getBackground('local')
+        .then((response: GetBackgroundResult) => {
+          message.success(response.message)
+          home.setBackgroundSrc(response.img)
+          home.setBackgroundMode(response.mode)
+        })
+        .finally(() => {
+          general.loadingEventSubtract()
+        })
+    }
   })
   onMounted(() => {
     if (general.isMobile) return

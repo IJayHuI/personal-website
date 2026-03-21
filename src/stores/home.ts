@@ -30,6 +30,7 @@ export const useHomeStore = defineStore(
     // 壁纸
     const backgroundMode = ref<BackgroundMode>('bing')
     const backgroundSrc = ref<string>('')
+    const bingBackgroundSrc = ref<string>('')
     const backgroundBlur = ref<number>(0)
     const backgroundBrightness = ref<number>(0)
     const backgroundScale = ref<number>(0)
@@ -66,6 +67,9 @@ export const useHomeStore = defineStore(
     }
     function setBackgroundSrc(v: string) {
       backgroundSrc.value = v
+    }
+    function setBingBackgroundSrc(v: string) {
+      bingBackgroundSrc.value = v
     }
     function setBackgroundBlur(v: number) {
       backgroundBlur.value = v
@@ -136,6 +140,7 @@ export const useHomeStore = defineStore(
     return {
       backgroundMode,
       backgroundSrc,
+      bingBackgroundSrc,
       backgroundBlur,
       backgroundBrightness,
       backgroundScale,
@@ -164,6 +169,7 @@ export const useHomeStore = defineStore(
 
       setBackgroundMode,
       setBackgroundSrc,
+      setBingBackgroundSrc,
       setBackgroundBlur,
       setBackgroundBrightness,
       setBackgroundScale,
