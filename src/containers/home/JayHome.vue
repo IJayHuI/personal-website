@@ -25,16 +25,18 @@
     if (home.backgroundMode === mode) return
     home.setBackgroundMode(mode)
     general.loadingEventAdd()
-    getBackground(mode)
-      .then((response: GetBackgroundResult) => {
-        message.info(response.message)
-        home.setBackgroundSrc(response.img)
-        home.setBackgroundMode(response.mode)
-      })
-      .finally(() => {
-        general.loadingEventSubtract()
-        home.setNeedGetBackground(false)
-      })
+    if (home.backgroundMode === 'bing') {
+      home.setBackgroundSrc(home.bingBackgroundSrc)
+      general.loadingEventSubtract()
+    } else {
+      getBackground('local')
+        .then((response: GetBackgroundResult) => {
+          home.setBackgroundSrc(response.img)
+        })
+        .finally(() => {
+          general.loadingEventSubtract()
+        })
+    }
   }
   const randomBackground = () => {
     general.loadingEventAdd()
