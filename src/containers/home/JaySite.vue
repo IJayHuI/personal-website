@@ -3,6 +3,8 @@
 
   import homeConfig from '../../configs/home.json'
 
+  import { useStores } from '../../stores'
+
   const props = withDefaults(
     defineProps<{
       cardSize?: string
@@ -19,7 +21,9 @@
       itemSize: '200px'
     }
   )
+  const { general } = useStores()
+  let sites: any[] = general.isMobile ? homeConfig.sites.filter((item) => item.router !== '/about') : homeConfig.sites
 </script>
 <template>
-  <jay-site :sites="homeConfig.sites" :card-size="props.cardSize" :icon-size="props.iconSize" :direction="props.direction" :text-class="props.textClass" :item-size="props.itemSize" />
+  <jay-site :sites="sites" :card-size="props.cardSize" :icon-size="props.iconSize" :direction="props.direction" :text-class="props.textClass" :item-size="props.itemSize" />
 </template>
