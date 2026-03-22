@@ -1,4 +1,8 @@
 <script setup lang="ts">
+  import { gsap } from 'gsap'
+  import ScrollTrigger from 'gsap/ScrollTrigger'
+  import { onMounted, onUnmounted, watch } from 'vue'
+
   import type { ThemeMode, BackgroundMode } from '../../stores'
 
   import homeTheme from '../../theme/home.json'
@@ -27,7 +31,7 @@
       isLoading?: boolean
       themeMode?: ThemeMode
       backgroundMode?: BackgroundMode
-      backgroundSrc?: string
+      bingBackgroundSrc?: string
       setThemeMode?: (mode: ThemeMode) => void
       setBackgroundMode?: (mode: BackgroundMode) => void
       randomBackground?: () => void
@@ -38,10 +42,59 @@
       isLoading: false,
       themeMode: 'system',
       backgroundMode: 'bing',
-      backgroundSrc: '',
+      bingBackgroundSrc: '',
       setThemeMode: () => {},
       setBackgroundMode: () => {},
       randomBackground: () => {}
+    }
+  )
+  let tl: gsap.core.Timeline | null = null
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const createBackgroundAnimation = () => {
+    // 先销毁旧的 timeline
+    tl?.kill()
+    tl = null
+
+    // 创建新的 timeline
+    tl = gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: '#show-background',
+          start: 'top 100%',
+          end: 'top 0',
+          scrub: 1
+        }
+      })
+      .fromTo(
+        '#background',
+        {
+          filter: `blur(20px) brightness(${props.isDark ? 30 : 50}%)`,
+          scale: 1.3
+        },
+        {
+          filter: `blur(0px) brightness(100%)`,
+          scale: props.isMobile ? 1 : 1.15
+        }
+      )
+  }
+
+  onMounted(createBackgroundAnimation)
+  onUnmounted(() => {
+    tl?.kill()
+    tl = null
+  })
+  watch(
+    () => props.isDark,
+    () => {
+      createBackgroundAnimation()
+    }
+  )
+  watch(
+    () => props.isMobile,
+    () => {
+      createBackgroundAnimation()
     }
   )
 </script>
@@ -99,7 +152,7 @@
             </n-card>
 
             <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
-              <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
+              <jay-background-introduction v-slide-in :bing-background-src="props.bingBackgroundSrc" />
 
               <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
                 <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
@@ -146,7 +199,7 @@
           <n-card title="简介" v-interaction v-slide-in>
             <jay-introduction />
           </n-card>
-          <jay-background-introduction v-slide-in :background-src="props.backgroundSrc" />
+          <jay-background-introduction v-slide-in :bing-background-src="props.bingBackgroundSrc" />
 
           <n-card v-slide-in v-interaction title="技术栈" content-class="flex flex-row flex-wrap gap-2">
             <jay-tech-list />
