@@ -89,11 +89,11 @@
     gotoSection(0, 1, true)
 
     observer = Observer.create({
-      type: 'wheel,touch,pointer',
+      type: 'wheel,touch',
       wheelSpeed: -1,
       onDown: () => !animating && gotoSection(currentIndex.value - 1, -1),
       onUp: () => !animating && gotoSection(currentIndex.value + 1, 1),
-      tolerance: 10,
+      tolerance: 20,
       preventDefault: true
     })
   })
