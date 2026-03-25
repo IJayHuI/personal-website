@@ -64,7 +64,7 @@
           trigger: '#show-background',
           start: 'top 100%',
           end: 'top 0',
-          scrub: 1
+          scrub: 0.6
         }
       })
       .fromTo(
