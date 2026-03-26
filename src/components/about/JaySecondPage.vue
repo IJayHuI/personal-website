@@ -26,7 +26,7 @@
 <template>
   <img class="absolute w-full h-full object-cover" :src="props.bingBackground.src" />
   <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
-  <div class="relative text-white z-10 max-w-xl text-base text-justify p-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+  <div class="relative text-white z-10 max-w-xl text-base text-justify p-4">
     <p class="font-semibold text-[clamp(3rem,5vw,6rem)] text-center">背景</p>
     <p>主页使用 Bing 必应壁纸作为网页背景。如果无法正常访问则使用站内图片代替。</p>
     <p>这里展示了站内壁纸和 Bing 每日精选壁纸，让页面更有视觉氛围。</p>

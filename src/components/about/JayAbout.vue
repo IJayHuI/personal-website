@@ -126,7 +126,7 @@
     <section ref="sectionsRef" v-for="(item, index) in sections" :key="index" class="fixed top-0 left-0 w-full h-screen">
       <div ref="outerRef" class="outer w-full h-full overflow-hidden relative">
         <div ref="innerRef" class="inner w-full h-full overflow-hidden relative">
-          <div ref="contentRef" class="absolute inset-0 w-full h-full indent-8">
+          <div ref="contentRef" class="absolute inset-0 w-full h-full indent-8 flex justify-center items-center">
             <component :is="item" />
           </div>
         </div>

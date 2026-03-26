@@ -10,8 +10,8 @@
 </script>
 <template>
   <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>
-  <div :class="['relative p-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-10 items-center justify-center', props.isMobile ? 'flex-col' : 'flex-row pr-14']">
-    <div class="text-white z-10 max-w-xl text-base text-justify">
+  <div :class="['relative p-4 flex gap-10 items-center justify-center', props.isMobile ? 'flex-col' : 'flex-row pr-14']">
+    <div class="text-white z-10 max-w-lg text-base text-justify">
       <p class="font-semibold text-[clamp(3rem,5vw,6rem)] text-center indent-0">开往</p>
       <p>本站已申请接入 <a class="hover:underline" href="https://www.travellings.cn/" target="_blank">travellings-link/travellings</a>（开往 - 友链接力）。</p>
       <p>你可以通过“开往”，从这里出发，去往更多有趣的个人站点 🚆</p>
