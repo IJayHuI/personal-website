@@ -3,23 +3,10 @@
 
   import homeConfig from '../../configs/home.json'
 
-  const props = withDefaults(
-    defineProps<{
-      cardSize?: string
-      iconSize?: number
-      direction?: string
-      textClass?: string
-      itemSize?: string
-    }>(),
-    {
-      cardSize: 'medium',
-      iconSize: 35,
-      direction: 'row',
-      textClass: 'text-xl font-bold',
-      itemSize: '200px'
-    }
-  )
+  import { useStores } from '../../stores'
+
+  const { general } = useStores()
 </script>
 <template>
-  <jay-site :sites="homeConfig.sites" :card-size="props.cardSize" :icon-size="props.iconSize" :direction="props.direction" :text-class="props.textClass" :item-size="props.itemSize" />
+  <jay-site :sites="homeConfig.sites" :is-mobile="general.isMobile" />
 </template>

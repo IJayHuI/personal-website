@@ -13,16 +13,16 @@
       "router": "/project"
     },
     {
-      "name": "关于",
-      "icon": "InfoRound",
-      "type": "router",
-      "router": "/about"
-    },
-    {
       "name": "开往",
       "icon": "TrainRound",
       "type": "link",
       "link": "https://www.travellings.cn/go.html"
+    },
+    {
+      "name": "关于",
+      "icon": "InfoRound",
+      "type": "router",
+      "router": "/about"
     }
   ],
   "contactMe": [

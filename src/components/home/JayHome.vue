@@ -184,7 +184,7 @@
           </div>
 
           <div>
-            <jay-site card-size="small" :icon-size="30" direction="col" text-class="text-base" item-size="100px" />
+            <jay-site />
 
             <jay-scroll-tip :size="28" />
           </div>
