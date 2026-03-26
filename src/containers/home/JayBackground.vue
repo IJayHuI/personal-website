@@ -4,7 +4,7 @@
 
   import JayBackground from '../../components/home/JayBackground.vue'
 
-  import { useStores } from '../../stores'
+  import { useStores, type BingBackground } from '../../stores'
 
   import { getBackground, type GetBackgroundResult } from '../../lib/background'
 
@@ -16,14 +16,12 @@
     general.loadingEventAdd()
     getBackground('bing')
       .then((response: GetBackgroundResult) => {
-        home.setBingBackgroundSrc(response.img)
-
+        home.setBingBackground(response.bing as BingBackground)
         if (home.backgroundMode === 'bing') {
           message.success(response.message)
-          home.setBackgroundSrc(response.img)
+          home.setBackgroundSrc(response.bing?.src as string)
           home.setBackgroundMode(response.mode)
         }
-
         home.setNeedGetBackground(false)
       })
       .finally(() => {
@@ -35,7 +33,7 @@
       getBackground('local')
         .then((response: GetBackgroundResult) => {
           message.success(response.message)
-          home.setBackgroundSrc(response.img)
+          home.setBackgroundSrc(response.img as string)
           home.setBackgroundMode(response.mode)
         })
         .finally(() => {

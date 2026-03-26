@@ -11,15 +11,18 @@ export type LogData = {
   prerelease: boolean
   publishedAt: string
 }
-
 export type YiYanData = {
   hitokoto: string
   from: string
 }
-
 export type HeatmapData = {
   timestamp: number
   count: number
+}
+export type BingBackground = {
+  src: string
+  copyright: string
+  title: string
 }
 
 export const useHomeStore = defineStore(
@@ -28,7 +31,11 @@ export const useHomeStore = defineStore(
     // 壁纸
     const backgroundMode = ref<BackgroundMode>('bing')
     const backgroundSrc = ref<string>('')
-    const bingBackgroundSrc = ref<string>('')
+    const bingBackground = ref<BingBackground>({
+      src: '',
+      title: '',
+      copyright: ''
+    })
     const needGetBackground = ref<boolean>(true)
 
     // 头像
@@ -61,8 +68,8 @@ export const useHomeStore = defineStore(
     function setBackgroundSrc(v: string) {
       backgroundSrc.value = v
     }
-    function setBingBackgroundSrc(v: string) {
-      bingBackgroundSrc.value = v
+    function setBingBackground(v: BingBackground) {
+      bingBackground.value = v
     }
     function setNeedGetBackground(v: boolean) {
       needGetBackground.value = v
@@ -118,7 +125,7 @@ export const useHomeStore = defineStore(
     return {
       backgroundMode,
       backgroundSrc,
-      bingBackgroundSrc,
+      bingBackground,
       needGetBackground,
 
       avatarSrc,
@@ -142,7 +149,7 @@ export const useHomeStore = defineStore(
 
       setBackgroundMode,
       setBackgroundSrc,
-      setBingBackgroundSrc,
+      setBingBackground,
       setNeedGetBackground,
 
       setAvatarSrc,

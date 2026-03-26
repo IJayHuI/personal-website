@@ -1,11 +1,17 @@
 <script setup lang="ts">
+  import type { BingBackground } from '../../stores'
+
   const props = withDefaults(
     defineProps<{
-      bingBackgroundSrc: string
+      bingBackground: BingBackground
       cardSize?: string
     }>(),
     {
-      bingBackgroundSrc: '',
+      bingBackground: () => ({
+        src: '',
+        copyright: '',
+        title: ''
+      }),
       cardSize: 'medium'
     }
   )
@@ -17,7 +23,7 @@
     <template #action>
       <n-space>
         <n-button secondary round tag="a" target="_blank" href="https://www.todaybing.com/">前往必应壁纸查看更多</n-button>
-        <n-button secondary round tag="a" target="_blank" :href="props.bingBackgroundSrc">全屏打开背景</n-button>
+        <n-button secondary round tag="a" target="_blank" :href="props.bingBackground.src">全屏打开背景</n-button>
       </n-space>
     </template>
   </n-card>

@@ -17,12 +17,12 @@
     home.setBackgroundMode(mode)
     general.loadingEventAdd()
     if (home.backgroundMode === 'bing') {
-      home.setBackgroundSrc(home.bingBackgroundSrc)
+      home.setBackgroundSrc(home.bingBackground?.src)
       general.loadingEventSubtract()
     } else {
       getBackground('local')
         .then((response: GetBackgroundResult) => {
-          home.setBackgroundSrc(response.img)
+          home.setBackgroundSrc(response.img as string)
         })
         .finally(() => {
           general.loadingEventSubtract()
@@ -33,7 +33,7 @@
     general.loadingEventAdd()
     getBackground('local')
       .then((response: GetBackgroundResult) => {
-        home.setBackgroundSrc(response.img)
+        home.setBackgroundSrc(response.img as string)
       })
       .finally(() => {
         general.loadingEventSubtract()
@@ -47,7 +47,7 @@
     :is-loading="general.loading.status"
     :theme-mode="general.themeMode"
     :background-mode="home.backgroundMode"
-    :bing-background-src="home.bingBackgroundSrc"
+    :bing-background="home.bingBackground"
     :set-theme-mode="setThemeMode"
     :set-background-mode="setBackgroundMode"
     :random-background="randomBackground" />
