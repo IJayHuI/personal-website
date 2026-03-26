@@ -215,6 +215,6 @@
         </n-card>
       </main>
     </n-config-provider>
-    <div id="show-background" class="h-screen invisible"></div>
+    <div id="show-background" class="h-dvh invisible"></div>
   </div>
 </template>
