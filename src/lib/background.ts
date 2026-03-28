@@ -1,9 +1,10 @@
 import { supabase } from './supabase'
 
-import type { BackgroundMode } from '../stores'
+import type { BackgroundMode, BingBackground } from '../stores'
 
 export type GetBackgroundResult = {
-  img: string
+  bing?: BingBackground
+  img?: string
   message: string
   mode: BackgroundMode
 }
@@ -31,10 +32,13 @@ export const getBackground = async (mode: BackgroundMode): Promise<GetBackground
   if (error || !data?.url) {
     return buildLocalBackgroundResult('获取 Bing 图片失败，已切换为站内壁纸')
   }
-
   const img = `https://cn.bing.com${data.url}`
   return {
-    img,
+    bing: {
+      src: img,
+      copyright: data.copyright,
+      title: data.title
+    },
     message: '现在使用 Bing 作为背景',
     mode: 'bing'
   }

@@ -3,7 +3,7 @@
   import ScrollTrigger from 'gsap/ScrollTrigger'
   import { onMounted, onUnmounted, watch } from 'vue'
 
-  import type { ThemeMode, BackgroundMode } from '../../stores'
+  import type { ThemeMode, BackgroundMode, BingBackground } from '../../stores'
 
   import homeTheme from '../../theme/home.json'
 
@@ -31,7 +31,7 @@
       isLoading?: boolean
       themeMode?: ThemeMode
       backgroundMode?: BackgroundMode
-      bingBackgroundSrc?: string
+      bingBackground?: BingBackground
       setThemeMode?: (mode: ThemeMode) => void
       setBackgroundMode?: (mode: BackgroundMode) => void
       randomBackground?: () => void
@@ -42,7 +42,11 @@
       isLoading: false,
       themeMode: 'system',
       backgroundMode: 'bing',
-      bingBackgroundSrc: '',
+      bingBackground: () => ({
+        src: '',
+        copyright: '',
+        title: ''
+      }),
       setThemeMode: () => {},
       setBackgroundMode: () => {},
       randomBackground: () => {}
@@ -64,7 +68,7 @@
           trigger: '#show-background',
           start: 'top 100%',
           end: 'top 0',
-          scrub: 1
+          scrub: 0.6
         }
       })
       .fromTo(
@@ -152,7 +156,7 @@
             </n-card>
 
             <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
-              <jay-background-introduction v-slide-in :bing-background-src="props.bingBackgroundSrc" />
+              <jay-background-introduction v-slide-in :bing-background="props.bingBackground" />
 
               <div class="grid grid-cols-[repeat(auto-fill,minmax(330px,1fr))] gap-4">
                 <jay-theme-change v-slide-in :set-theme-mode="props.setThemeMode" :theme-mode="props.themeMode" />
@@ -184,7 +188,7 @@
           </div>
 
           <div>
-            <jay-site card-size="small" :icon-size="30" direction="col" text-class="text-base" item-size="100px" />
+            <jay-site />
 
             <jay-scroll-tip :size="28" />
           </div>
@@ -199,7 +203,7 @@
           <n-card title="简介" v-interaction v-slide-in>
             <jay-introduction />
           </n-card>
-          <jay-background-introduction v-slide-in :bing-background-src="props.bingBackgroundSrc" />
+          <jay-background-introduction v-slide-in :bing-background="props.bingBackground" />
 
           <n-card v-slide-in v-interaction title="技术栈" content-class="flex flex-row flex-wrap gap-2">
             <jay-tech-list />
@@ -215,6 +219,6 @@
         </n-card>
       </main>
     </n-config-provider>
-    <div id="show-background" class="h-screen invisible"></div>
+    <div id="show-background" class="h-dvh invisible"></div>
   </div>
 </template>

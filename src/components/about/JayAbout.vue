@@ -73,6 +73,9 @@
 
     currentIndex.value = index
   }
+  const isZoomGesture = (e: WheelEvent) => {
+    return e.ctrlKey || Math.abs(e.deltaY) < 1
+  }
 
   onMounted(() => {
     const sections = sectionsRef.value
@@ -89,12 +92,20 @@
     gotoSection(0, 1, true)
 
     observer = Observer.create({
-      type: 'wheel,touch,pointer',
+      type: 'wheel,touch',
       wheelSpeed: -1,
-      onDown: () => !animating && gotoSection(currentIndex.value - 1, -1),
-      onUp: () => !animating && gotoSection(currentIndex.value + 1, 1),
-      tolerance: 10,
-      preventDefault: true
+      onDown: (self) => {
+        const e = self.event as WheelEvent
+        if (isZoomGesture(e)) return
+        !animating && gotoSection(currentIndex.value - 1, -1)
+      },
+      onUp: (self) => {
+        const e = self.event as WheelEvent
+        if (isZoomGesture(e)) return
+        if (!animating) gotoSection(currentIndex.value + 1, 1)
+      },
+      tolerance: 20,
+      preventDefault: false
     })
   })
 
@@ -105,24 +116,24 @@
 
 <template>
   <div>
-    <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 flex justify-between p-4 text-white">
+    <!-- Return -->
+    <div :class="['fixed w-full z-50 p-4 text-white', props.isMobile ? 'bottom-0' : 'top-0']">
       <router-link to="/">
         <n-button class="!text-white" size="large" quaternary :render-icon="renderIcon(HomeRound)"> 返回主页 </n-button>
       </router-link>
-    </header>
+    </div>
     <!-- Sections -->
     <section ref="sectionsRef" v-for="(item, index) in sections" :key="index" class="fixed top-0 left-0 w-full h-screen">
       <div ref="outerRef" class="outer w-full h-full overflow-hidden relative">
         <div ref="innerRef" class="inner w-full h-full overflow-hidden relative">
-          <div ref="contentRef" class="absolute inset-0 w-full h-full">
+          <div ref="contentRef" class="absolute inset-0 w-full h-full indent-8 flex justify-center items-center">
             <component :is="item" />
           </div>
         </div>
       </div>
     </section>
     <!-- Dots -->
-    <div class="bg-white/40 p-2 backdrop-blur-sm rounded-full fixed right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-2">
+    <div :class="['bg-white/40 p-2 backdrop-blur-sm rounded-full fixed right-4 z-50 flex flex-col gap-2', props.isMobile ? 'bottom-4' : 'top-1/2 -translate-y-1/2']">
       <div
         v-for="(_, i) in sections"
         :key="i"

@@ -4,17 +4,16 @@
   import JayAbout from '../../components/about/JayAbout.vue'
   import JayFirstPage from '../../components/about/JayFirstPage.vue'
   import JayThirdPage from '../../components/about/JayThirdPage.vue'
-  import JayFourthPage from '../../components/about/JayFourthPage.vue'
-  import JayFifthPage from '../../components/about/JayFifthPage.vue'
 
   import JaySecondPage from './JaySecondPage.vue'
+  import JayFourthPage from './JayFourthPage.vue'
 
   import { useStores } from '../../stores'
 
-  const { general, home } = useStores()
-  const sections: Component[] = [JayFirstPage, JaySecondPage, JayThirdPage, JayFourthPage, JayFifthPage]
+  const { general } = useStores()
+  const sections: Component[] = [JayFirstPage, JaySecondPage, JayThirdPage, JayFourthPage]
 </script>
 
 <template>
-  <jay-about :sections="sections" :is-mobile="general.isMobile" :bing-background-src="home.bingBackgroundSrc" />
+  <jay-about :sections="sections" :is-mobile="general.isMobile" />
 </template>
