@@ -64,7 +64,7 @@ importers:
         specifier: ^0.0.3
         version: 0.0.3
       vite:
-        specifier: ^8.0.3
+        specifier: ^8.0.0-beta.13
         version: 8.0.3(@types/node@25.5.0)(jiti@2.6.1)(yaml@2.8.3)
       vue-tsc:
         specifier: ^3.2.6
