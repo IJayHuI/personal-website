@@ -46,7 +46,7 @@
     <n-carousel show-arrow :slides-per-view="3" :space-between="8" class="pb-12">
       <template v-for="site in props.sites" :key="site.router">
         <router-link v-if="site.type === 'router' && site.router" :to="site.router">
-          <n-card v-interaction size="small" content-class="flex justify-center items-center gap-2 flex-row">
+          <n-card v-interaction size="small" content-class="flex justify-center items-center gap-2 flex-col">
             <n-icon :size="27"><component :is="renderIcon(site.icon)" /></n-icon>
             <p class="text-base">{{ site.name }}</p>
           </n-card>
