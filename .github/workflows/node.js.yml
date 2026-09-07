@@ -45,6 +45,9 @@ jobs:
 
     # 在 interface 目录下执行构建
     - name: Build
+      env:
+        VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+        VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
       run: pnpm run build
 
     # 上传构建产物供后续流程或下载（保留 dist 目录）
