@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 import type { ThemeMode } from '../types/theme'
+import { getSystemPrefersDark } from '../utils/theme-mode'
 
 // LoadingState 是 store 内部派生结构，不进 types
 type LoadingState = {
@@ -14,9 +15,16 @@ export const useGeneralStore = defineStore(
   () => {
     const isMobile = ref(false)
     const themeMode = ref<ThemeMode>('system')
-    const isDark = ref(false)
+    const systemPrefersDark = ref(getSystemPrefersDark())
     const loadingCount = ref(0)
     const loadingText = ref('')
+
+    // isDark 由 themeMode 派生，不再手动设置
+    const isDark = computed(() => {
+      if (themeMode.value === 'dark') return true
+      if (themeMode.value === 'light') return false
+      return systemPrefersDark.value
+    })
 
     const loading = computed<LoadingState>(() => ({
       status: loadingCount.value > 0,
@@ -30,8 +38,8 @@ export const useGeneralStore = defineStore(
     function setThemeMode(v: ThemeMode) {
       themeMode.value = v
     }
-    function setIsDark(v: boolean) {
-      isDark.value = v
+    function setSystemPrefersDark(v: boolean) {
+      systemPrefersDark.value = v
     }
     function loadingEventAdd() {
       loadingCount.value += 1
@@ -46,6 +54,7 @@ export const useGeneralStore = defineStore(
     return {
       isMobile,
       themeMode,
+      systemPrefersDark,
       isDark,
       loadingCount,
       loadingText,
@@ -53,7 +62,7 @@ export const useGeneralStore = defineStore(
 
       setIsMobile,
       setThemeMode,
-      setIsDark,
+      setSystemPrefersDark,
       loadingEventAdd,
       loadingEventSubtract,
       loadingEventSetText

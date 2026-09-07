@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { darkTheme, zhCN, dateZhCN } from 'naive-ui'
 import themeOverrides from './theme/general.json'
+import { useGeneralStore } from './stores'
+import JayGui from './components/common/JayGui.vue'
 
-// 临时占位：阶段 3 填充 general store 后改为响应式 isDark
-// import { useGeneralStore } from './stores'
-// const general = useGeneralStore()
-// const theme = computed(() => general.isDark ? darkTheme : null)
-const theme = null  // 亮色
+const general = useGeneralStore()
+const theme = computed(() => (general.isDark ? darkTheme : null))
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const theme = null  // 亮色
     :date-locale="dateZhCN"
   >
     <NMessageProvider>
-      <RouterView />
+      <JayGui />
     </NMessageProvider>
   </NConfigProvider>
 </template>
