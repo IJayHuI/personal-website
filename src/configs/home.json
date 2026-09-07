@@ -13,12 +13,6 @@
       "router": "/project"
     },
     {
-      "name": "博客",
-      "icon": "BookRound",
-      "type": "router",
-      "router": "/blog"
-    },
-    {
       "name": "开往",
       "icon": "TrainRound",
       "type": "link",
