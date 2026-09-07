@@ -86,15 +86,15 @@ watch(() => general.isMobile, createBackgroundAnimation)
         <aside class="w-3xs sticky top-4 self-start flex flex-col gap-4">
           <jay-avatar />
 
-          <n-card size="small" title="简介" v-interaction>
+          <n-card v-magnetic size="small" title="简介">
             <jay-introduction />
           </n-card>
 
-          <n-card size="small" v-interaction title="技术栈" content-class="flex flex-row flex-wrap gap-2">
+          <n-card size="small" title="技术栈" content-class="flex flex-row flex-wrap gap-2">
             <jay-tech-list />
           </n-card>
 
-          <n-card size="small" v-interaction content-class="flex flex-col">
+          <n-card size="small" content-class="flex flex-col">
             <jay-footer :app-version="appVersion" />
           </n-card>
         </aside>
@@ -127,7 +127,7 @@ watch(() => general.isMobile, createBackgroundAnimation)
           <section class="flex flex-col gap-4">
             <jay-heatmap v-slide-in />
 
-            <n-card title="日志" v-interaction v-slide-in>
+            <n-card title="日志" v-slide-in>
               <jay-log />
             </n-card>
 
@@ -173,15 +173,15 @@ watch(() => general.isMobile, createBackgroundAnimation)
         <section class="flex flex-col gap-2">
           <jay-heatmap v-slide-in />
 
-          <n-card title="日志" v-interaction v-slide-in>
+          <n-card title="日志" v-slide-in>
             <jay-log />
           </n-card>
-          <n-card title="简介" v-interaction v-slide-in>
+          <n-card title="简介" v-slide-in>
             <jay-introduction />
           </n-card>
           <jay-background-introduction v-slide-in />
 
-          <n-card v-slide-in v-interaction title="技术栈" content-class="flex flex-row flex-wrap gap-2">
+          <n-card v-slide-in title="技术栈" content-class="flex flex-row flex-wrap gap-2">
             <jay-tech-list />
           </n-card>
 

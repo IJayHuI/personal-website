@@ -29,13 +29,13 @@ const avatarBackClick = () => {
 }
 </script>
 <template>
-  <div v-interaction class="w-full *:duration-500 *:transition-transform *:backface-hidden *:rounded-full *:absolute *:h-full *:w-full aspect-square perspective-normal">
+  <div class="w-full *:duration-500 *:transition-transform *:backface-hidden *:rounded-full *:absolute *:h-full *:w-full aspect-square perspective-normal">
     <img :class="` ${home.isAvatarFlipped ? '-rotate-y-180' : ''}`" src="/avatar.jpg" />
     <div class="overflow-hidden flex justify-center items-center rotate-y-180" :class="home.isAvatarFlipped ? '!rotate-y-0' : ''" @click="avatarBackClick">
       <div class="w-full h-full absolute" :style="`background-image: linear-gradient(${home.avatarBackColor})`"></div>
       <p class="z-9 text-2xl">{{ home.avatarBackText }}</p>
     </div>
-    <n-button @click.stop @click="setRotateStatus" size="large" type="info" circle class="z-9 !absolute right-6 bottom-6">
+    <n-button v-magnetic @click.stop @click="setRotateStatus" size="large" type="info" circle class="z-9 !absolute right-6 bottom-6">
       <n-icon>
         <UTurnLeftRound />
       </n-icon>

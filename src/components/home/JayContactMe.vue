@@ -40,7 +40,7 @@ const renderIcon = (path: string) => icons[`/src/assets${path}`]
 </script>
 <template>
   <div v-if="!general.isMobile" class="flex gap-2">
-    <n-button tag="a" :href="item.link" target="_blank" class="overflow-hidden !transition-[max-width] !duration-600 !max-w-19.75 hover:!max-w-xl !ease-in-out !text-white" size="large" round v-for="item in homeConfig.contactMe" secondary>
+    <n-button v-magnetic tag="a" :href="item.link" target="_blank" class="overflow-hidden !transition-[max-width] !duration-600 !max-w-19.75 hover:!max-w-xl !ease-in-out !text-white" size="large" round v-for="item in homeConfig.contactMe" secondary>
       <div class="flex items-center gap-6">
         <n-icon size="35">
           <component :is="renderIcon(item.icon)" />
