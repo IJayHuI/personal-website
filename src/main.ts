@@ -1,7 +1,6 @@
 import { createApp } from 'vue'
-import './style.css'
-import App from './App.vue'
-
+import { createPinia } from 'pinia'
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import {
   create,
   NConfigProvider,
@@ -22,21 +21,60 @@ import {
   NSpace,
   NMessageProvider,
   NScrollbar,
-  NCarousel
+  NCarousel,
+  NTimeline,
+  NTimelineItem,
+  NHeatmap,
+  NAvatar,
+  NInput,
+  NImageGroup
 } from 'naive-ui'
 import 'vfonts/Lato.css'
-const naive = create({
-  components: [NConfigProvider, NLayout, NLayoutHeader, NLayoutContent, NLayoutFooter, NLayoutSider, NCard, NIcon, NMenu, NCollapse, NCollapseItem, NButton, NDrawer, NDrawerContent, NSpin, NSpace, NMessageProvider, NScrollbar, NCarousel]
-})
+import router from './router'
+import slideIn from './directives/slide-in'
+import interaction from './directives/interaction'
+import App from './App.vue'
+import './style.css'
 
-import { createPinia } from 'pinia'
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+// Pinia 实例 + 持久化插件
 const pinia = createPinia()
 pinia.use(piniaPluginPersistedstate)
 
-import router from './routes'
+// Naive UI 按需注册组件
+const naive = create({
+  components: [
+    NConfigProvider,
+    NLayout,
+    NLayoutHeader,
+    NLayoutContent,
+    NLayoutFooter,
+    NLayoutSider,
+    NCard,
+    NIcon,
+    NMenu,
+    NCollapse,
+    NCollapseItem,
+    NButton,
+    NDrawer,
+    NDrawerContent,
+    NSpin,
+    NSpace,
+    NMessageProvider,
+    NScrollbar,
+    NCarousel,
+    NTimeline,
+    NTimelineItem,
+    NHeatmap,
+    NAvatar,
+    NInput,
+    NImageGroup
+  ]
+})
 
-import slideIn from './directives/slide-in'
-import interaction from './directives/interaction'
-
-createApp(App).use(router).use(naive).use(pinia).directive('slide-in', slideIn).directive('interaction', interaction).mount('#app')
+createApp(App)
+  .use(pinia)
+  .use(router)
+  .use(naive)
+  .directive('slide-in', slideIn)
+  .directive('interaction', interaction)
+  .mount('#app')

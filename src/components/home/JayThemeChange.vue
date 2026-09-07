@@ -1,26 +1,26 @@
 <script setup lang="ts">
-  import { ContrastRound } from '@vicons/material'
+/**
+ * 主题切换卡片
+ * 提供 暗色 / 跟随系统 / 浅色 三个按钮，点击切换 general.themeMode
+ */
+import { ContrastRound } from '@vicons/material'
+import type { ThemeMode } from '../../types/theme'
+import { useGeneralStore } from '../../stores'
 
-  import type { ThemeMode } from '../../stores'
+const general = useGeneralStore()
 
-  const props = withDefaults(
-    defineProps<{
-      themeMode?: ThemeMode
-      setThemeMode?: (mode: ThemeMode) => void
-    }>(),
-    {
-      themeMode: 'system',
-      setThemeMode: () => {}
-    }
-  )
+// 切换主题模式
+const setThemeMode = (mode: ThemeMode) => {
+  general.setThemeMode(mode)
+}
 </script>
 <template>
   <n-card v-interaction size="medium" content-class="flex justify-center items-center gap-5">
     <n-icon size="40"><contrast-round /></n-icon>
     <div class="flex gap-2">
-      <n-button :class="props.themeMode === 'dark' ? '!outline' : ''" @click="props.setThemeMode('dark')" secondary round>暗色</n-button>
-      <n-button :class="props.themeMode === 'system' ? '!outline' : ''" @click="props.setThemeMode('system')" secondary round>跟随系统</n-button>
-      <n-button :class="props.themeMode === 'light' ? '!outline' : ''" @click="props.setThemeMode('light')" secondary round>浅色</n-button>
+      <n-button :class="general.themeMode === 'dark' ? '!outline' : ''" @click="setThemeMode('dark')" secondary round>暗色</n-button>
+      <n-button :class="general.themeMode === 'system' ? '!outline' : ''" @click="setThemeMode('system')" secondary round>跟随系统</n-button>
+      <n-button :class="general.themeMode === 'light' ? '!outline' : ''" @click="setThemeMode('light')" secondary round>浅色</n-button>
     </div>
   </n-card>
 </template>

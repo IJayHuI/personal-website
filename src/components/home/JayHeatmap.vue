@@ -1,28 +1,35 @@
 <script setup lang="ts">
-  import { NHeatmap } from 'naive-ui'
+/**
+ * Github 贡献热力图卡片
+ * 展示最近一年的每日贡献热力图 + 总提交数
+ */
+import { onBeforeMount } from 'vue'
+import { NHeatmap } from 'naive-ui'
+import { useHomeStore } from '../../stores'
 
-  import { type HeatmapData } from '../../stores'
+const home = useHomeStore()
 
-  const props = withDefaults(
-    defineProps<{
-      cardSize?: string
-      heatmapSize?: 'small' | 'medium' | 'large'
-      heatmapData?: HeatmapData[]
-      heatmapTotalContributions?: number
-    }>(),
-    {
-      cardSize: 'medium',
-      heatmapSize: 'large',
-      heatmapData: () => [],
-      heatmapTotalContributions: 0
-    }
-  )
+const props = withDefaults(
+  defineProps<{
+    cardSize?: string
+    heatmapSize?: 'small' | 'medium' | 'large'
+  }>(),
+  {
+    cardSize: 'medium',
+    heatmapSize: 'large'
+  }
+)
+
+// 挂载前拉取热力图数据
+onBeforeMount(() => {
+  home.fetchHeatmap()
+})
 </script>
 <template>
-  <n-card :title="`热力图 · 最近一年 Github 有 ${props.heatmapTotalContributions} 提交`" v-interaction :size="props.cardSize">
+  <n-card :title="`热力图 · 最近一年 Github 有 ${home.heatmapTotal} 提交`" v-interaction :size="props.cardSize">
     <n-scrollbar x-scrollable>
       <div class="min-w-max flex justify-center mb-3">
-        <n-heatmap :data="props.heatmapData" :size="props.heatmapSize" :fill-calendar-leading="true" />
+        <n-heatmap :data="home.heatmapData" :size="props.heatmapSize" :fill-calendar-leading="true" />
       </div>
     </n-scrollbar>
   </n-card>

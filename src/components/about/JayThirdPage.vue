@@ -1,3 +1,4 @@
+<!-- 关于页第三屏：导航页和项目页介绍 -->
 <template>
   <img class="absolute w-full h-full object-cover" src="/local-background/background3.jpg" />
   <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>

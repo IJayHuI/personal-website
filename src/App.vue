@@ -1,19 +1,23 @@
 <script setup lang="ts">
-  import { zhCN, dateZhCN, darkTheme } from 'naive-ui'
+import { computed } from 'vue'
+import { darkTheme, zhCN, dateZhCN } from 'naive-ui'
+import themeOverrides from './theme/general.json'
+import { useGeneralStore } from './stores'
+import JayGui from './components/common/JayGui.vue'
 
-  import themeOverrides from './theme/general.json'
-
-  import JayGui from './containers/JayGui.vue'
-
-  import { useStores } from './stores'
-
-  const { general } = useStores()
+const general = useGeneralStore()
+const theme = computed(() => (general.isDark ? darkTheme : null))
 </script>
 
 <template>
-  <n-config-provider :theme="general.isDark ? darkTheme : null" :theme-overrides="themeOverrides" :locale="zhCN" :date-locale="dateZhCN">
-    <n-message-provider>
-      <jay-gui />
-    </n-message-provider>
-  </n-config-provider>
+  <NConfigProvider
+    :theme="theme"
+    :theme-overrides="themeOverrides"
+    :locale="zhCN"
+    :date-locale="dateZhCN"
+  >
+    <NMessageProvider>
+      <JayGui />
+    </NMessageProvider>
+  </NConfigProvider>
 </template>

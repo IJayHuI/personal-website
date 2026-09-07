@@ -1,4 +1,3 @@
-// directives/interaction.ts
 import type { Directive } from 'vue'
 import { gsap } from 'gsap'
 

@@ -1,14 +1,18 @@
 <script setup lang="ts">
-  import { NTimeline, NTimelineItem } from 'naive-ui'
+/**
+ * 更新日志时间线
+ * 展示 Github Releases 版本日志（水平时间线）
+ */
+import { onBeforeMount } from 'vue'
+import { NTimeline, NTimelineItem } from 'naive-ui'
+import { useHomeStore } from '../../stores'
 
-  import { type LogData } from '../../stores'
+const home = useHomeStore()
 
-  const porps = withDefaults(
-    defineProps<{
-      datas: LogData[]
-    }>(),
-    {}
-  )
+// 挂载前拉取日志数据
+onBeforeMount(() => {
+  home.fetchLogs()
+})
 </script>
 <template>
   <div class="flex flex-col gap-2">
@@ -16,7 +20,7 @@
     <n-scrollbar x-scrollable>
       <div class="w-max">
         <n-timeline horizontal class="mb-3">
-          <template v-for="item in porps.datas" :key="item.id">
+          <template v-for="item in home.logs" :key="item.id">
             <n-timeline-item :type="item.prerelease ? 'warning' : 'success'" v-if="!item.draft" :time="new Date(item.publishedAt).toLocaleDateString('zh-cn')" :title="`版本：${item.tagName.slice(1)}`" />
           </template>
         </n-timeline>

@@ -1,29 +1,30 @@
 <script setup lang="ts">
-  import { AutoAwesomeRound, AutorenewRound } from '@vicons/material'
+/**
+ * 壁纸切换卡片
+ * 提供 bing壁纸 / 系统壁纸 切换，local 模式下可随机切换站内壁纸
+ */
+import { AutoAwesomeRound, AutorenewRound } from '@vicons/material'
+import type { BackgroundMode } from '../../types/theme'
+import { useHomeStore } from '../../stores'
 
-  import type { BackgroundMode } from '../../stores'
+const home = useHomeStore()
 
-  const props = withDefaults(
-    defineProps<{
-      backgroundMode?: BackgroundMode
-      setBackgroundMode?: (mode: BackgroundMode) => void
-      randomBackground?: () => void
-    }>(),
-    {
-      backgroundMode: 'bing',
-      setBackgroundMode: () => {},
-      randomBackground: () => {}
-    }
-  )
+// 切换壁纸模式并立即拉取
+const setBackgroundMode = (mode: BackgroundMode) => {
+  home.setBackgroundMode(mode)
+  home.fetchBackground(mode)
+}
+// 随机切换一张站内壁纸
+const randomBackground = () => home.fetchBackground('local')
 </script>
 <template>
   <n-card v-interaction size="medium" content-class="flex justify-center items-center gap-5">
     <n-icon size="40"><auto-awesome-round /></n-icon>
     <div class="flex gap-2">
-      <n-button :class="props.backgroundMode === 'bing' ? '!outline' : ''" @click="props.setBackgroundMode('bing')" secondary round>bing壁纸</n-button>
-      <n-button :class="props.backgroundMode === 'local' ? '!outline' : ''" @click="props.setBackgroundMode('local')" secondary round>系统壁纸</n-button>
+      <n-button :class="home.backgroundMode === 'bing' ? '!outline' : ''" @click="setBackgroundMode('bing')" secondary round>bing壁纸</n-button>
+      <n-button :class="home.backgroundMode === 'local' ? '!outline' : ''" @click="setBackgroundMode('local')" secondary round>系统壁纸</n-button>
     </div>
-    <n-button v-if="props.backgroundMode === 'local'" @click="props.randomBackground()" quaternary circle size="large">
+    <n-button v-if="home.backgroundMode === 'local'" @click="randomBackground()" quaternary circle size="large">
       <template #icon>
         <n-icon size="25"><autorenew-round /></n-icon>
       </template>
