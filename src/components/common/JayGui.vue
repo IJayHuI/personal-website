@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import { darkTheme } from 'naive-ui'
 import { onBeforeUnmount, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import type { ThemeMode } from '../../types'
 import { isMobile, getIsDark } from '../../utils'
 import { useGeneralStore } from '../../stores'
+import { activateCursor, deactivateCursor } from '../../directives/magnetic'
 import JayLoading from './JayLoading.vue'
 
 const general = useGeneralStore()
+const route = useRoute()
 const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+// 加载所有页面配置（用于检测是否启用自定义光标）
+const pageConfigs = import.meta.glob('../../configs/*.json', { eager: true, import: 'default' }) as Record<string, { customCursor?: boolean }>
 
 // 同步移动设备状态
 const syncMobileState = () => {
@@ -36,6 +42,23 @@ watch(
   { immediate: true }
 )
 
+// 监听路由变化，根据页面配置决定是否启用自定义光标
+watch(
+  () => route.name,
+  (name) => {
+    if (!name) return
+    // 路由名转小写匹配配置文件名（如 Home → home.json）
+    const configPath = `../../configs/${String(name).toLowerCase()}.json`
+    const config = pageConfigs[configPath]
+    if (config?.customCursor && !isMobile()) {
+      activateCursor()
+    } else {
+      deactivateCursor()
+    }
+  },
+  { immediate: true }
+)
+
 // 初始同步移动设备状态，并监听窗口大小变化以更新状态
 syncMobileState()
 window.addEventListener('resize', syncMobileState)
@@ -44,6 +67,7 @@ window.addEventListener('resize', syncMobileState)
 onBeforeUnmount(() => {
   window.removeEventListener('resize', syncMobileState)
   mediaQuery.removeEventListener('change', handleSystemThemeChange)
+  deactivateCursor()
 })
 </script>
 
