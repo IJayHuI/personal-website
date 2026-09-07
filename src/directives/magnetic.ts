@@ -20,11 +20,23 @@ const CORNER_BORDER = 2         // 边框宽度 px
 const CORNER_RADIUS = 4         // 角框圆角 px
 const POINTER_SIZE = 32         // 默认光标容器尺寸 px
 const DOT_SIZE = 4              // 中心圆点直径 px
-const HOVER_PADDING = 6         // hover 时光标与目标元素的间距 px（每侧）
+const HOVER_SCALE_MIN = 1.15  // 小元素最大缩放比例
+const HOVER_SCALE_MAX = 1.02  // 大元素最小缩放比例
+const SCALE_REF_SIZE = 200    // 参考尺寸 px：小于此值用更大比例，大于则用更小比例
+const HOVER_PADDING = 8         // hover 时光标与目标元素的间距 px（每侧）
 const ACTIVE_PADDING = 2        // active 时光标与目标元素的间距 px（每侧）
 const DAMPING = 0.1             // hover 时外框跟随鼠标的阻尼系数
 const FOLLOW_DURATION = 0.15    // 外框缓动跟随时长 s
 const TRANSITION_DURATION = 0.3 // 尺寸过渡时长 s
+
+/** 根据元素尺寸动态计算缩放比例：越小放大越多，越大放大越少 */
+function getDynamicScale(el: HTMLElement): number {
+  const rect = el.getBoundingClientRect()
+  const size = Math.max(rect.width, rect.height)
+  if (size <= 0) return HOVER_SCALE_MAX
+  const ratio = Math.min(1, size / SCALE_REF_SIZE)
+  return HOVER_SCALE_MIN + (HOVER_SCALE_MAX - HOVER_SCALE_MIN) * ratio
+}
 
 interface MagneticEl extends HTMLElement {
   _enter?: () => void
@@ -162,6 +174,7 @@ function handleMouseMove(e: MouseEvent) {
 function handleMouseDown() {
   isActive = true
   if (currentTarget) {
+    gsap.to(currentTarget, { scale: 1, duration: 0.1, ease: 'power2.out' })
     syncTarget()
   } else if (pointerEl) {
     // 非 hover：缩小默认光标尺寸
@@ -179,6 +192,7 @@ function handleMouseDown() {
 function handleMouseUp() {
   isActive = false
   if (currentTarget) {
+    gsap.to(currentTarget, { scale: getDynamicScale(currentTarget), duration: 0.2, ease: 'power2.out' })
     syncTarget()
   } else if (pointerEl) {
     gsap.to(pointerEl, {
@@ -263,19 +277,21 @@ function resetPointer() {
 // ===== 指令 =====
 const magnetic: Directive = {
   mounted(el: MagneticEl) {
-    // 鼠标进入目标：光标扩展框选元素，监听尺寸变化
+    // 鼠标进入目标：光标扩展框选元素，目标元素轻微放大，监听尺寸变化
     el._enter = () => {
       currentTarget = el
       isActive = false
       syncTarget()
+      gsap.to(el, { scale: getDynamicScale(el), duration: 0.2, ease: 'power2.out' })
       el._resizeObs = new ResizeObserver(() => syncTarget())
       el._resizeObs.observe(el)
     }
 
-    // 鼠标离开目标：光标缩回默认
+    // 鼠标离开目标：光标缩回默认，目标元素恢复
     el._leave = () => {
       currentTarget = null
       isActive = false
+      gsap.to(el, { scale: 1, duration: 0.2, ease: 'power2.out' })
       el._resizeObs?.disconnect()
       el._resizeObs = undefined
       resetPointer()
