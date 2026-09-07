@@ -26,7 +26,8 @@ import {
   NTimelineItem,
   NHeatmap,
   NAvatar,
-  NInput
+  NInput,
+  NImageGroup
 } from 'naive-ui'
 import 'vfonts/Lato.css'
 import router from './router'
@@ -65,7 +66,8 @@ const naive = create({
     NTimelineItem,
     NHeatmap,
     NAvatar,
-    NInput
+    NInput,
+    NImageGroup
   ]
 })
 
