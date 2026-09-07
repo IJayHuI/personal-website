@@ -1,0 +1,103 @@
+{
+  "sites": [
+    {
+      "name": "导航页",
+      "icon": "BookmarksRound",
+      "type": "router",
+      "router": "/navigate"
+    },
+    {
+      "name": "小项目",
+      "icon": "FolderRound",
+      "type": "router",
+      "router": "/project"
+    },
+    {
+      "name": "博客",
+      "icon": "BookRound",
+      "type": "router",
+      "router": "/blog"
+    },
+    {
+      "name": "开往",
+      "icon": "TrainRound",
+      "type": "link",
+      "link": "https://www.travellings.cn/go.html"
+    },
+    {
+      "name": "关于",
+      "icon": "InfoRound",
+      "type": "router",
+      "router": "/about"
+    }
+  ],
+  "contactMe": [
+    {
+      "link": "https://github.com/IJayHuI",
+      "icon": "/contact-me/github.svg",
+      "text": "Github",
+      "mobileText": "去 GitHub 主页"
+    },
+    {
+      "link": "https://space.bilibili.com/474262477",
+      "icon": "/contact-me/bilibili.svg",
+      "text": "(゜-゜)つロ 干杯~-bilibili",
+      "mobileText": "去 Bilibili 主页"
+    },
+    {
+      "link": "mailto:2949763264@qq.com",
+      "icon": "/contact-me/email.svg",
+      "text": "email～",
+      "mobileText": "给我发邮件"
+    },
+    {
+      "link": "https://t.me/IJayHuI",
+      "icon": "/contact-me/telegram.svg",
+      "text": "Oops!",
+      "mobileText": "去 Telegram"
+    }
+  ],
+  "techList": [
+    {
+      "href": "https://www.naiveui.com/zh-CN/os-theme",
+      "name": "Naive UI"
+    },
+    {
+      "href": "https://vitejs.cn/",
+      "name": "Vite"
+    },
+    {
+      "href": "https://cn.vuejs.org/",
+      "name": "Vue"
+    },
+    {
+      "href": "https://tailwindcss.com/",
+      "name": "tailwindcss"
+    },
+    {
+      "href": "https://supabase.com/",
+      "name": "Supabase"
+    },
+    {
+      "href": "https://xicons.org/#/",
+      "name": "xicons"
+    },
+    {
+      "href": "https://pinia.vuejs.org/zh/",
+      "name": "Pinia"
+    }
+  ],
+  "avatar": {
+    "backText": ["你好", "这里没有东西", "哟，又点了一次！", "真没有！", "你有点执着啊！", "你还在点？认真的吗？", "够了吧，这真没东西！", "行行行，你赢了！", "最后一次了，别再点了！"],
+    "backColor": [
+      "135deg, #FDEB71 10%, #F8D800 100%",
+      "135deg, #E2B0FF 10%, #9F44D3 100%",
+      "135deg, #FEB692 10%, #EA5455 100%",
+      "135deg, #90F7EC 10%, #32CCBC 100%",
+      "135deg, #A0FE65 10%, #FA016D 100%",
+      "135deg, #81FFEF 10%, #F067B4 100%",
+      "135deg, #EE9AE5 10%, #5961F9 100%",
+      "135deg, #70F570 10%, #49C628 100%"
+    ]
+  }
+}
