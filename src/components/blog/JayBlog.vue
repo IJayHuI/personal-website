@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 博客页主容器（空壳）
+ * 布局同 project 页，文章列表待后续实现
+ */
 import { HomeRound } from '@vicons/material'
 import blogTheme from '../../theme/blog.json'
 import { renderIcon } from '../../utils'

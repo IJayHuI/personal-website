@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * 站点导航卡片
+ * 桌面端：网格布局展示所有站点；移动端：轮播展示
+ * 站点数据来自 configs/home.json，分 router（站内路由）和 link（外链）两种
+ */
 import * as icons from '@vicons/material'
 import type { Component } from 'vue'
 import { useGeneralStore } from '../../stores'
@@ -6,6 +11,7 @@ import homeConfig from '../../configs/home.json'
 
 const general = useGeneralStore()
 
+// 根据图标名字符串渲染对应图标组件，找不到时用 WarningRound 兜底
 const renderIcon = (icon: string): Component => {
   return icons[icon as keyof typeof icons] || icons['WarningRound']
 }

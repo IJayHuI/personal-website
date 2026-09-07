@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 关于页第二屏：Bing 壁纸展示
+ * 展示今日 Bing 壁纸，支持查看所有壁纸（图片分组）
+ */
 import { RemoveRedEyeRound } from '@vicons/material'
 import { ref } from 'vue'
 import { renderIcon } from '../../utils'

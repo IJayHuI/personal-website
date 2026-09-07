@@ -1,51 +1,64 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { BackgroundMode } from '../types/theme'
-import type {
-  BingBackground,
-  LogData,
-  YiYanData,
-  HeatmapData
-} from '../types/home'
-import { useGeneralStore } from './general'
+import type { BingBackground, LogData, YiYanData, HeatmapData } from '../types/home'
 import { getBingBackground, getLogs, getYiYan, getHeatmapDatas } from '../api'
-import { getLocalBackgroundImage } from '../utils'
+import { getLocalBackgroundImage, withLoading } from '../utils'
 
+/**
+ * 首页 store
+ *
+ * 职责：持有壁纸、头像、日志、时间、一言、热力图等首页所需数据；
+ * 提供 fetchXxx actions 从 api 层拉取数据。
+ *
+ * 持久化：仅 backgroundMode（壁纸偏好 bing/local）。
+ */
 export const useHomeStore = defineStore(
   'home',
   () => {
-    // 壁纸
+    // --- state：壁纸 ---
+    // 壁纸模式：bing / local
     const backgroundMode = ref<BackgroundMode>('bing')
+    // 当前展示的壁纸地址
     const backgroundSrc = ref('')
-    const bingBackground = ref<BingBackground>({
-      src: '',
-      title: '',
-      copyright: ''
-    })
+    // Bing 壁纸原始数据（含标题/版权，用于展示）
+    const bingBackground = ref<BingBackground>({ src: '', title: '', copyright: '' })
+    // 壁纸切换时的提示文字
     const backgroundMessage = ref('')
 
-    // 头像
+    // --- state：头像 ---
+    // 头像地址
     const avatarSrc = ref('')
-    const avatarRotateStatus = ref(false)
+    // 头像是否已翻转（点击翻转显示背面）
+    const isAvatarFlipped = ref(false)
+    // 头像点击次数
     const avatarClickCount = ref(0)
+    // 头像背面文字
     const avatarBackText = ref('你好')
+    // 头像背面背景色（渐变）
     const avatarBackColor = ref('135deg, #FDEB71 10%, #F8D800 100%')
 
-    // 日志
-    const logDatas = ref<LogData[]>([])
+    // --- state：日志 ---
+    // 日志列表
+    const logs = ref<LogData[]>([])
 
-    // 日期时间
-    const datetime = ref(new Date())
+    // --- state：时间 ---
+    // 当前时间（由 JayDatetime 组件 setInterval 每秒更新）
+    const currentTime = ref(new Date())
 
-    // 一言
+    // --- state：一言 ---
+    // 一言内容
     const hitokoto = ref('')
-    const from = ref('')
+    // 一言出处
+    const yiYanSource = ref('')
 
-    // 热力图
-    const heatmapDatas = ref<HeatmapData[]>([])
-    const heatmapDatasSum = ref(0)
+    // --- state：热力图 ---
+    // 热力图数据（一年的每日贡献）
+    const heatmapData = ref<HeatmapData[]>([])
+    // 热力图总贡献数
+    const heatmapTotal = ref(0)
 
-    // --- setters（壁纸）---
+    // --- setters：壁纸 ---
     function setBackgroundMode(v: BackgroundMode) {
       backgroundMode.value = v
     }
@@ -59,12 +72,12 @@ export const useHomeStore = defineStore(
       backgroundMessage.value = v
     }
 
-    // --- setters（头像）---
+    // --- setters：头像 ---
     function setAvatarSrc(v: string) {
       avatarSrc.value = v
     }
-    function setAvatarRotateStatus(v: boolean) {
-      avatarRotateStatus.value = v
+    function setAvatarFlipped(v: boolean) {
+      isAvatarFlipped.value = v
     }
     function avatarClickCountAdd() {
       avatarClickCount.value++
@@ -76,39 +89,37 @@ export const useHomeStore = defineStore(
       avatarBackColor.value = v
     }
 
-    // --- setters（日志）---
-    function setLogDatas(v: LogData[]) {
-      logDatas.value = v
+    // --- setters：日志 ---
+    function setLogs(v: LogData[]) {
+      logs.value = v
     }
 
-    // --- setters（时间）---
-    function setDatetime(v: Date) {
-      datetime.value = v
+    // --- setters：时间 ---
+    function setCurrentTime(v: Date) {
+      currentTime.value = v
     }
 
-    // --- setters（一言）---
+    // --- setters：一言 ---
     function setHitokoto(v: string) {
       hitokoto.value = v
     }
-    function setFrom(v: string) {
-      from.value = v
+    function setYiYanSource(v: string) {
+      yiYanSource.value = v
     }
 
-    // --- setters（热力图）---
-    function setHeatmapDatas(v: HeatmapData[]) {
-      heatmapDatas.value = v
+    // --- setters：热力图 ---
+    function setHeatmapData(v: HeatmapData[]) {
+      heatmapData.value = v
     }
-    function setHeatmapDatasSum(v: number) {
-      heatmapDatasSum.value = v
+    function setHeatmapTotal(v: number) {
+      heatmapTotal.value = v
     }
 
     // --- fetch actions ---
 
-    // 壁纸：bing 有缓存则直接用，否则请求；失败降级到 local
+    // 壁纸：local 直接用站内图；bing 有缓存则用缓存，否则请求 Bing，失败降级到 local
     async function fetchBackground(mode: BackgroundMode) {
-      const general = useGeneralStore()
-      general.loadingEventAdd()
-      try {
+      await withLoading(async () => {
         if (mode === 'local') {
           setBackgroundSrc(getLocalBackgroundImage())
           setBackgroundMessage('现在使用站内壁纸作为背景')
@@ -125,103 +136,87 @@ export const useHomeStore = defineStore(
           setBackgroundSrc(bing.src)
           setBackgroundMessage('现在使用 Bing 作为背景')
         } catch {
+          // Bing 获取失败，降级到站内壁纸
           setBackgroundSrc(getLocalBackgroundImage())
           setBackgroundMessage('获取 Bing 图片失败，已切换为站内壁纸')
         }
-      } finally {
-        general.loadingEventSubtract()
-      }
+      })
     }
 
-    // 日志
+    // 日志（已有数据则跳过）
     async function fetchLogs() {
-      if (logDatas.value.length > 0) return
-      const general = useGeneralStore()
-      general.loadingEventAdd()
-      try {
-        setLogDatas(await getLogs())
-      } catch (e) {
-        console.error(e)
-      } finally {
-        general.loadingEventSubtract()
-      }
+      if (logs.value.length > 0) return
+      await withLoading(async () => {
+        setLogs(await getLogs())
+      })
     }
 
-    // 一言
+    // 一言（已有数据则跳过）
     async function fetchYiYan() {
       if (hitokoto.value) return
-      const general = useGeneralStore()
-      general.loadingEventAdd()
-      try {
+      await withLoading(async () => {
         const data = await getYiYan()
         setHitokoto(data.hitokoto)
-        setFrom(data.from)
-      } catch (e) {
-        console.error(e)
-      } finally {
-        general.loadingEventSubtract()
-      }
+        setYiYanSource(data.from)
+      })
     }
 
-    // 热力图
+    // 热力图（已有数据则跳过）
     async function fetchHeatmap() {
-      if (heatmapDatas.value.length > 0) return
-      const general = useGeneralStore()
-      general.loadingEventAdd()
-      try {
+      if (heatmapData.value.length > 0) return
+      await withLoading(async () => {
         const data = await getHeatmapDatas()
-        setHeatmapDatas(data.heatmapData)
-        setHeatmapDatasSum(data.totalContributions)
-      } catch (e) {
-        console.error(e)
-      } finally {
-        general.loadingEventSubtract()
-      }
+        setHeatmapData(data.heatmapData)
+        setHeatmapTotal(data.totalContributions)
+      })
     }
 
     return {
+      // 壁纸
       backgroundMode,
       backgroundSrc,
       bingBackground,
       backgroundMessage,
 
+      // 头像
       avatarSrc,
-      avatarRotateStatus,
+      isAvatarFlipped,
       avatarClickCount,
       avatarBackText,
       avatarBackColor,
 
-      logDatas,
+      // 日志
+      logs,
 
-      datetime,
+      // 时间
+      currentTime,
 
+      // 一言
       hitokoto,
-      from,
+      yiYanSource,
 
-      heatmapDatas,
-      heatmapDatasSum,
+      // 热力图
+      heatmapData,
+      heatmapTotal,
 
+      // setters
       setBackgroundMode,
       setBackgroundSrc,
       setBingBackground,
       setBackgroundMessage,
-
       setAvatarSrc,
-      setAvatarRotateStatus,
+      setAvatarFlipped,
       avatarClickCountAdd,
       setAvatarBackText,
       setAvatarBackColor,
-
-      setLogDatas,
-
-      setDatetime,
-
+      setLogs,
+      setCurrentTime,
       setHitokoto,
-      setFrom,
+      setYiYanSource,
+      setHeatmapData,
+      setHeatmapTotal,
 
-      setHeatmapDatas,
-      setHeatmapDatasSum,
-
+      // fetch actions
       fetchBackground,
       fetchLogs,
       fetchYiYan,

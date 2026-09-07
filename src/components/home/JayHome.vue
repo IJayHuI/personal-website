@@ -1,4 +1,11 @@
 <script setup lang="ts">
+/**
+ * 首页主容器
+ * 组合所有首页子组件，负责：
+ * - 拉取壁纸/日志/一言/热力图数据
+ * - 背景模糊→清晰的滚动动画（gsap ScrollTrigger）
+ * - 桌面端/移动端两套布局
+ */
 import { onMounted, onUnmounted, watch } from 'vue'
 import { gsap } from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
@@ -30,6 +37,7 @@ let tl: gsap.core.Timeline | null = null
 
 gsap.registerPlugin(ScrollTrigger)
 
+// 创建背景滚动动画：随滚动从模糊+放大 过渡到 清晰+正常大小
 const createBackgroundAnimation = () => {
   tl?.kill()
   tl = null
@@ -56,14 +64,17 @@ const createBackgroundAnimation = () => {
     )
 }
 
+// 挂载时创建动画 + 拉取壁纸
 onMounted(() => {
   createBackgroundAnimation()
   home.fetchBackground(home.backgroundMode)
 })
+// 卸载时销毁时间线
 onUnmounted(() => {
   tl?.kill()
   tl = null
 })
+// 主题/设备变化时重建动画（参数依赖 isDark/isMobile）
 watch(() => general.isDark, createBackgroundAnimation)
 watch(() => general.isMobile, createBackgroundAnimation)
 </script>

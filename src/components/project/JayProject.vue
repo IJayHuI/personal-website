@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 项目页主容器
+ * 桌面端：顶部 header + 内容区；移动端：顶部 header + 底部返回栏
+ */
 import { onMounted } from 'vue'
 import { HomeRound } from '@vicons/material'
 import projectTheme from '../../theme/project.json'
@@ -13,7 +17,7 @@ const project = useProjectStore()
 const appVersion = __APP_VERSION__
 
 onMounted(() => {
-  project.fetchProjectDatas()
+  project.fetchProjects()
 })
 </script>
 

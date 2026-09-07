@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 壁纸介绍卡片
+ * 说明壁纸来源（Bing），提供前往必应壁纸和全屏打开背景的链接
+ */
 import { useHomeStore } from '../../stores'
 
 const home = useHomeStore()

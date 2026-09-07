@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 滚动提示箭头
+ * 首页底部向上浮动的箭头，提示用户上滑查看更多内容
+ */
 import { ArrowUpwardRound } from '@vicons/material'
 
 withDefaults(

@@ -1,10 +1,15 @@
 <script setup lang="ts">
+/**
+ * 主题切换卡片
+ * 提供 暗色 / 跟随系统 / 浅色 三个按钮，点击切换 general.themeMode
+ */
 import { ContrastRound } from '@vicons/material'
 import type { ThemeMode } from '../../types/theme'
 import { useGeneralStore } from '../../stores'
 
 const general = useGeneralStore()
 
+// 切换主题模式
 const setThemeMode = (mode: ThemeMode) => {
   general.setThemeMode(mode)
 }

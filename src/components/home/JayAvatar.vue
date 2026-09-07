@@ -1,13 +1,19 @@
 <script setup lang="ts">
+/**
+ * 头像组件
+ * 点击翻转显示背面，背面文字/颜色随点击次数变化（彩蛋）
+ */
 import { UTurnLeftRound } from '@vicons/material'
 import { useHomeStore } from '../../stores'
 import homeConfig from '../../configs/home.json'
 
 const home = useHomeStore()
 
+// 翻转头像（正面/背面切换）
 const setRotateStatus = () => {
-  home.avatarRotateStatus = !home.avatarRotateStatus
+  home.isAvatarFlipped = !home.isAvatarFlipped
 }
+// 点击头像背面：计数 +1，随机切换背面颜色和文字
 const avatarBackClick = () => {
   home.avatarClickCountAdd()
   const colors = homeConfig.avatar.backColor
@@ -24,8 +30,8 @@ const avatarBackClick = () => {
 </script>
 <template>
   <div v-interaction class="w-full *:duration-500 *:transition-transform *:backface-hidden *:rounded-full *:absolute *:h-full *:w-full aspect-square perspective-normal">
-    <img :class="` ${home.avatarRotateStatus ? '-rotate-y-180' : ''}`" src="/avatar.jpg" />
-    <div class="overflow-hidden flex justify-center items-center rotate-y-180" :class="home.avatarRotateStatus ? '!rotate-y-0' : ''" @click="avatarBackClick">
+    <img :class="` ${home.isAvatarFlipped ? '-rotate-y-180' : ''}`" src="/avatar.jpg" />
+    <div class="overflow-hidden flex justify-center items-center rotate-y-180" :class="home.isAvatarFlipped ? '!rotate-y-0' : ''" @click="avatarBackClick">
       <div class="w-full h-full absolute" :style="`background-image: linear-gradient(${home.avatarBackColor})`"></div>
       <p class="z-9 text-2xl">{{ home.avatarBackText }}</p>
     </div>

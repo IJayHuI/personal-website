@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 关于页第四屏：开往（travelling）介绍
+ * 说明 travelling 是什么，本站暂未接入
+ */
 import { useGeneralStore } from '../../stores'
 
 const general = useGeneralStore()

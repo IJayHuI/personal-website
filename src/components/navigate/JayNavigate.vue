@@ -14,15 +14,17 @@ const navigate = useNavigateStore()
 
 const appVersion: string = __APP_VERSION__
 
+// 搜索：更新关键词，计算匹配的分组和站点并高亮
 const updateValue = (v: string) => {
-  navigate.setInputBox(v)
-  const result = search(navigate.navigateContent, v)
-  navigate.setExpandedCategory(result.groupIds)
-  navigate.setHighlightItems(result.items)
+  navigate.setSearchKeyword(v)
+  const result = search(navigate.groups, v)
+  navigate.setExpandedGroupIds(result.groupIds)
+  navigate.setHighlightedItemIds(result.items)
 }
 
+// 打开移动端菜单抽屉
 const openMenuDrawer = () => {
-  navigate.setMenuDrawerStatus(true)
+  navigate.setMenuDrawerOpen(true)
 }
 
 onMounted(() => {
@@ -45,7 +47,7 @@ onMounted(() => {
           size="large"
           class="!max-w-64"
           @update:value="updateValue"
-          :value="navigate.inputBox"
+          :value="navigate.searchKeyword"
           type="text"
           placeholder="搜索"
           clearable
@@ -92,7 +94,7 @@ onMounted(() => {
           <n-input
             size="large"
             @update:value="updateValue"
-            :value="navigate.inputBox"
+            :value="navigate.searchKeyword"
             type="text"
             placeholder="搜索"
             clearable

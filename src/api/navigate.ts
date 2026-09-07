@@ -4,6 +4,11 @@ import * as icons from '@vicons/material'
 import { renderIcon } from '../utils/render-icon'
 import type { NavigateGroup } from '../types/navigate'
 
+/**
+ * 获取导航数据（从 Supabase navigate_groups 表查询）
+ * - 成功：返回 { menuOptions, navigateContent }
+ * - 失败：throw
+ */
 export async function getNavigateDatas() {
   const { data, error } = await supabase
     .from('navigate_groups')

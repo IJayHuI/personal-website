@@ -26,15 +26,16 @@ const menuOptions = computed<MenuOption[]>(() =>
   defaultMenuOptions.concat(navigate.menuOptions as MenuOption[])
 )
 
+// 点击菜单项：展开所有 / 关闭所有 / 切换单个分组
 const updateExpandedCategory = (key: number | string) => {
   if (key === 'expandedAll')
-    navigate.setExpandedCategory(navigate.navigateContent.map((group) => group.id))
-  else if (key === 'closeAll') navigate.setExpandedCategory([])
-  else navigate.setExpandedCategory([key as number])
+    navigate.setExpandedGroupIds(navigate.groups.map((group) => group.id))
+  else if (key === 'closeAll') navigate.setExpandedGroupIds([])
+  else navigate.setExpandedGroupIds([key as number])
 }
 
 const closeDrawer = () => {
-  navigate.setMenuDrawerStatus(false)
+  navigate.setMenuDrawerOpen(false)
 }
 </script>
 
@@ -47,7 +48,7 @@ const closeDrawer = () => {
   />
   <n-drawer
     v-else
-    :show="navigate.menuDrawerStatus"
+    :show="navigate.isMenuDrawerOpen"
     height="50%"
     placement="bottom"
     @update:show="closeDrawer"

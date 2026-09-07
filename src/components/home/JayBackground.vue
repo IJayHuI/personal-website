@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 背景壁纸组件
+ * 展示全屏背景图，桌面端跟随鼠标移动做视差效果（gsap）
+ */
 import { onMounted, onUnmounted, ref, watch } from 'vue'
 import gsap from 'gsap'
 import { useGeneralStore, useHomeStore } from '../../stores'
@@ -9,6 +13,7 @@ const home = useHomeStore()
 
 const background = ref<HTMLImageElement | null>(null)
 
+// 鼠标移动时，背景图做小幅视差偏移
 const handleMouseMove = (e: MouseEvent) => {
   if (!background.value) return
   const { targetX, targetY } = calculateMouseMove(e, 20)
@@ -20,12 +25,14 @@ const handleMouseMove = (e: MouseEvent) => {
   })
 }
 
+// 桌面端才启用鼠标视差
 onMounted(() => {
   if (!general.isMobile) window.addEventListener('mousemove', handleMouseMove)
 })
 onUnmounted(() => {
   window.removeEventListener('mousemove', handleMouseMove)
 })
+// 设备类型变化时动态添加/移除鼠标监听
 watch(
   () => general.isMobile,
   (isMobile) => {

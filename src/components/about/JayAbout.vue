@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 关于页主容器
+ * 全屏滚动切换 4 个 section（gsap Observer），右侧 dots 指示器
+ */
 import { HomeRound } from '@vicons/material'
 import gsap from 'gsap'
 import Observer from 'gsap/Observer'

@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 项目卡片网格
+ * 展示所有项目，每个卡片含封面/名称/兼容性/简介 + Github/网页链接
+ */
 import { useProjectStore } from '../../stores'
 
 const project = useProjectStore()
@@ -6,7 +10,7 @@ const project = useProjectStore()
 
 <template>
   <div class="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-4">
-    <n-card v-for="item in project.projectDatas" :key="item.id">
+    <n-card v-for="item in project.projects" :key="item.id">
       <template #cover>
         <img :src="item.image" :alt="item.name" />
       </template>

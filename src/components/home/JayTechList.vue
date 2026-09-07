@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 技术栈标签列表
+ * 展示所用技术栈，每个标签是一个外链按钮
+ */
 import homeConfig from '../../configs/home.json'
 </script>
 <template>

@@ -1,3 +1,4 @@
+<!-- 关于页第一屏：项目介绍 -->
 <template>
   <img class="absolute w-full h-full object-cover" src="/local-background/background1.jpg" />
   <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/30"></div>

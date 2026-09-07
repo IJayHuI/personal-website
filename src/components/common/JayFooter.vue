@@ -1,7 +1,9 @@
 <script setup lang="ts">
-defineProps<{
-  appVersion?: string
-}>()
+/**
+ * 页脚
+ * 展示版权信息和版本号
+ */
+defineProps<{ appVersion: string }>()
 </script>
 <template>
   <span>&copy; 2024-2026 JayHu.</span>
