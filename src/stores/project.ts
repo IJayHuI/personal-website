@@ -1,23 +1,35 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Project } from '../types/project'
+import { useGeneralStore } from './general'
+import { getProjectDatas } from '../api'
 
 export const useProjectStore = defineStore('project', () => {
-  const needGetDatas = ref(true)
   const projectDatas = ref<Project[]>([])
 
-  function setNeedGetDatas(v: boolean) {
-    needGetDatas.value = v
-  }
   function setProjectDatas(v: Project[]) {
     projectDatas.value = v
   }
 
+  // 拉取项目数据（已有数据则跳过）
+  async function fetchProjectDatas() {
+    if (projectDatas.value.length > 0) return
+    const general = useGeneralStore()
+    general.loadingEventAdd()
+    try {
+      setProjectDatas(await getProjectDatas())
+    } catch (e) {
+      console.error(e)
+    } finally {
+      general.loadingEventSubtract()
+    }
+  }
+
   return {
-    needGetDatas,
     projectDatas,
 
-    setNeedGetDatas,
-    setProjectDatas
+    setProjectDatas,
+
+    fetchProjectDatas
   }
 })

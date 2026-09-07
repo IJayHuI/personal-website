@@ -2,14 +2,14 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { MenuOption } from 'naive-ui'
 import type { NavigateItem, NavigateGroup } from '../types/navigate'
+import { useGeneralStore } from './general'
+import { getNavigateDatas } from '../api'
 
 export const useNavigateStore = defineStore('navigate', () => {
-  const needGetDatas = ref(true)
-
   // 搜索框
   const inputBox = ref('')
 
-  // 菜单
+  // 菜单（仅 API 返回的部分，defaultMenuOptions 由组件层拼接）
   const menuOptions = ref<MenuOption[]>([])
 
   // 内容
@@ -25,9 +25,6 @@ export const useNavigateStore = defineStore('navigate', () => {
 
   function setInputBox(v: string) {
     inputBox.value = v
-  }
-  function setNeedGetDatas(v: boolean) {
-    needGetDatas.value = v
   }
   function setMenuOptions(options: MenuOption[]) {
     menuOptions.value = options
@@ -60,8 +57,33 @@ export const useNavigateStore = defineStore('navigate', () => {
     menuDrawerStatus.value = v
   }
 
+  // 拉取导航数据（已有数据则跳过）
+  async function fetchNavigateDatas() {
+    if (navigateContent.value.length > 0) return
+    const general = useGeneralStore()
+    general.loadingEventAdd()
+    try {
+      const response = await getNavigateDatas()
+      setMenuOptions(response.menuOptions)
+      setExpandedCategory(
+        response.menuOptions
+          .map((item) => item.key)
+          .filter((key): key is number => typeof key === 'number')
+      )
+      setNavigateContent(response.navigateContent)
+      setHighlightItems(
+        response.navigateContent.flatMap((group) =>
+          group.groupItems.map((item) => item.id)
+        )
+      )
+    } catch (e) {
+      console.error(e)
+    } finally {
+      general.loadingEventSubtract()
+    }
+  }
+
   return {
-    needGetDatas,
     inputBox,
     menuOptions,
     expandedCategory,
@@ -74,7 +96,6 @@ export const useNavigateStore = defineStore('navigate', () => {
     menuDrawerStatus,
 
     setInputBox,
-    setNeedGetDatas,
     setMenuOptions,
     setExpandedCategory,
     addExpandedCategory,
@@ -84,6 +105,8 @@ export const useNavigateStore = defineStore('navigate', () => {
     setDrawerGroup,
     setDrawerItem,
     setContentDrawerStatus,
-    setMenuDrawerStatus
+    setMenuDrawerStatus,
+
+    fetchNavigateDatas
   }
 })

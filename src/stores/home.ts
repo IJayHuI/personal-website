@@ -7,6 +7,9 @@ import type {
   YiYanData,
   HeatmapData
 } from '../types/home'
+import { useGeneralStore } from './general'
+import { getBingBackground, getLogs, getYiYan, getHeatmapDatas } from '../api'
+import { getLocalBackgroundImage } from '../utils'
 
 export const useHomeStore = defineStore(
   'home',
@@ -20,7 +23,6 @@ export const useHomeStore = defineStore(
       copyright: ''
     })
     const backgroundMessage = ref('')
-    const needGetBackground = ref(true)
 
     // 头像
     const avatarSrc = ref('')
@@ -31,7 +33,6 @@ export const useHomeStore = defineStore(
 
     // 日志
     const logDatas = ref<LogData[]>([])
-    const needGetLogDatas = ref(true)
 
     // 日期时间
     const datetime = ref(new Date())
@@ -39,12 +40,10 @@ export const useHomeStore = defineStore(
     // 一言
     const hitokoto = ref('')
     const from = ref('')
-    const needGetHitokoto = ref(true)
 
     // 热力图
     const heatmapDatas = ref<HeatmapData[]>([])
     const heatmapDatasSum = ref(0)
-    const needGetHeatmapDatas = ref(true)
 
     // --- setters（壁纸）---
     function setBackgroundMode(v: BackgroundMode) {
@@ -58,9 +57,6 @@ export const useHomeStore = defineStore(
     }
     function setBackgroundMessage(v: string) {
       backgroundMessage.value = v
-    }
-    function setNeedGetBackground(v: boolean) {
-      needGetBackground.value = v
     }
 
     // --- setters（头像）---
@@ -84,9 +80,6 @@ export const useHomeStore = defineStore(
     function setLogDatas(v: LogData[]) {
       logDatas.value = v
     }
-    function setNeedGetLogDatas(v: boolean) {
-      needGetLogDatas.value = v
-    }
 
     // --- setters（时间）---
     function setDatetime(v: Date) {
@@ -100,9 +93,6 @@ export const useHomeStore = defineStore(
     function setFrom(v: string) {
       from.value = v
     }
-    function setNeedGetHitokoto(v: boolean) {
-      needGetHitokoto.value = v
-    }
 
     // --- setters（热力图）---
     function setHeatmapDatas(v: HeatmapData[]) {
@@ -111,8 +101,82 @@ export const useHomeStore = defineStore(
     function setHeatmapDatasSum(v: number) {
       heatmapDatasSum.value = v
     }
-    function setNeedGetHeatmapDatas(v: boolean) {
-      needGetHeatmapDatas.value = v
+
+    // --- fetch actions ---
+
+    // 壁纸：bing 有缓存则直接用，否则请求；失败降级到 local
+    async function fetchBackground(mode: BackgroundMode) {
+      const general = useGeneralStore()
+      general.loadingEventAdd()
+      try {
+        if (mode === 'local') {
+          setBackgroundSrc(getLocalBackgroundImage())
+          setBackgroundMessage('现在使用站内壁纸作为背景')
+          return
+        }
+        if (bingBackground.value.src) {
+          setBackgroundSrc(bingBackground.value.src)
+          setBackgroundMessage('现在使用 Bing 作为背景')
+          return
+        }
+        try {
+          const bing = await getBingBackground()
+          setBingBackground(bing)
+          setBackgroundSrc(bing.src)
+          setBackgroundMessage('现在使用 Bing 作为背景')
+        } catch {
+          setBackgroundSrc(getLocalBackgroundImage())
+          setBackgroundMessage('获取 Bing 图片失败，已切换为站内壁纸')
+        }
+      } finally {
+        general.loadingEventSubtract()
+      }
+    }
+
+    // 日志
+    async function fetchLogs() {
+      if (logDatas.value.length > 0) return
+      const general = useGeneralStore()
+      general.loadingEventAdd()
+      try {
+        setLogDatas(await getLogs())
+      } catch (e) {
+        console.error(e)
+      } finally {
+        general.loadingEventSubtract()
+      }
+    }
+
+    // 一言
+    async function fetchYiYan() {
+      if (hitokoto.value) return
+      const general = useGeneralStore()
+      general.loadingEventAdd()
+      try {
+        const data = await getYiYan()
+        setHitokoto(data.hitokoto)
+        setFrom(data.from)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        general.loadingEventSubtract()
+      }
+    }
+
+    // 热力图
+    async function fetchHeatmap() {
+      if (heatmapDatas.value.length > 0) return
+      const general = useGeneralStore()
+      general.loadingEventAdd()
+      try {
+        const data = await getHeatmapDatas()
+        setHeatmapDatas(data.heatmapData)
+        setHeatmapDatasSum(data.totalContributions)
+      } catch (e) {
+        console.error(e)
+      } finally {
+        general.loadingEventSubtract()
+      }
     }
 
     return {
@@ -120,7 +184,6 @@ export const useHomeStore = defineStore(
       backgroundSrc,
       bingBackground,
       backgroundMessage,
-      needGetBackground,
 
       avatarSrc,
       avatarRotateStatus,
@@ -129,23 +192,19 @@ export const useHomeStore = defineStore(
       avatarBackColor,
 
       logDatas,
-      needGetLogDatas,
 
       datetime,
 
       hitokoto,
       from,
-      needGetHitokoto,
 
       heatmapDatas,
       heatmapDatasSum,
-      needGetHeatmapDatas,
 
       setBackgroundMode,
       setBackgroundSrc,
       setBingBackground,
       setBackgroundMessage,
-      setNeedGetBackground,
 
       setAvatarSrc,
       setAvatarRotateStatus,
@@ -154,17 +213,19 @@ export const useHomeStore = defineStore(
       setAvatarBackColor,
 
       setLogDatas,
-      setNeedGetLogDatas,
 
       setDatetime,
 
       setHitokoto,
       setFrom,
-      setNeedGetHitokoto,
 
       setHeatmapDatas,
       setHeatmapDatasSum,
-      setNeedGetHeatmapDatas
+
+      fetchBackground,
+      fetchLogs,
+      fetchYiYan,
+      fetchHeatmap
     }
   },
   {
