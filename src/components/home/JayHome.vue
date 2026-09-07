@@ -39,7 +39,7 @@ const createBackgroundAnimation = () => {
         trigger: '#show-background',
         start: 'top 100%',
         end: 'top 0',
-        scrub: 0.6
+        scrub: 0.8
       }
     })
     .fromTo(
@@ -50,7 +50,8 @@ const createBackgroundAnimation = () => {
       },
       {
         filter: `blur(0px) brightness(100%)`,
-        scale: general.isMobile ? 1 : 1.15
+        scale: general.isMobile ? 1 : 1.15,
+        ease: 'none'
       }
     )
 }
