@@ -1,14 +1,23 @@
 import { defineStore } from 'pinia'
+import { ref } from 'vue'
+import type { Project } from '../types/project'
 
-/**
- * 项目列表 store
- *
- * 阶段 2：仅创建空壳
- * 阶段 3 将填充：
- *   - state: needGetDatas / projectDatas
- *   - actions: setNeedGetDatas / setProjectDatas / fetchProjects（调 api 层）
- *   - 持久化: 无
- */
 export const useProjectStore = defineStore('project', () => {
-  return {}
+  const needGetDatas = ref(true)
+  const projectDatas = ref<Project[]>([])
+
+  function setNeedGetDatas(v: boolean) {
+    needGetDatas.value = v
+  }
+  function setProjectDatas(v: Project[]) {
+    projectDatas.value = v
+  }
+
+  return {
+    needGetDatas,
+    projectDatas,
+
+    setNeedGetDatas,
+    setProjectDatas
+  }
 })
