@@ -21,7 +21,12 @@ import {
   NSpace,
   NMessageProvider,
   NScrollbar,
-  NCarousel
+  NCarousel,
+  NTimeline,
+  NTimelineItem,
+  NHeatmap,
+  NAvatar,
+  NInput
 } from 'naive-ui'
 import 'vfonts/Lato.css'
 import router from './router'
@@ -55,7 +60,12 @@ const naive = create({
     NSpace,
     NMessageProvider,
     NScrollbar,
-    NCarousel
+    NCarousel,
+    NTimeline,
+    NTimelineItem,
+    NHeatmap,
+    NAvatar,
+    NInput
   ]
 })
 
