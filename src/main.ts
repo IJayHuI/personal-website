@@ -32,7 +32,7 @@ import {
 import 'vfonts/Lato.css'
 import router from './router'
 import slideIn from './directives/slide-in'
-import interaction from './directives/interaction'
+import magnetic from './directives/magnetic'
 import App from './App.vue'
 import './style.css'
 
@@ -76,5 +76,5 @@ createApp(App)
   .use(router)
   .use(naive)
   .directive('slide-in', slideIn)
-  .directive('interaction', interaction)
+  .directive('magnetic', magnetic)
   .mount('#app')
