@@ -15,28 +15,18 @@ import { gsap } from 'gsap'
 import { isMobile } from '../utils'
 
 // ===== 可配置常量 =====
-const CORNER_SIZE = 12          // 每个角框尺寸 px
-const CORNER_BORDER = 2         // 边框宽度 px
-const CORNER_RADIUS = 4         // 角框圆角 px
-const POINTER_SIZE = 32         // 默认光标容器尺寸 px
-const DOT_SIZE = 4              // 中心圆点直径 px
-const HOVER_SCALE_MIN = 1.15  // 小元素最大缩放比例
-const HOVER_SCALE_MAX = 1.02  // 大元素最小缩放比例
-const SCALE_REF_SIZE = 200    // 参考尺寸 px：小于此值用更大比例，大于则用更小比例
-const HOVER_PADDING = 8         // hover 时光标与目标元素的间距 px（每侧）
-const ACTIVE_PADDING = 2        // active 时光标与目标元素的间距 px（每侧）
-const DAMPING = 0.1             // hover 时外框跟随鼠标的阻尼系数
-const FOLLOW_DURATION = 0.15    // 外框缓动跟随时长 s
+const CORNER_SIZE = 12 // 每个角框尺寸 px
+const CORNER_BORDER = 2 // 边框宽度 px
+const CORNER_RADIUS = 4 // 角框圆角 px
+const POINTER_SIZE = 32 // 默认光标容器尺寸 px
+const DOT_SIZE = 6 // 中心圆点直径 px
+const HOVER_SCALE_MIN = 1.15 // 小元素最大缩放比例
+const HOVER_SCALE_MAX = 1.02 // 大元素最小缩放比例
+const HOVER_PADDING = 8 // hover 时光标与目标元素的间距 px（每侧）
+const ACTIVE_PADDING = 2 // active 时光标与目标元素的间距 px（每侧）
+const DAMPING = 0.1 // hover 时外框跟随鼠标的阻尼系数
+const FOLLOW_DURATION = 0.15 // 外框缓动跟随时长 s
 const TRANSITION_DURATION = 0.3 // 尺寸过渡时长 s
-
-/** 根据元素尺寸动态计算缩放比例：越小放大越多，越大放大越少 */
-function getDynamicScale(el: HTMLElement): number {
-  const rect = el.getBoundingClientRect()
-  const size = Math.max(rect.width, rect.height)
-  if (size <= 0) return HOVER_SCALE_MAX
-  const ratio = Math.min(1, size / SCALE_REF_SIZE)
-  return HOVER_SCALE_MIN + (HOVER_SCALE_MAX - HOVER_SCALE_MIN) * ratio
-}
 
 interface MagneticEl extends HTMLElement {
   _enter?: () => void
@@ -45,17 +35,29 @@ interface MagneticEl extends HTMLElement {
 }
 
 // ===== 单例光标状态 =====
-let pointerEl: HTMLElement | null = null   // 光标容器（四个角的父元素）
-let dotEl: HTMLElement | null = null       // 中心圆点
-let xTo: gsap.QuickToFunc | null = null    // 外框 X 缓动
-let yTo: gsap.QuickToFunc | null = null    // 外框 Y 缓动
+let pointerEl: HTMLElement | null = null // 光标容器（四个角的父元素）
+let dotEl: HTMLElement | null = null // 中心圆点
+let xTo: gsap.QuickToFunc | null = null // 外框 X 缓动
+let yTo: gsap.QuickToFunc | null = null // 外框 Y 缓动
 let xToDot: gsap.QuickToFunc | null = null // 圆点 X 即时跟随
 let yToDot: gsap.QuickToFunc | null = null // 圆点 Y 即时跟随
 let currentTarget: HTMLElement | null = null
-let isActive = false                       // mousedown 状态
-let lastMouseX = 0                         // 最近一次鼠标 X 坐标
-let lastMouseY = 0                         // 最近一次鼠标 Y 坐标
+let isActive = false // mousedown 状态
+let lastMouseX = 0 // 最近一次鼠标 X 坐标
+let lastMouseY = 0 // 最近一次鼠标 Y 坐标
 let cursorStyleEl: HTMLStyleElement | null = null // 全局 cursor:none 样式
+
+/** 根据元素尺寸动态计算缩放比例：越小放大越多，越大放大越少 */
+function getDynamicScale(el: HTMLElement): number {
+  const size = el.getBoundingClientRect().width
+  const minSize = 30
+  const maxSize = 800
+  if (size <= minSize) return HOVER_SCALE_MIN
+  if (size >= maxSize) return HOVER_SCALE_MAX
+  const progress = (size - minSize) / (maxSize - minSize)
+  console.log( HOVER_SCALE_MIN + (HOVER_SCALE_MAX - HOVER_SCALE_MIN) * progress)
+  return HOVER_SCALE_MIN + (HOVER_SCALE_MAX - HOVER_SCALE_MIN) * progress
+}
 
 /** 创建光标元素（单例，仅桌面端） */
 function ensurePointer() {
@@ -74,7 +76,7 @@ function ensurePointer() {
   `
 
   // 四个角框 — 白色边框 + 黑色描边（drop-shadow 只描实际渲染的边，不影响 none 边）
-  const cornerBase = `position:absolute;width:${CORNER_SIZE}px;height:${CORNER_SIZE}px;border:${CORNER_BORDER}px solid white;filter:drop-shadow(0 0 2px black);`
+  const cornerBase = `position:absolute;width:${CORNER_SIZE}px;height:${CORNER_SIZE}px;border:${CORNER_BORDER}px solid white;filter:drop-shadow(0 0 3px black);`
   const cornerStyles: Record<string, string> = {
     tl: `top:0;left:0;border-right:none;border-bottom:none;border-top-left-radius:${CORNER_RADIUS}px;`,
     tr: `top:0;right:0;border-left:none;border-bottom:none;border-top-right-radius:${CORNER_RADIUS}px;`,
@@ -95,7 +97,7 @@ function ensurePointer() {
     width: ${DOT_SIZE}px;
     height: ${DOT_SIZE}px;
     background: white;
-    box-shadow: 0 0 0 1px black;
+    filter:drop-shadow(0 0 3px black);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
