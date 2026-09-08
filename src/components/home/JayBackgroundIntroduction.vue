@@ -22,8 +22,8 @@ withDefaults(
     <p>本站使用 Bing 必应壁纸作为网页背景。如果无法正常访问则使用站内图片代替。</p>
     <template #action>
       <n-space>
-        <n-button v-magnetic secondary round tag="a" target="_blank" href="https://www.todaybing.com/">前往必应壁纸查看更多</n-button>
-        <n-button v-magnetic secondary round tag="a" target="_blank" :href="home.bingBackground.src">全屏打开背景</n-button>
+        <n-button v-interaction v-magnetic secondary round tag="a" target="_blank" href="https://www.todaybing.com/">前往必应壁纸查看更多</n-button>
+        <n-button v-interaction v-magnetic secondary round tag="a" target="_blank" :href="home.bingBackground.src">全屏打开背景</n-button>
       </n-space>
     </template>
   </n-card>

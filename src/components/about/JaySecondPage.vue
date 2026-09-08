@@ -41,7 +41,7 @@
     <p class="mt-4 font-medium">今日壁纸：{{ home.bingBackground.title }}</p>
     <p>{{ home.bingBackground.copyright }}</p>
     <n-space justify="center">
-      <n-button v-magnetic class="!text-white" size="large" secondary @click="openTodayBing">
+      <n-button v-interaction v-magnetic class="!text-white" size="large" secondary @click="openTodayBing">
         <template #icon>
           <n-icon>
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +53,7 @@
         </template>
         前往必应壁纸查看更多
       </n-button>
-      <n-button v-magnetic class="!text-white" size="large" secondary :render-icon="renderIcon(RemoveRedEyeRound)" @click="showImages = true">查看所有壁纸</n-button>
+      <n-button v-interaction v-magnetic class="!text-white" size="large" secondary :render-icon="renderIcon(RemoveRedEyeRound)" @click="showImages = true">查看所有壁纸</n-button>
     </n-space>
   </div>
   <n-image-group v-model:show="showImages" :src-list="backgroundList" />

@@ -16,7 +16,7 @@ onBeforeMount(() => {
 </script>
 <template>
   <div class="flex flex-col gap-2">
-    <n-button v-magnetic secondary class="!w-full whitespace-normal !text-wrap" size="large" tag="a" target="_blank" href="https://github.com/IJayHuI/personal-website/releases/">前往 Github Realeases 查看更详细信息</n-button>
+    <n-button v-interaction v-magnetic secondary class="!w-full whitespace-normal !text-wrap" size="large" tag="a" target="_blank" href="https://github.com/IJayHuI/personal-website/releases/">前往 Github Realeases 查看更详细信息</n-button>
     <n-scrollbar x-scrollable>
       <div class="w-max">
         <n-timeline horizontal class="mb-3">

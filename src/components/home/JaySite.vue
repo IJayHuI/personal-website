@@ -39,7 +39,7 @@ const renderIcon = (icon: string): Component => {
     <n-carousel show-arrow :slides-per-view="3" :space-between="8" class="pb-12">
       <template v-for="site in homeConfig.sites" :key="site.router">
         <router-link v-if="site.type === 'router' && site.router" :to="site.router">
-          <n-card size="small" content-class="flex justify-center items-center gap-2 flex-col">
+          <n-card v-interaction size="small" content-class="flex justify-center items-center gap-2 flex-col">
             <n-icon :size="27"><component :is="renderIcon(site.icon)" /></n-icon>
             <p class="text-base">{{ site.name }}</p>
           </n-card>
@@ -47,7 +47,7 @@ const renderIcon = (icon: string): Component => {
     </template>
     <template v-for="link in homeConfig.sites" :key="link.link">
       <a v-if="link.type === 'link' && link.link" :href="link.link" target="_blank">
-          <n-card class="w-full h-full" size="small" content-class="flex justify-center items-center gap-2 flex-col">
+          <n-card v-interaction class="w-full h-full" size="small" content-class="flex justify-center items-center gap-2 flex-col">
             <n-icon :size="27"><component :is="renderIcon(link.icon)" /></n-icon>
             <p class="text-base">{{ link.name }}</p>
           </n-card>

@@ -35,7 +35,7 @@ const avatarBackClick = () => {
       <div class="w-full h-full absolute" :style="`background-image: linear-gradient(${home.avatarBackColor})`"></div>
       <p class="z-9 text-2xl">{{ home.avatarBackText }}</p>
     </div>
-    <n-button v-magnetic @click.stop @click="setRotateStatus" size="large" type="info" circle class="z-9 !absolute right-6 bottom-6">
+    <n-button v-magnetic v-interaction @click.stop @click="setRotateStatus" size="large" type="info" circle class="z-9 !absolute right-6 bottom-6">
       <n-icon>
         <UTurnLeftRound />
       </n-icon>
