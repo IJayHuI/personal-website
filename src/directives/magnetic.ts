@@ -55,7 +55,6 @@ function getDynamicScale(el: HTMLElement): number {
   if (size <= minSize) return HOVER_SCALE_MIN
   if (size >= maxSize) return HOVER_SCALE_MAX
   const progress = (size - minSize) / (maxSize - minSize)
-  console.log( HOVER_SCALE_MIN + (HOVER_SCALE_MAX - HOVER_SCALE_MIN) * progress)
   return HOVER_SCALE_MIN + (HOVER_SCALE_MAX - HOVER_SCALE_MIN) * progress
 }
 
@@ -181,8 +180,8 @@ function handleMouseDown() {
   } else if (pointerEl) {
     // 非 hover：缩小默认光标尺寸
     gsap.to(pointerEl, {
-      width: POINTER_SIZE * 0.6,
-      height: POINTER_SIZE * 0.6,
+      width: POINTER_SIZE * 0.8,
+      height: POINTER_SIZE * 0.8,
       duration: TRANSITION_DURATION,
       ease: 'power3.out',
       overwrite: 'auto'
