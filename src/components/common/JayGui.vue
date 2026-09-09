@@ -75,13 +75,5 @@ onBeforeUnmount(() => {
   <router-view v-slot="{ Component }">
     <component :is="Component" :key="$route.fullPath" class="!absolute inset-0" />
   </router-view>
-  <n-spin
-    v-if="general.loading.status"
-    :size="200"
-    :rotate="false"
-    :class="['fixed inset-0 z-50', general.isDark ? 'bg-black' : 'bg-white']"
-  >
-    <template #icon><jay-loading :is-dark="general.isDark" /></template>
-    <template #description>{{ general.loading.text }}</template>
-  </n-spin>
+  <jay-loading />
 </template>
