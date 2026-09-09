@@ -6,7 +6,7 @@
 import homeConfig from '../../configs/home.json'
 </script>
 <template>
-  <n-button round secondary size="small" v-for="item in homeConfig.techList" tag="a" :href="item.href" target="_blank">
+  <n-button v-interaction v-magnetic round secondary size="small" v-for="item in homeConfig.techList" tag="a" :href="item.href" target="_blank">
     {{ item.name }}
   </n-button>
 </template>

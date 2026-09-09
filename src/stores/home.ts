@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import type { BackgroundMode } from '../types/theme'
 import type { BingBackground, LogData, YiYanData, HeatmapData } from '../types/home'
 import { getBingBackground, getLogs, getYiYan, getHeatmapDatas } from '../api'
-import { getLocalBackgroundImage, withLoading } from '../utils'
+import { getLocalBackgroundImage, withLoading, preloadImage } from '../utils'
 
 /**
  * 首页 store
@@ -119,22 +119,26 @@ export const useHomeStore = defineStore(
 
     // 壁纸：local 直接用站内图；bing 有缓存则用缓存，否则请求 Bing，失败降级到 local
     async function fetchBackground(mode: BackgroundMode) {
+      // local 模式或 bing 已有缓存：无需网络请求，直接设置并返回
+      if (mode === 'local') {
+        setBackgroundSrc(getLocalBackgroundImage())
+        setBackgroundMessage('现在使用站内壁纸作为背景')
+        return
+      }
+      if (bingBackground.value.src) {
+        setBackgroundSrc(bingBackground.value.src)
+        setBackgroundMessage('现在使用 Bing 作为背景')
+        return
+      }
+      // 首次加载 Bing 壁纸：走 withLoading
       await withLoading(async () => {
-        if (mode === 'local') {
-          setBackgroundSrc(getLocalBackgroundImage())
-          setBackgroundMessage('现在使用站内壁纸作为背景')
-          return
-        }
-        if (bingBackground.value.src) {
-          setBackgroundSrc(bingBackground.value.src)
-          setBackgroundMessage('现在使用 Bing 作为背景')
-          return
-        }
         try {
           const bing = await getBingBackground()
           setBingBackground(bing)
           setBackgroundSrc(bing.src)
           setBackgroundMessage('现在使用 Bing 作为背景')
+          // 预加载图片本体，确保 loading 退出时图片已就绪
+          await preloadImage(bing.src)
         } catch {
           // Bing 获取失败，降级到站内壁纸
           setBackgroundSrc(getLocalBackgroundImage())

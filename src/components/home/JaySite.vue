@@ -20,7 +20,7 @@ const renderIcon = (icon: string): Component => {
   <n-card v-if="!general.isMobile" size="medium" title="站点" content-class="w-full grid gap-2 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
     <template v-for="site in homeConfig.sites" :key="site.router">
       <router-link v-if="site.type === 'router' && site.router" :to="site.router">
-        <n-card v-interaction size="medium" content-class="flex justify-center items-center gap-2 flex-row">
+        <n-card v-magnetic size="medium" content-class="flex justify-center items-center gap-2 flex-row">
           <n-icon :size="30"><component :is="renderIcon(site.icon)" /></n-icon>
           <p class="text-xl font-bold">{{ site.name }}</p>
         </n-card>
@@ -28,7 +28,7 @@ const renderIcon = (icon: string): Component => {
     </template>
     <template v-for="link in homeConfig.sites" :key="link.link">
       <a v-if="link.type === 'link' && link.link" :href="link.link" target="_blank">
-        <n-card v-interaction class="w-full h-full" size="medium" content-class="flex justify-center items-center gap-2 flex-row">
+        <n-card v-magnetic class="w-full h-full" size="medium" content-class="flex justify-center items-center gap-2 flex-row">
           <n-icon :size="30"><component :is="renderIcon(link.icon)" /></n-icon>
           <p class="text-xl font-bold">{{ link.name }}</p>
         </n-card>
@@ -43,10 +43,10 @@ const renderIcon = (icon: string): Component => {
             <n-icon :size="27"><component :is="renderIcon(site.icon)" /></n-icon>
             <p class="text-base">{{ site.name }}</p>
           </n-card>
-        </router-link>
-      </template>
-      <template v-for="link in homeConfig.sites" :key="link.link">
-        <a v-if="link.type === 'link' && link.link" :href="link.link" target="_blank">
+      </router-link>
+    </template>
+    <template v-for="link in homeConfig.sites" :key="link.link">
+      <a v-if="link.type === 'link' && link.link" :href="link.link" target="_blank">
           <n-card v-interaction class="w-full h-full" size="small" content-class="flex justify-center items-center gap-2 flex-col">
             <n-icon :size="27"><component :is="renderIcon(link.icon)" /></n-icon>
             <p class="text-base">{{ link.name }}</p>

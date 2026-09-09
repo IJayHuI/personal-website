@@ -26,7 +26,7 @@ onBeforeMount(() => {
 })
 </script>
 <template>
-  <n-card :title="`热力图 · 最近一年 Github 有 ${home.heatmapTotal} 提交`" v-interaction :size="props.cardSize">
+  <n-card :title="`热力图 · 最近一年 Github 有 ${home.heatmapTotal} 提交`" :size="props.cardSize">
     <n-scrollbar x-scrollable>
       <div class="min-w-max flex justify-center mb-3">
         <n-heatmap :data="home.heatmapData" :size="props.heatmapSize" :fill-calendar-leading="true" />
