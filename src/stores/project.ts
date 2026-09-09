@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { Project } from '../types/project'
 import { getProjectDatas } from '../api'
-import { withLoading } from '../utils'
+import { withLoading, preloadImages } from '../utils'
 
 /**
  * 项目页 store
@@ -27,7 +27,11 @@ export const useProjectStore = defineStore('project', () => {
   async function fetchProjects() {
     if (projects.value.length > 0) return
     await withLoading(async () => {
-      setProjects(await getProjectDatas())
+      const list = await getProjectDatas()
+      setProjects(list)
+      // 预加载所有项目图片，确保 loading 退出时图片已就绪
+      const imageUrls = list.map((p) => p.image).filter(Boolean)
+      if (imageUrls.length > 0) await preloadImages(imageUrls)
     })
   }
 
